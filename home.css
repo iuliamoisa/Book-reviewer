@@ -1,9 +1,25 @@
 html{
+    /*background-image: url(./pictures/backgroundV2.png);
+    background-color: #fff;*/
     font-family: 'Lato', sans-serif;
 }
-header {
+#header {
     background-color: #D7A86E;
-    border-radius:10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: left;
+    gap: 20px;
+}
+#title{
+    text-align: center;
+    vertical-align: middle;
+    line-height: 90px; 
+    color:#fff7e7;
+    font-family: "Metro Sans";
+    font-size: 35px;
+}
+h1 {
+    height: 90px;
 }
 .logo {
     display: inline-block;
@@ -12,34 +28,27 @@ header {
     height: 100px;
     background-image: url(./Planificare/logoBoo-better.png);
     background-size: cover;
-    border-radius:  50%;
+    border-radius: 50%;
 }
 img{
-    height: 300px;
-  width: 300px;
+    background-color: #fff;
+    height: 400px;
+    width: 400px;
 }
 
 /* Style for the login and logout options */
-.options {
-    background-color: #fde3accd;
-    display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-    gap: 20px;
-	padding: 20px;
-    margin: 10px;
-    height: 300px;
-	width: 200px;
-    float: left;
-    border-radius: 40px;
+#options {
+    position: fixed;
+    top:20px;
+    right: 10px;
 }
 /* CSS */
 button {
   align-items: center;
-  background-image: radial-gradient(100% 100% at 100% 0, #f1bd7e 0, #cb9e67 100%);
+  background-color:#FFEBC1;
   border: 0;
   border-radius: 6px;
-  color: #fff;
+  color: #4b1a00;
   cursor: pointer;
   display: inline-flex;
   height: 45px;
@@ -55,38 +64,60 @@ button {
 }
 button:hover{
     color: #fff;
-    background-image: radial-gradient(100% 100% at 100% 0, #ca9f69 0, #f1bd7e 100%);
+    background-color: #a64b2a52;
 }
 
 .main {
     display: flex;
     justify-content: space-around;
 }
-.info {
-    display: flex;
-    flex-direction: column;
+#info {
+    position: relative; /* elements can be positioned inside it*/
+    width: 100%;
+    height: 100%;
 }
 /* Style for the information bubbles */
 .bubble {
-	padding: 20px;
-    margin: 25px;
+    position: absolute; /*each element can pe positioned using top and left */
+    width: 190px; 
+    height: 190px;
     border-radius: 40%;
-    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
     box-shadow: 0 2px 4px #8d4024;
+    margin: 50px;
 }
-.one {
+.bubble:nth-child(1) {
     background-color: #D7A86E;
+    margin-top: 150px;
+    margin-left: 10px;
+    width: 150px; 
+    height: 120px;
 }
-.two {
-    background-color: #d7a86ea2;
+.bubble:nth-child(2) {
+    background-color: #e5b274a2;
+    margin-top: 40px;
+    margin-left: 270px;
 }
-.three {
+.bubble:nth-child(3) {
     background-color: #bc925eba;
+    margin-top: 220px;
+    margin-left: 500px;
+    height: 100px;
 }
-.bubble p {
-    margin: 0;
-    font-size: 15px;
-    font-weight: normal;
-    color: #333;
+.bubble:nth-child(4) {
+    background-color: #f8dcbaba;
+    margin-top: 300px;
+    margin-left: 200px;
+    height: 90px;
+    width: 160px;
+}
+.text-box {
+    width: 90%;
+    height: 90%px;
     text-align: center;
+    line-height: 30px;
+    padding: 20px;
 }
