@@ -1,0 +1,92 @@
+html{
+    font-family: 'Lato', sans-serif;
+}
+header {
+    background-color: #D7A86E;
+    border-radius:10px;
+}
+.logo {
+    display: inline-block;
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    background-image: url(./Planificare/logoBoo-better.png);
+    background-size: cover;
+    border-radius:  50%;
+}
+img{
+    height: 300px;
+  width: 300px;
+}
+
+/* Style for the login and logout options */
+.options {
+    background-color: #fde3accd;
+    display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+    gap: 20px;
+	padding: 20px;
+    margin: 10px;
+    height: 300px;
+	width: 200px;
+    float: left;
+    border-radius: 40px;
+}
+/* CSS */
+button {
+  align-items: center;
+  background-image: radial-gradient(100% 100% at 100% 0, #f1bd7e 0, #cb9e67 100%);
+  border: 0;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  height: 45px;
+  justify-content: center;
+  line-height: 1;
+  padding-left: 14px;
+  padding-right: 14px;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  font-size: 18px;
+  margin: 30px;
+}
+button:hover{
+    color: #fff;
+    background-image: radial-gradient(100% 100% at 100% 0, #ca9f69 0, #f1bd7e 100%);
+}
+
+.main {
+    display: flex;
+    justify-content: space-around;
+}
+.info {
+    display: flex;
+    flex-direction: column;
+}
+/* Style for the information bubbles */
+.bubble {
+	padding: 20px;
+    margin: 25px;
+    border-radius: 40%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px #8d4024;
+}
+.one {
+    background-color: #D7A86E;
+}
+.two {
+    background-color: #d7a86ea2;
+}
+.three {
+    background-color: #bc925eba;
+}
+.bubble p {
+    margin: 0;
+    font-size: 15px;
+    font-weight: normal;
+    color: #333;
+    text-align: center;
+}
