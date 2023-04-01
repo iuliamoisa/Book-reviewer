@@ -1,75 +1,85 @@
-html{
-    /*background-image: url(./pictures/backgroundV2.png);
-    background-color: #fff;*/
+:root {
+    --maroinchis: #8E3200;
+    --maro: #A64B2A;
+    --creminchis: #d49d5b;
+    --crem: #D7A86E;
+    --aproapealb: #FFEBC1;
+    --cremmaiinchis: #e5b274a2;
+    --cremfoarteinchis: #bc925eba;
+    --var3: #f8dcbaba;
+  }
+* {
     font-family: 'Lato', sans-serif;
 }
-#header {
-    background-color: #D7A86E;
-    border-radius: 10px;
+header {
     display: flex;
-    justify-content: left;
+    justify-content: space-left;
     gap: 20px;
+    background-color: var(--crem);
+    border-radius: 10px;
+    padding: 0px 10;
+    height: 100px;
 }
-#title{
-    text-align: center;
-    vertical-align: middle;
-    line-height: 90px; 
-    color:#fff7e7;
-    font-family: "Metro Sans";
-    font-size: 35px;
-}
-h1 {
-    height: 90px;
+img {
+    margin-left: 20px;
 }
 .logo {
-    display: inline-block;
-    margin: 10px;
-    width: 100px;
-    height: 100px;
-    background-image: url(./Planificare/logoBoo-better.png);
+    width: 90px;
+    height: 90px;
     background-size: cover;
     border-radius: 50%;
 }
-img{
-    background-color: #fff;
-    height: 400px;
-    width: 400px;
+h1 {
+    text-align: center;
 }
 
-/* Style for the login and logout options */
+#title{
+    height: 60%;
+    color:white;
+    font-family: "Metro Sans";
+    font-size: 35px;
+}
+nav {
+    margin-left: auto;
+    position: static;
+    right: 20px;
+}
 #options {
-    position: fixed;
-    top:20px;
-    right: 10px;
+    list-style: none;
 }
-/* CSS */
-button {
-  align-items: center;
-  background-color:#FFEBC1;
-  border: 0;
-  border-radius: 6px;
-  color: #4b1a00;
-  cursor: pointer;
-  display: inline-flex;
-  height: 45px;
-  justify-content: center;
-  line-height: 1;
-  padding-left: 14px;
-  padding-right: 14px;
-  position: relative;
-  text-align: left;
-  text-decoration: none;
-  font-size: 18px;
-  margin: 30px;
+#options li{
+    display: inline-block; /*items side by side, not one after another*/
+    padding: 10px 20px;
+    margin: 10px;
 }
-button:hover{
+#options li:hover{
+    transition: all 0.5s ease 0s;
     color: #fff;
-    background-color: #a64b2a52;
+    background-color: var(--creminchis);
+}
+li, a{
+    font-weight: bold;
+    font-size: 18px; 
+    text-decoration: none;
+    color: var(--maroinchis);
+    background-color: var(--aproapealb);
+    border-radius: 6px;
+}
+a{
+    padding: 10px;
 }
 
 .main {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--aproapealb);
     display: flex;
     justify-content: space-around;
+}
+.illustration{
+    width: 450px;
+    height: 450px;
+    margin-right: 40px;
 }
 #info {
     position: relative; /* elements can be positioned inside it*/
@@ -86,29 +96,29 @@ button:hover{
     justify-content: center;
     align-items: center;
     font-size: 16px;
-    box-shadow: 0 2px 4px #8d4024;
+    box-shadow: 0 2px 4px var(--maro);
     margin: 50px;
 }
 .bubble:nth-child(1) {
-    background-color: #D7A86E;
+    background-color: var(--crem);
     margin-top: 150px;
     margin-left: 10px;
     width: 150px; 
     height: 120px;
 }
 .bubble:nth-child(2) {
-    background-color: #e5b274a2;
+    background-color: var(--cremmaiinchis);
     margin-top: 40px;
     margin-left: 270px;
 }
 .bubble:nth-child(3) {
-    background-color: #bc925eba;
+    background-color: var(--cremfoarteinchis);
     margin-top: 220px;
     margin-left: 500px;
     height: 100px;
 }
 .bubble:nth-child(4) {
-    background-color: #f8dcbaba;
+    background-color: var(--var3);
     margin-top: 300px;
     margin-left: 200px;
     height: 90px;
