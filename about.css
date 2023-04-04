@@ -8,7 +8,7 @@
     --cremfoarteinchis: #bc925eba;
     --var3: #f8dcbaba;
   }
-* {
+*{
     font-family: 'Lato', sans-serif;
 }
 header {
@@ -29,7 +29,7 @@ img {
     background-size: cover;
     border-radius: 50%;
 }
-h1 {
+header h1 {
     text-align: center;
 }
 
@@ -69,65 +69,64 @@ a{
     padding: 10px;
 }
 
-.main {
+.section {
     width: 100%;
     min-height: 100vh;
     background-color: var(--aproapealb);
-    display: flex;
-    justify-content: space-around;
 }
-.illustration{
-    width: 450px;
-    height: 450px;
-    margin-right: 40px;
-}
-#info {
-    position: relative; /* elements can be positioned inside it*/
-    width: 100%;
-    height: 100%;
-}
-/* Style for the information bubbles */
-.bubble {
-    position: absolute; /*each element can pe positioned using top and left */
-    width: 190px; 
-    height: 190px;
-    border-radius: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 16px;
-    box-shadow: 0 2px 4px var(--maro);
-    margin: 50px;
-}
-.bubble:nth-child(1) {
-    background-color: var(--crem);
-    margin-top: 150px;
-    margin-left: 10px;
-    width: 150px; 
-    height: 120px;
-}
-.bubble:nth-child(2) {
-    background-color: var(--cremmaiinchis);
-    margin-top: 40px;
-    margin-left: 270px;
-}
-.bubble:nth-child(3) {
-    background-color: var(--cremfoarteinchis);
-    margin-top: 220px;
-    margin-left: 500px;
-    height: 100px;
-}
-.bubble:nth-child(4) {
-    background-color: var(--var3);
-    margin-top: 300px;
-    margin-left: 200px;
-    height: 90px;
-    width: 160px;
-}
-.text-box {
+.container {
     width: 90%;
-    height: 90%px;
-    text-align: center;
-    line-height: 30px;
-    padding: 20px;
+    display: block;
+    margin: auto;
+    padding-top: 50px;
+}
+.content-section{
+    float:right;
+    width: 55%;
+}
+.image-section{
+    float: left;
+    width: 40%;
+}
+.image-section img{
+    height: 400px;
+    width: 420px;
+}
+.content-section .title{
+    text-transform: uppercase;
+    text-decoration: overline;
+    font-size: 22px;
+    color: var(--maroinchis);
+}
+.content-section .information h3{
+    font-size: 20px;
+    font-weight:bold;
+    color: var(--maro);
+}
+.content-section .information p{
+    color: var(--cremfoarteinchis);
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+@media screen and (max-width: 768px){
+    .container{
+        width: 80%;
+        display: block;
+        margin: auto;
+        padding-top: 100px;
+    }
+    .content-section, .image-section{
+        float: none;
+        width: 100%;
+        display: block;
+        margin: auto;
+    }
+    .content-section .title{
+        text-align: center;
+        font-size: 17px;
+    }
+    .information {
+        text-align: center;
+    }
 }
