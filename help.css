@@ -1,12 +1,26 @@
+* {
+    font-family: 'Lato', sans-serif;
+}
+:root{
+    --background: #fff5deed;
+    --scris: #fff6ed;
+    --helpColor1: #D7A86E;
+    --helpColor2: #8E3200;
+    --titlu: #fce0a4;
+    --negru: #000000;
+    --alb:#ffffff;
+    --gri:#777777;
+}
+
 .header{
+    margin-bottom: 10px;
     left:0px;
     top:0px;
     height:100px;
     width:100%;
-    background-color: #fff5deed;;
+    background-color: var(--background);
     text-align: left;
     font-size:27px;
-    color: #fff6ed;
 }
 
 .helpBox1{
@@ -14,14 +28,14 @@
     padding: 10px;
     display: inline-block;
     position: relative;
-    top: 105px;
+    top: 40px;
     left: 10%;
-    height: 300px;
+    height: 250px;
     width: 300px;
-    background-color: #D7A86E;
+    background-color: var(--helpColor1);
     transition: 0.4s;
     border-radius: 4px;
-    color: #fff6ed;
+    color: var(--scris);
     overflow: hidden;
 }
 
@@ -29,14 +43,14 @@
     padding: 10px;
     display: inline-block;
     position: relative;
-    top: 105px;
+    top: 40px;
     left: 20%;
-    height: 300px;
+    height: 250px;
     width: 300px;
-    background-color: #D7A86E;
+    background-color: var(--helpColor1);
     transition: 0.4s;
     border-radius: 4px;
-    color: #fff6ed;
+    color: var(--scris);
     overflow: hidden;
 }
 
@@ -44,45 +58,45 @@
     padding: 10px;
     display: inline-block;
     position: relative;
-    top: 105px;
+    top: 40px;
     left: 30%;
-    height: 300px;
+    height: 250px;
     width: 300px;
-    background-color: #D7A86E;
+    background-color: var(--helpColor1);
     transition: 0.4s;
     border-radius: 4px;
-    color: #fff6ed;
+    color: var(--scris);
     overflow: hidden;
 }
 
 .helpBox1:hover{
-    background-color:#8E3200;
-    box-shadow: inset 0 0 20px #777777;
+    background-color:var(--helpColor2);
+    box-shadow: inset 0 0 20px var(--gri);
 }
 
 .helpBox2:hover{
-    background-color:#8E3200;
-    box-shadow: inset 0 0 20px #777777;
+    background-color:var(--helpColor2);
+    box-shadow: inset 0 0 20px var(--gri);
 }
 
 .helpBox3:hover{
-    background-color:#8E3200;
-    box-shadow: inset 0 0 20px #777777;
+    background-color:var(--helpColor2);
+    box-shadow: inset 0 0 20px var(--gri);
    
 }
 
 .helpBox1:hover h3{
-    background-color:#8E3200;   
+    background-color:var(--helpColor2);   
     top:0%;
 }
 
 .helpBox2:hover h3{
-    background-color:#8E3200;
+    background-color:var(--helpColor2);
     top:0%;
 }
 
 .helpBox3:hover h3{
-    background-color:#8E3200;
+    background-color:var(--helpColor2);
     top:0%;
 }
 
@@ -122,7 +136,7 @@
     bottom: 0px;
     left: 0px;
     width: 100%;
-    background-color: #dca562;
+    background-color: var(--helpColor1);
 }
 
 h3{
@@ -138,21 +152,22 @@ h1{
     margin-top: 10px;
     margin-bottom: 0px;
     margin-left: 0px;
-    color: #FFEBC1;
-    text-shadow: -1px 1px 0 #000000,
-                          1px 1px 0 #ffffff,
-                         1px -1px 0 #ffffff,
-                        -1px -1px 0 #ffffff;
+    color: var(--titlu);
+    text-shadow: -1px 1px 0 var(--negru),
+                          1px 1px 0 var(--alb),
+                         1px -1px 0 var(--alb),
+                        -1px -1px 0 var(--alb);
 }
 
 div.form{
+    padding: 10px;
+    padding-top: 0px;
+    position: relative;
+    left:10%;
     border-radius: 2px;
-    width: 1100px;
-    background-color:#D7A86E; 
-    margin-top: 300px;
-    margin-bottom: 200px;
-    margin-left: 230px;
-    display:block;
+    width: 1250px;
+    background-color:var(--helpColor1); 
+    display:inline-block;
     text-align: center;
 }
 
@@ -163,6 +178,43 @@ form{
     text-align: left;
 }
 
-.footer p{
-    text-align: center;
+.username{
+    height: 40px;
+    width: 500px;
+    border-style: solid;
+    border-color: var(--negru);
+    font-size: 25px;
 }
+
+.email{
+    height: 40px;
+    width: 500px;
+    border-style: solid;
+    border-color: var(--negru);
+    font-size: 25px;
+}
+
+.submit{
+    height: 45px;
+    width: 185px;
+    border-style: solid;
+    border-color: var(--negru);
+    font-size: 25px;
+    background-color:var(--titlu);
+    transition:0.3s;
+}
+
+.submit:hover{
+    background-color: var(--helpColor2);
+    cursor: pointer;
+    color:var(--scris);
+}
+
+.question{
+    width: 1200px;
+    height: 40px;
+    border-style: solid;
+    border-color: var(--negru);
+    font-size: 25px;
+}
+
