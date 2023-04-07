@@ -1,21 +1,14 @@
-:root {
-    --maroinchis: #8E3200;
-    --maro: #A64B2A;
-    --creminchis: #d49d5b;
-    --crem: #D7A86E;
-    --aproapealb: #FFEBC1;
-    --cremmaiinchis: #e5b274a2;
-    --cremfoarteinchis: #bc925eba;
-    --var3: #f8dcbaba;
-  }
+@import "styles/variables";
+  
 * {
     font-family: 'Lato', sans-serif;
+    /* font-family: 'Bodoni Moda', serif; */
 }
 header {
     display: flex;
     justify-content: space-left;
     gap: 20px;
-    background-color: var(--crem);
+    background-color: $crem;
     border-radius: 10px;
     padding: 0px 10;
     height: 100px;
@@ -46,23 +39,25 @@ nav {
 }
 #options {
     list-style: none;
-}
-#options li{
-    display: inline-block; /*items side by side, not one after another*/
-    padding: 10px 20px;
-    margin: 10px;
-}
-#options li:hover{
-    transition: all 0.5s ease 0s;
-    color: #fff;
-    background-color: var(--creminchis);
+
+    li{
+        display: inline-block; /*items side by side, not one after another*/
+        padding: 10px 20px;
+        margin: 10px;
+
+        &:hover{
+            transition: all 0.5s ease 0s;
+            color: #fff;
+            background-color: $light-brown;
+        }
+    }
 }
 li, a{
     font-weight: bold;
     font-size: 18px; 
     text-decoration: none;
-    color: var(--maroinchis);
-    background-color: var(--aproapealb);
+    color: $red-brown;
+    background-color: $yellowish-white;
     border-radius: 6px;
 }
 a{
@@ -72,7 +67,7 @@ a{
 .main {
     width: 100%;
     min-height: 100vh;
-    background-color: var(--aproapealb);
+    background-color: $yellowish-white;
     display: flex;
     justify-content: space-around;
 }
@@ -96,29 +91,29 @@ a{
     justify-content: center;
     align-items: center;
     font-size: 16px;
-    box-shadow: 0 2px 4px var(--maro);
+    box-shadow: 0 2px 4px $brown;
     margin: 50px;
 }
 .bubble:nth-child(1) {
-    background-color: var(--crem);
+    background-color: $crem;
     margin-top: 150px;
     margin-left: 10px;
     width: 150px; 
     height: 120px;
 }
 .bubble:nth-child(2) {
-    background-color: var(--cremmaiinchis);
+    background-color: $lighter-pale-brown;
     margin-top: 40px;
     margin-left: 270px;
 }
 .bubble:nth-child(3) {
-    background-color: var(--cremfoarteinchis);
+    background-color: $pale-brown;
     margin-top: 220px;
     margin-left: 500px;
     height: 100px;
 }
 .bubble:nth-child(4) {
-    background-color: var(--var3);
+    background-color: $lightest-pale-brown;
     margin-top: 300px;
     margin-left: 200px;
     height: 90px;

@@ -1,0 +1,143 @@
+/* Google Font */
+@import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
+/* Colors */
+* {
+  font-family: "Lato", sans-serif;
+  /* font-family: 'Bodoni Moda', serif; */
+}
+
+header {
+  display: flex;
+  justify-content: space-left;
+  gap: 20px;
+  background-color: #D7A86E;
+  border-radius: 10px;
+  padding: 0px 10;
+  height: 100px;
+}
+
+img {
+  margin-left: 20px;
+}
+
+.logo {
+  width: 90px;
+  height: 90px;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+h1 {
+  text-align: center;
+}
+
+#title {
+  height: 60%;
+  color: white;
+  font-family: "Metro Sans";
+  font-size: 35px;
+}
+
+nav {
+  margin-left: auto;
+  position: static;
+  right: 20px;
+}
+
+#options {
+  list-style: none;
+}
+#options li {
+  display: inline-block; /*items side by side, not one after another*/
+  padding: 10px 20px;
+  margin: 10px;
+}
+#options li:hover {
+  transition: all 0.5s ease 0s;
+  color: #fff;
+  background-color: #d49d5b;
+}
+
+li, a {
+  font-weight: bold;
+  font-size: 18px;
+  text-decoration: none;
+  color: #8E3200;
+  background-color: #FFEBC1;
+  border-radius: 6px;
+}
+
+a {
+  padding: 10px;
+}
+
+.main {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #FFEBC1;
+  display: flex;
+  justify-content: space-around;
+}
+
+.illustration {
+  width: 450px;
+  height: 450px;
+  margin-right: 40px;
+}
+
+#info {
+  position: relative; /* elements can be positioned inside it*/
+  width: 100%;
+  height: 100%;
+}
+
+/* Style for the information bubbles */
+.bubble {
+  position: absolute; /*each element can pe positioned using top and left */
+  width: 190px;
+  height: 190px;
+  border-radius: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  box-shadow: 0 2px 4px #A64B2A;
+  margin: 50px;
+}
+
+.bubble:nth-child(1) {
+  background-color: #D7A86E;
+  margin-top: 150px;
+  margin-left: 10px;
+  width: 150px;
+  height: 120px;
+}
+
+.bubble:nth-child(2) {
+  background-color: rgba(229, 178, 116, 0.6352941176);
+  margin-top: 40px;
+  margin-left: 270px;
+}
+
+.bubble:nth-child(3) {
+  background-color: rgba(188, 146, 94, 0.7294117647);
+  margin-top: 220px;
+  margin-left: 500px;
+  height: 100px;
+}
+
+.bubble:nth-child(4) {
+  background-color: rgba(248, 220, 186, 0.7294117647);
+  margin-top: 300px;
+  margin-left: 200px;
+  height: 90px;
+  width: 160px;
+}
+
+.text-box {
+  width: 90%;
+  height: 90% px;
+  text-align: center;
+  line-height: 30px;
+  padding: 20px;
+}
