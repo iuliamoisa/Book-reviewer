@@ -1,0 +1,129 @@
+@import "styles/variables";
+*{
+    font-family: $primary-font;
+}
+body{
+    margin: 0;
+}
+header {
+    display: flex;
+    justify-content: space-left;
+    gap: 1.25rem;
+    background-color: $crem;
+    border-radius: 0.6rem;
+    padding: 0px 10;
+    height: 6.25rem;
+
+    img {
+        margin-left: 1.25rem;
+    }
+    h1{
+        text-align: center;
+    }
+    li, a{
+        font-weight: bold;
+        font-size: 1.1rem; 
+        text-decoration: none;
+        color: $red-brown;
+        background-color: $yellowish-white;
+        border-radius: 0.4rem;
+    }
+    .logo {
+        width: 5.5rem;
+        height: 5.5rem;
+        background-size: cover;
+        border-radius: 50%;
+        margin-top: 0.3rem;
+    }
+    #title{
+        height: 60%;
+        color:white;
+        font-family: $title-font;
+        font-size: 2.2rem;
+    }
+}
+nav {
+    margin-left: auto;
+    position: static;
+    right: 1.25rem;
+}
+#options {
+    list-style: none;
+    li{
+        display: inline-block; /*items side by side, not one after another*/
+        padding: 0.6rem 1.25rem;
+        margin: 1rem;
+        &:hover{
+            transition: all 0.5s ease 0s;
+            color: #fff;
+            background-color: $light-brown;
+        }
+    }
+}
+
+a{
+    padding: 0.6rem;
+}
+
+.section {
+    width: 100%;
+    min-height: 100vh;
+    background-color: $yellowish-white;
+    .container {
+        width: 90%;
+        display: block;
+        margin: auto;
+        padding-top: 3.1rem;
+
+        .content-section{
+            float:right;
+            width: 55%;
+            .title{
+                text-transform: uppercase;
+                text-decoration: overline;
+                font-size: 1.4rem;
+                color: $red-brown;
+            }
+            .information, h3{
+                font-size: 1.25rem;
+                font-weight:bold;
+                color: $brown;
+            }
+            .information, p{
+                color: $pale-brown;
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+        }
+        .image-section{
+            float: left;
+            width: 40%;
+            img{
+                height: 25rem;
+                width: 25.5rem;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px){
+    .container{
+        width: 80%;
+        display: block;
+        margin: auto;
+        padding-top: 6.25rem;
+    }
+    .content-section, .image-section{
+        float: none;
+        width: 100%;
+        display: block;
+        margin: auto;
+    }
+    .content-section .title{
+        text-align: center;
+        font-size: 1rem;
+    }
+    .information {
+        text-align: center;
+    }
+}

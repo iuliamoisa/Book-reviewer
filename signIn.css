@@ -51,7 +51,6 @@ html{
 #blur{
     width: 100%;
     height: 100%;
-    position: absolute;
     backdrop-filter: blur(5px);
 }
 

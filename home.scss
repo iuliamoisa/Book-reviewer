@@ -1,26 +1,30 @@
 @import "styles/variables";
   
 * {
-    font-family: 'Lato', sans-serif;
+    font-family: $primary-font;
     /* font-family: 'Bodoni Moda', serif; */
+}
+body{
+    margin: 0;
 }
 header {
     display: flex;
     justify-content: space-left;
-    gap: 20px;
+    gap: 1.25rem;
     background-color: $crem;
-    border-radius: 10px;
-    padding: 0px 10;
-    height: 100px;
+    border-radius:  0.6rem;
+    padding: 0px 0.6rem;
+    height: 6.25rem;
 }
 img {
-    margin-left: 20px;
+    margin-left: 1.25rem;
 }
 .logo {
-    width: 90px;
-    height: 90px;
+    width: 5.5rem;
+    height: 5.5rem;
     background-size: cover;
     border-radius: 50%;
+    margin-top: 0.3rem;
 }
 h1 {
     text-align: center;
@@ -29,21 +33,21 @@ h1 {
 #title{
     height: 60%;
     color:white;
-    font-family: "Metro Sans";
-    font-size: 35px;
+    font-family: $title-font;
+    font-size: 2.2rem;
 }
 nav {
     margin-left: auto;
     position: static;
-    right: 20px;
+    right: 1.25rem;
 }
 #options {
     list-style: none;
 
     li{
         display: inline-block; /*items side by side, not one after another*/
-        padding: 10px 20px;
-        margin: 10px;
+        padding:  0.6rem 1.25rem;
+        margin:  1rem;
 
         &:hover{
             transition: all 0.5s ease 0s;
@@ -54,14 +58,14 @@ nav {
 }
 li, a{
     font-weight: bold;
-    font-size: 18px; 
+    font-size: 1.1rem; 
     text-decoration: none;
     color: $red-brown;
     background-color: $yellowish-white;
-    border-radius: 6px;
+    border-radius: 0.4rem;
 }
 a{
-    padding: 10px;
+    padding:  0.6rem;
 }
 
 .main {
@@ -74,7 +78,8 @@ a{
 .illustration{
     width: 450px;
     height: 450px;
-    margin-right: 40px;
+    margin-right: 2.5rem;
+    max-width:30%;
 }
 #info {
     position: relative; /* elements can be positioned inside it*/
@@ -84,45 +89,46 @@ a{
 /* Style for the information bubbles */
 .bubble {
     position: absolute; /*each element can pe positioned using top and left */
-    width: 190px; 
-    height: 190px;
+    width: 12rem; 
+    height: 12rem;
     border-radius: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 16px;
+    font-size: 1rem;
     box-shadow: 0 2px 4px $brown;
-    margin: 50px;
+    margin: 3.3rem;
 }
 .bubble:nth-child(1) {
     background-color: $crem;
-    margin-top: 150px;
-    margin-left: 10px;
-    width: 150px; 
-    height: 120px;
+    margin-top: 9.4rem;
+    margin-left:  0.6rem;
+    width: 9.4rem; 
+    height: 8rem;
 }
 .bubble:nth-child(2) {
     background-color: $lighter-pale-brown;
-    margin-top: 40px;
-    margin-left: 270px;
+    margin-top: 2.5rem;
+    margin-left: 16rem;
+    height: 11rem;
 }
 .bubble:nth-child(3) {
     background-color: $pale-brown;
-    margin-top: 220px;
-    margin-left: 500px;
-    height: 100px;
+    margin-top: 13.7rem;
+    margin-left: 31rem;
+    height: 7rem;
 }
 .bubble:nth-child(4) {
     background-color: $lightest-pale-brown;
-    margin-top: 300px;
-    margin-left: 200px;
-    height: 90px;
-    width: 160px;
+    margin-top: 19rem;
+    margin-left: 12.5rem;
+    height: 7rem;
+    width: 10rem;
 }
 .text-box {
     width: 90%;
-    height: 90%px;
+    height: 50%;
     text-align: center;
-    line-height: 30px;
-    padding: 20px;
+    line-height: 2rem;
+    padding: 1.3rem;
 }
