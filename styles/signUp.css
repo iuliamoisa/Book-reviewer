@@ -9,7 +9,6 @@
   background-size: cover;
   width: 100%;
   height: 100%;
-  position: absolute;
 }
 
 html {
@@ -26,10 +25,9 @@ html {
 #head {
   width: 100%;
   height: 100px;
-  /* background-color: #D7A86E; */
   display: flex;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: flex-start;
 }
 
 #title {
@@ -43,8 +41,6 @@ html {
 }
 
 #blur {
-  width: 100%;
-  height: 100%;
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
 }
@@ -61,6 +57,7 @@ html {
   align-items: center;
   row-gap: 50px;
   color: #D7A86E;
+  margin-bottom: 10px;
 }
 
 #squareTitle {
@@ -68,7 +65,7 @@ html {
   text-align: center;
 }
 
-#email, #password {
+#email, #password, #flname, #rePassword {
   font-weight: bold;
   font-size: 20px;
 }
@@ -90,17 +87,7 @@ html {
   font-size: 20px;
 }
 
-#forgPass {
-  font-size: 10px;
-  position: relative;
-  float: right;
-  margin-top: 10px;
-  font-style: italic;
-  text-decoration: none;
-  color: #D7A86E;
-}
-
-#signInBut, #signUpBut {
+#createAcc {
   height: 30px;
   width: 250px;
   font-size: 20px;
@@ -112,31 +99,25 @@ html {
   color: white;
 }
 
-#signInBut:hover, #signUpBut:hover {
+#createAcc:hover {
   background-color: #A64B2A;
 }
 
-#signInBut:active, #signUpBut:active {
+#createAcc:active {
   height: 35px;
 }
 
 #foot {
-  position: absolute;
   background-color: #D7A86E;
-  bottom: 0;
   width: 100%;
   height: 100px;
 }
 
-#fSet {
+#terms {
   width: 250px;
-  border-bottom: white;
-  border-left: white;
-  border-right: white;
+  text-align: center;
 }
 
-legend {
-  margin-left: auto;
-  margin-right: auto;
-  font-style: italic;
+.termsA {
+  color: #D7A86E;
 }
