@@ -4,82 +4,72 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;1,200;1,400;1,700&display=swap");
 /* Colors */
 /* Fonts */
-* {
-  font-family: "Lato", sans-serif;
-  /* font-family: 'Bodoni Moda', serif; */
-}
-
-body {
-  margin: 0;
-}
-
-header {
+/*
+    chestii comune pt toata lumea; 
+    exemplu: 
+        tagurile <a>, <body>, titlul, <nav>?! 
+*/
+.home-header {
   display: flex;
-  justify-content: space-left;
+  justify-content: space-between;
   gap: 1.25rem;
   background-color: #D7A86E;
   border-radius: 0.6rem;
   padding: 0px 0.6rem;
   height: 6.25rem;
 }
-
-img {
-  margin-left: 1.25rem;
-}
-
-.logo {
+.home-header__logo {
   width: 5.5rem;
   height: 5.5rem;
   background-size: cover;
   border-radius: 50%;
   margin-top: 0.3rem;
+  margin-left: 1.25rem;
 }
-
-h1 {
-  text-align: center;
-}
-
-#title {
-  height: 60%;
+.home-header__title {
   color: white;
   font-family: "Nunito Sans";
   font-size: 2.2rem;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 6.25rem;
 }
 
-nav {
+.home-nav {
   margin-left: auto;
   position: static;
   right: 1.25rem;
 }
-
-#options {
-  list-style: none;
-}
-#options li {
+.home-nav__item {
   display: inline-block; /*items side by side, not one after another*/
   padding: 0.6rem 1.25rem;
   margin: 1rem;
 }
-#options li:hover {
+.home-nav__item:hover {
   transition: all 0.5s ease 0s;
   color: #fff;
   background-color: #d49d5b;
 }
 
-li, a {
+.home-nav__item, .home-nav__link {
   font-weight: bold;
   font-size: 1.1rem;
   text-decoration: none;
   color: #8E3200;
   background-color: #FFEBC1;
   border-radius: 0.4rem;
-}
-
-a {
   padding: 0.6rem;
 }
 
-.main {
+* {
+  font-family: "Lato", sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+.home-main {
   width: 100%;
   background-color: #FFEBC1;
   display: flex;
@@ -88,22 +78,19 @@ a {
   bottom: 0;
   top: 6.25rem;
 }
-
-.illustration {
-  width: 450px;
+.home-main__pic {
+  width: 40%;
   height: 450px;
   margin-right: 2.5rem;
-  max-width: 30%;
+  max-width: 45%;
 }
-
-#info {
+.home-main__info {
   position: relative; /* elements can be positioned inside it*/
-  width: 100%;
+  width: 50%;
   height: 100%;
 }
 
-/* Style for the information bubbles */
-.bubble {
+.home-main__bubble {
   position: absolute; /*each element can pe positioned using top and left */
   width: 12rem;
   height: 12rem;
@@ -115,38 +102,33 @@ a {
   box-shadow: 0 2px 4px #A64B2A;
   margin: 3.3rem;
 }
-
-.bubble:nth-child(1) {
+.home-main__bubble--one {
   background-color: #D7A86E;
   margin-top: 9.4rem;
   margin-left: 0.6rem;
   width: 9.4rem;
   height: 8rem;
 }
-
-.bubble:nth-child(2) {
+.home-main__bubble--two {
   background-color: rgba(229, 178, 116, 0.6352941176);
   margin-top: 2.5rem;
   margin-left: 16rem;
   height: 11rem;
 }
-
-.bubble:nth-child(3) {
+.home-main__bubble--three {
   background-color: rgba(188, 146, 94, 0.7294117647);
   margin-top: 13.7rem;
   margin-left: 31rem;
   height: 7rem;
 }
-
-.bubble:nth-child(4) {
+.home-main__bubble--four {
   background-color: rgba(248, 220, 186, 0.7294117647);
   margin-top: 19rem;
   margin-left: 12.5rem;
   height: 7rem;
   width: 10rem;
 }
-
-.text-box {
+.home-main__bubble .bubble_text-box {
   width: 90%;
   height: 50%;
   text-align: center;
@@ -162,128 +144,72 @@ body {
   margin: 0;
 }
 
-header {
-  display: flex;
-  justify-content: space-left;
-  gap: 1.25rem;
-  background-color: #D7A86E;
-  border-radius: 0.6rem;
-  padding: 0px 10;
-  height: 6.25rem;
-}
-header img {
-  margin-left: 1.25rem;
-}
-header h1 {
-  text-align: center;
-}
-header li, header a {
-  font-weight: bold;
-  font-size: 1.1rem;
-  text-decoration: none;
-  color: #8E3200;
-  background-color: #FFEBC1;
-  border-radius: 0.4rem;
-}
-header .logo {
-  width: 5.5rem;
-  height: 5.5rem;
-  background-size: cover;
-  border-radius: 50%;
-  margin-top: 0.3rem;
-}
-header #title {
-  height: 60%;
-  color: white;
-  font-family: "Nunito Sans";
-  font-size: 2.2rem;
-}
-
-nav {
-  margin-left: auto;
-  position: static;
-  right: 1.25rem;
-}
-
-#options {
-  list-style: none;
-}
-#options li {
-  display: inline-block; /*items side by side, not one after another*/
-  padding: 0.6rem 1.25rem;
-  margin: 1rem;
-}
-#options li:hover {
-  transition: all 0.5s ease 0s;
-  color: #fff;
-  background-color: #d49d5b;
-}
-
-a {
-  padding: 0.6rem;
-}
-
-.section {
+.about-main {
   width: 100%;
   min-height: 100vh;
   background-color: #FFEBC1;
-}
-.section .container {
-  width: 90%;
   display: block;
   margin: auto;
   padding-top: 3.1rem;
 }
-.section .container .content-section {
+.about-main__information {
   float: right;
-  width: 55%;
+  width: 45%;
+  padding: 3rem;
+  margin-right: 3rem;
 }
-.section .container .content-section .title {
+.about-main__information--title {
   text-transform: uppercase;
   text-decoration: overline;
-  font-size: 1.4rem;
+  font-size: 3rem;
   color: #8E3200;
+  margin-bottom: 3.5rem;
 }
-.section .container .content-section .information, .section .container .content-section h3 {
-  font-size: 1.25rem;
+.about-main__information--question {
+  font-size: 1.5rem;
   font-weight: bold;
   color: #A64B2A;
+  margin-bottom: 1rem;
 }
-.section .container .content-section .information, .section .container .content-section p {
+.about-main__information--answer {
   color: rgba(188, 146, 94, 0.7294117647);
   font-size: 1rem;
   line-height: 1.5;
+  margin-bottom: 0.8rem;
 }
-.section .container .image-section {
+.about-main__image {
   float: left;
   width: 40%;
+  margin-left: 3rem;
 }
-.section .container .image-section img {
-  height: 25rem;
-  width: 25.5rem;
+.about-main__image--pic {
+  height: 100%;
+  width: 100%;
 }
 
-@media screen and (max-width: 768px) {
-  .container {
-    width: 80%;
-    display: block;
-    margin: auto;
-    padding-top: 6.25rem;
-  }
-  .content-section, .image-section {
-    float: none;
-    width: 100%;
-    display: block;
-    margin: auto;
-  }
-  .content-section .title {
-    text-align: center;
-    font-size: 1rem;
-  }
-  .information {
-    text-align: center;
-  }
+/*
+@media screen and (max-width: 768px){
+    .container{
+        width: 80%;
+        display: block;
+        margin: auto;
+        padding-top: 6.25rem;
+    }
+    .content-section, .image-section{
+        float: none;
+        width: 100%;
+        display: block;
+        margin: auto;
+    }
+    .content-section .title{
+        text-align: center;
+        font-size: 1rem;
+    }
+    .information {
+        text-align: center;
+    }
 }
+*/
 * {
   margin: 0;
   padding: 0;

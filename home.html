@@ -8,33 +8,39 @@
     <title>Boo</title>
 </head>
 <body>
-	<header>
-		<img class="logo" src="./Planificare/logoBoo-better.png" alt="Logo"></img>
-		<h1 id="title">Boo</h1>
-		<nav>
-			<ul id="options">
-				<li><a href="about.html">About</a></li>
-				<li><a href="signIn.html">Login</a></li>
-				<li><a href="signUp.html">Sign up</a></li>
+	<header class="home-header">
+		<img class="home-header__logo" src="./Planificare/logoBoo-better.png" alt="Logo">
+		<h1 class="home-header__title">Boo</h1>
+		<nav class="home-nav">
+			<ul class="home-nav__options">
+				<li class="home-nav__item">
+					<a class="home-nav__link" href="about.html">About</a>
+				</li>
+				<li class="home-nav__item">
+					<a class="home-nav__link" href="signIn.html">Login</a>
+				</li>
+				<li class="home-nav__item">
+					<a class="home-nav__link" href="signUp.html">Sign up</a>
+				</li>
 			</ul>
 		</nav>
 	</header>
-	<div class="main">
-		<div id="info">
-			<div class="bubble">
-				<div class="text-box">only book lovers allowed</div>
+	<div class="home-main">
+		<div class="home-main__info">
+			<div class="home-main__bubble home-main__bubble--one">
+				<p class="bubble_text-box">only book lovers allowed</p>
 			</div>
-			<div class="bubble">
-				<div class="text-box">connect with people who share the same passion as you</div>
+			<div class="home-main__bubble home-main__bubble--two">
+				<p class="bubble_text-box">connect with people who share the same passion as you</p>
 			</div>
-			<div class="bubble">
-				<div class="text-box">keep track of your reading journey</div>
+			<div class="home-main__bubble home-main__bubble--three">
+				<p class="bubble_text-box">keep track of your reading journey</p>
 			</div>
-			<div class="bubble">
-				<div class="text-box">keep improving yourself</div>
+			<div class="home-main__bubble home-main__bubble--four">
+				<p class="bubble_text-box">keep improving yourself</p>
 			</div>
 		</div> <!--end of bubbles-->
-		<img class="illustration" src="svg/home.svg" alt="Girl reading on a couch" />
+		<img class="home-main__pic" src="svg/home.svg" alt="Girl reading on a couch">
 	</div>
 </body>
 </html>
