@@ -81,10 +81,12 @@ a {
 
 .main {
   width: 100%;
-  min-height: 100vh;
   background-color: #FFEBC1;
   display: flex;
   justify-content: space-around;
+  position: fixed;
+  bottom: 0;
+  top: 6.25rem;
 }
 
 .illustration {

@@ -1,4 +1,4 @@
-@import "styles/variables";
+@import "abstracts/variables";
   
 * {
     font-family: $primary-font;
@@ -70,10 +70,12 @@ a{
 
 .main {
     width: 100%;
-    min-height: 100vh;
     background-color: $yellowish-white;
     display: flex;
     justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    top: 6.25rem;
 }
 .illustration{
     width: 450px;
