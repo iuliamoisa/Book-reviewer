@@ -1155,3 +1155,148 @@ html {
     width: 30rem;
   }
 }
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.backImage {
+  background-image: url(../pictures/backFinal.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+  position: absolute;
+}
+.backImage__blur {
+  width: 100%;
+  min-height: 100vh;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+}
+
+html {
+  font-family: "Lato", sans-serif;
+}
+
+.head {
+  width: 100%;
+  height: 100px;
+  /* background-color: #D7A86E; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.head__logo {
+  width: 80px;
+  height: 80px;
+  margin-left: 3px;
+  border-radius: 50px;
+}
+
+.mainSection {
+  display: flex;
+  justify-content: center;
+}
+.mainSection .square {
+  margin-bottom: 15px;
+  width: 30vw;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 5px 5px;
+  background-color: #f5eddc;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 3vh;
+  color: #D7A86E;
+}
+.mainSection .square__squareTitle {
+  margin-top: 20px;
+  text-align: center;
+}
+.mainSection .square__info {
+  width: 17vw;
+  text-align: center;
+}
+.mainSection .square__lab {
+  font-weight: bold;
+  font-size: 1.5vw;
+}
+.mainSection .square__inputs {
+  border: 2px solid rgba(229, 178, 116, 0.6352941176);
+  background-color: #FFEBC1;
+  height: 5vh;
+  width: 17vw;
+  font-size: 1vw;
+  font-style: italic;
+  text-align: center;
+  border-radius: 10px;
+  transition: width 0.5s, height 0.5s, font-size 0.5s;
+}
+.mainSection .square__inputs:hover {
+  background-color: rgba(248, 220, 186, 0.7294117647);
+  height: 6vh;
+  width: 18vw;
+  font-size: 1.5vw;
+}
+.mainSection .square__random {
+  width: 17vw;
+  text-align: center;
+  font-size: 1.5vw;
+  background: linear-gradient(90deg, #f5eddc, #D7A86E, #f5eddc);
+  color: black;
+}
+.mainSection .square__continue {
+  height: 5vh;
+  width: 17vw;
+  font-size: 1.5vw;
+  background-color: #D7A86E;
+  font-style: italic;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  color: white;
+}
+.mainSection .square__continue:hover {
+  background-color: #A64B2A;
+}
+.mainSection .square__continue:active {
+  height: 5.5vh;
+}
+
+@media screen and (max-width: 912px) {
+  #square {
+    min-width: 50vw;
+  }
+  .mainSection .square__lab {
+    font-size: 3.5vw;
+  }
+  .mainSection .square__info {
+    width: 30vw;
+    font-size: 3.5vw;
+  }
+  .mainSection .square__random {
+    width: 30vw;
+    font-size: 3.5vw;
+  }
+  .mainSection .square__inputs {
+    height: 6vh;
+    width: 30vw;
+    font-size: 3vw;
+  }
+  .mainSection .square__inputs:hover {
+    height: 7vh;
+    width: 33vw;
+    font-size: 3vw;
+  }
+  .mainSection .square__continue {
+    height: 6vh;
+    width: 30vw;
+    font-size: 3vw;
+  }
+  .mainSection .square__continue:active {
+    height: 7vh;
+  }
+}
