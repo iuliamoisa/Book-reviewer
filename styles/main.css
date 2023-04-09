@@ -275,7 +275,8 @@ body {
   font-family: "Lato", sans-serif;
 }
 
-body {
+.about-body {
+  background-color: #FFEBC1;
   margin: 0;
 }
 
@@ -318,38 +319,45 @@ body {
   margin-left: 3rem;
 }
 .about-main__image--pic {
-  height: 100%;
+  height: 5%;
   width: 100%;
 }
 
-/*
-@media (orientation: landscape){
-    //destul de ok
-
-    .about-main {
-        padding-top: 2rem;
-
-        &__information{
-            width: 35%;
-            padding: 2rem;
-            &--title{
-                font-size: 2rem;
-                margin-bottom: 2.3rem;
-            }
-            &--question{
-                margin-bottom: 1rem;
-            }
-        }
-        &__image{
-            float: left;
-            width: 35%;
-            margin-left:3rem;
-        }
-    }
-
+@media screen and (max-width: 480px) {
+  .about-main {
+    width: 605px;
+    margin: 0 auto;
+    height: auto;
+    position: relative;
+  }
+  .about-main__information {
+    float: none;
+    width: 80%;
+  }
+  .about-main__image {
+    margin-top: 2rem;
+    float: none;
+    width: 80%;
+  }
 }
-*/
-@media screen and (max-width: 820px) and (orientation: portrait) {
+@media screen and (min-width: 480px) and (max-width: 820px) {
+  .about-main {
+    width: 695px;
+    margin: 0 auto;
+    height: auto;
+    position: relative;
+  }
+  .about-main__information {
+    float: none;
+    width: 80%;
+  }
+  .about-main__image {
+    margin-top: 2rem;
+    float: none;
+    width: 80%;
+  }
+}
+@media screen and (min-width: 820px) and (max-width: 1180px) {
   /* pt ipad air*/
   .about-main {
     width: 100%;
@@ -378,35 +386,12 @@ body {
     width: 50%;
   }
 }
-/*
-@media screen and (max-width: 768px){
-    .container{
-        width: 80%;
-        display: block;
-        margin: auto;
-        padding-top: 6.25rem;
-    }
-    .content-section, .image-section{
-        float: none;
-        width: 100%;
-        display: block;
-        margin: auto;
-    }
-    .content-section .title{
-        text-align: center;
-        font-size: 1rem;
-    }
-    .information {
-        text-align: center;
-    }
-}
-*/
 * {
   margin: 0;
   padding: 0;
 }
 
-#backImage {
+.backImage {
   background-image: url(../pictures/backFinal.jpg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -414,7 +399,7 @@ body {
   min-height: 100vh;
   position: absolute;
 }
-#backImage #blur {
+.backImage__blur {
   width: 100%;
   min-height: 100vh;
   -webkit-backdrop-filter: blur(5px);
@@ -425,7 +410,7 @@ html {
   font-family: "Lato", sans-serif;
 }
 
-#head {
+.head {
   width: 100%;
   height: 100px;
   /* background-color: #D7A86E; */
@@ -433,18 +418,18 @@ html {
   justify-content: flex-start;
   align-items: center;
 }
-#head #logo {
+.head__logo {
   width: 80px;
   height: 80px;
   margin-left: 3px;
   border-radius: 50px;
 }
 
-#mainSection {
+.mainSection {
   display: flex;
   justify-content: center;
 }
-#mainSection #square {
+.mainSection .square {
   margin-bottom: 15px;
   width: 30vw;
   height: auto;
@@ -458,15 +443,15 @@ html {
   row-gap: 50px;
   color: #D7A86E;
 }
-#mainSection #square #squareTitle {
+.mainSection .square__squareTitle {
   margin-top: 20px;
   text-align: center;
 }
-#mainSection #square #email, #mainSection #square #password {
+.mainSection .square__lab {
   font-weight: bold;
   font-size: 1.5vw;
 }
-#mainSection #square .inputs {
+.mainSection .square__inputs {
   border: 2px solid rgba(229, 178, 116, 0.6352941176);
   background-color: #FFEBC1;
   height: 5vh;
@@ -477,13 +462,13 @@ html {
   border-radius: 10px;
   transition: width 0.5s, height 0.5s, font-size 0.5s;
 }
-#mainSection #square .inputs:hover {
+.mainSection .square__inputs:hover {
   background-color: rgba(248, 220, 186, 0.7294117647);
   height: 6vh;
   width: 18vw;
   font-size: 1.5vw;
 }
-#mainSection #square #forgPass {
+.mainSection .square__forgPass {
   font-size: 1vw;
   position: relative;
   float: right;
@@ -492,7 +477,7 @@ html {
   text-decoration: none;
   color: #D7A86E;
 }
-#mainSection #square #signInBut {
+.mainSection .square__signInBut {
   height: 5vh;
   width: 17vw;
   font-size: 1.5vw;
@@ -503,26 +488,26 @@ html {
   border-radius: 10px;
   color: white;
 }
-#mainSection #square #signInBut:hover {
+.mainSection .square__signInBut:hover {
   background-color: #A64B2A;
 }
-#mainSection #square #signInBut:active {
+.mainSection .square__signInBut:active {
   height: 5.5vh;
 }
-#mainSection #square #fSet {
+.mainSection .square__fSet {
   width: 17vw;
   border-bottom: white;
   border-left: white;
   border-right: white;
   border-top: 1px solid rgba(229, 178, 116, 0.6352941176);
 }
-#mainSection #square #fSet legend {
+.mainSection .square__fSet--Legend {
   font-size: 1vw;
   margin-left: auto;
   margin-right: auto;
   font-style: italic;
 }
-#mainSection #square #fSet #signUpBut {
+.mainSection .square__fSet--signUpBut {
   height: 5vh;
   width: 17vw;
   font-size: 1.5vw;
@@ -533,10 +518,10 @@ html {
   border-radius: 10px;
   color: white;
 }
-#mainSection #square #fSet #signUpBut:hover {
+.mainSection .square__fSet--signUpBut:hover {
   background-color: #A64B2A;
 }
-#mainSection #square #fSet #signUpBut:active {
+.mainSection .square__fSet--signUpBut:active {
   height: 5.5vh;
 }
 
@@ -544,43 +529,179 @@ html {
   #square {
     min-width: 50vw;
   }
-  #mainSection #square #email, #mainSection #square #password {
+  .mainSection .square__lab {
     font-size: 3.5vw;
   }
-  #mainSection #square .inputs {
+  .mainSection .square__inputs {
     height: 6vh;
     width: 30vw;
     font-size: 3vw;
   }
-  #mainSection #square .inputs:hover {
+  .mainSection .square__inputs:hover {
     height: 7vh;
     width: 33vw;
     font-size: 3vw;
   }
-  #mainSection #square #forgPass {
+  .mainSection .square__forgPass {
     font-size: 1.5vw;
   }
-  #mainSection #square #signInBut {
+  .mainSection .square__signInBut {
     height: 6vh;
     width: 30vw;
     font-size: 3vw;
   }
-  #mainSection #square #signInBut:active {
+  .mainSection .square__signInBut:active {
     height: 7vh;
   }
-  #mainSection #square #fSet {
+  .mainSection .square__fSet {
     width: 30vw;
   }
-  #mainSection #square #fSet legend {
+  .mainSection .square__fSet--Legend {
     font-size: 3vw;
   }
-  #mainSection #square #fSet #signUpBut {
+  .mainSection .square__fSet--signUpBut {
     height: 7vh;
     width: 30vw;
     font-size: 3vw;
   }
-  #mainSection #square #fSet #signUpBut:active {
+  .mainSection .square__fSet--signUpBut:active {
     height: 7vh;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.backImage {
+  background-image: url("../pictures/backFinal.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+}
+.backImage__blur {
+  width: 100%;
+  min-height: 100vh;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+}
+
+html {
+  font-family: "Lato", sans-serif;
+}
+
+.head {
+  width: 100%;
+  height: 100px;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.head__logo {
+  width: 80px;
+  height: 80px;
+  margin-left: 3px;
+  border-radius: 50px;
+}
+
+.mainSection {
+  display: flex;
+  justify-content: center;
+}
+.mainSection .square {
+  margin-bottom: 15px;
+  width: 30vw;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 5px 5px;
+  background-color: #f5eddc;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 3vh;
+  color: #D7A86E;
+}
+.mainSection .square__squareTitle {
+  margin-top: 20px;
+  text-align: center;
+}
+.mainSection .square__lab {
+  font-weight: bold;
+  font-size: 1.5vw;
+}
+.mainSection .square__inputs {
+  border: 2px solid rgba(229, 178, 116, 0.6352941176);
+  background-color: #FFEBC1;
+  height: 5vh;
+  width: 17vw;
+  font-size: 1vw;
+  font-style: italic;
+  text-align: center;
+  border-radius: 10px;
+  transition: width 0.5s, height 0.5s, font-size 0.5s;
+}
+.mainSection .square__inputs:hover {
+  background-color: rgba(248, 220, 186, 0.7294117647);
+  height: 6vh;
+  width: 18vw;
+  font-size: 1.5vw;
+}
+.mainSection .square__createAcc {
+  height: 5vh;
+  width: 17vw;
+  font-size: 1.5vw;
+  background-color: #D7A86E;
+  font-style: italic;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  color: white;
+}
+.mainSection .square__createAcc:hover {
+  background-color: #A64B2A;
+}
+.mainSection .square__createAcc:active {
+  height: 5.5vh;
+}
+.mainSection .square__terms {
+  width: 17vw;
+  text-align: center;
+}
+.mainSection .square__terms--termsA {
+  color: #D7A86E;
+}
+
+@media screen and (max-width: 912px) {
+  .square {
+    min-width: 50vw;
+  }
+  .mainSection .square__lab {
+    font-size: 3.5vw;
+  }
+  .mainSection .square__inputs {
+    height: 6vh;
+    width: 30vw;
+    font-size: 3vw;
+  }
+  .mainSection .square__inputs:hover {
+    height: 7vh;
+    width: 33vw;
+    font-size: 3vw;
+  }
+  .mainSection .square__createAcc {
+    height: 6vh;
+    width: 30vw;
+    font-size: 3vw;
+  }
+  .mainSection .square__createAcc:active {
+    height: 7vh;
+  }
+  .mainSection .square__terms {
+    width: 30vw;
+    font-size: 3vw;
   }
 }
 * {

@@ -4,14 +4,14 @@
     padding: 0;
     
 }
-#backImage{
+.backImage{
     background-image: url(../pictures/backFinal.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
     min-height: 100vh;
     position: absolute;
-    #blur{
+    &__blur{
         width: 100%;
         min-height: 100vh;
         backdrop-filter: blur(5px);
@@ -27,14 +27,14 @@ html{
 }
 
 
-#head{
+.head{
     width: 100%;
     height: 100px;
     /* background-color: #D7A86E; */
     display: flex;
     justify-content:flex-start;
     align-items: center;
-    #logo{
+    &__logo{
         width: 80px;
         height: 80px;
         margin-left: 3px;
@@ -45,10 +45,10 @@ html{
 
 
 
-#mainSection{
+.mainSection{
     display: flex;
     justify-content: center;
-    #square{
+    .square{
         margin-bottom: 15px;
         width: 30vw;
         height: auto;
@@ -61,16 +61,16 @@ html{
         align-items: center;
         row-gap: 50px;
         color: $crem;
-        #squareTitle{
+        &__squareTitle{
             margin-top: 20px;
             text-align: center;
         }
         
-        #email,#password{
+        &__lab{
             font-weight: bold;
             font-size: 1.5vw;
         }
-        .inputs{
+        &__inputs{
             border: 2px solid $lighter-pale-brown;
             
             background-color: $yellowish-white;
@@ -83,13 +83,13 @@ html{
             transition: width 0.5s,height 0.5s,font-size 0.5s;
             
         }
-        .inputs:hover{
+        &__inputs:hover{
             background-color: $lightest-pale-brown;
             height: 6vh;
             width: 18vw;
             font-size: 1.5vw;
         }
-        #forgPass{
+        &__forgPass{
             font-size: 1vw;
             position: relative;
             float: right;
@@ -98,7 +98,7 @@ html{
             text-decoration: none;
             color: $crem;
         }
-        #signInBut{
+        &__signInBut{
             height: 5vh;
             width: 17vw;
             font-size: 1.5vw;
@@ -109,26 +109,26 @@ html{
             border-radius: 10px;
             color: white;
         }
-        #signInBut:hover{
+        &__signInBut:hover{
             background-color: $brown;
             
         }
-        #signInBut:active{
+        &__signInBut:active{
             height: 5.5vh;
         }
-        #fSet{
+        &__fSet{
             width: 17vw;
             border-bottom: white;
             border-left: white;
             border-right: white;
             border-top:1px solid $lighter-pale-brown;
-            legend {
+            &--Legend{
                 font-size: 1vw;
                 margin-left: auto;
                 margin-right: auto;
                 font-style: italic;
             }
-            #signUpBut{
+            &--signUpBut{
                 height: 5vh;
                 width: 17vw;
                 font-size: 1.5vw;
@@ -139,11 +139,11 @@ html{
                 border-radius: 10px;
                 color: white;
             }
-            #signUpBut:hover{
+            &--signUpBut:hover{
                 background-color: $brown;
                 
             }
-            #signUpBut:active{
+            &--signUpBut:active{
                 height: 5.5vh;
             }
             
@@ -160,52 +160,52 @@ html{
     min-width: 50vw;
    }
    
-   #mainSection{
-    #square{
-        #email,#password{
+   .mainSection{
+    .square{
+        &__lab{
             font-size : 3.5vw;
            }
-        .inputs{
+        &__inputs{
             height: 6vh;
             width: 30vw;
             font-size: 3vw;
     
        }
-       .inputs:hover{
+       &__inputs:hover{
         
         height: 7vh;
         width: 33vw;
         font-size: 3vw;
-    }
-        #forgPass{
+        }
+        &__forgPass{
             font-size: 1.5vw;
             
         }
-        #signInBut{
+        &__signInBut{
             height: 6vh;
             width: 30vw;
             font-size: 3vw;
             
         }
-        #signInBut:active{
+        &__signInBut:active{
             height: 7vh;
         }
         
         
-        #fSet{
+        &__fSet{
             width: 30vw;
-            legend {
+            &--Legend {
                 font-size: 3vw;
                
             }
-            #signUpBut{
+            &--signUpBut{
                 height: 7vh;
                 width: 30vw;
                 font-size: 3vw;
                 
             }
             
-            #signUpBut:active{
+            &--signUpBut:active{
                 height: 7vh;
             }
         }
