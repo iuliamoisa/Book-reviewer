@@ -583,3 +583,206 @@ html {
     height: 7vh;
   }
 }
+* {
+  font-family: "Lato", sans-serif;
+}
+
+.header {
+  margin-bottom: 10px;
+  left: 0px;
+  top: 0px;
+  height: 100px;
+  width: 100%;
+  background-color: var(--background);
+  text-align: left;
+  font-size: 27px;
+}
+.header h1 {
+  text-align: center;
+  font-size: 80px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  color: var(--titlu);
+  text-shadow: -1px 1px 0 var(--negru), 1px 1px 0 var(--alb), 1px -1px 0 var(--alb), -1px -1px 0 var(--alb);
+}
+
+.helpBox1 {
+  align-items: center;
+  padding: 10px;
+  display: inline-block;
+  position: relative;
+  top: 40px;
+  left: 10%;
+  height: 250px;
+  width: 300px;
+  background-color: var(--helpColor1);
+  transition: 0.4s;
+  border-radius: 4px;
+  color: var(--scris);
+  overflow: hidden;
+}
+
+.helpBox2 {
+  padding: 10px;
+  display: inline-block;
+  position: relative;
+  top: 40px;
+  left: 20%;
+  height: 250px;
+  width: 300px;
+  background-color: var(--helpColor1);
+  transition: 0.4s;
+  border-radius: 4px;
+  color: var(--scris);
+  overflow: hidden;
+}
+
+.helpBox3 {
+  padding: 10px;
+  display: inline-block;
+  position: relative;
+  top: 40px;
+  left: 30%;
+  height: 250px;
+  width: 300px;
+  background-color: var(--helpColor1);
+  transition: 0.4s;
+  border-radius: 4px;
+  color: var(--scris);
+  overflow: hidden;
+}
+
+.helpBox1:hover {
+  background-color: var(--helpColor2);
+  box-shadow: inset 0 0 20px var(--gri);
+}
+
+.helpBox2:hover {
+  background-color: var(--helpColor2);
+  box-shadow: inset 0 0 20px var(--gri);
+}
+
+.helpBox3:hover {
+  background-color: var(--helpColor2);
+  box-shadow: inset 0 0 20px var(--gri);
+}
+
+.helpBox1:hover h3 {
+  background-color: var(--helpColor2);
+  top: 0%;
+}
+
+.helpBox2:hover h3 {
+  background-color: var(--helpColor2);
+  top: 0%;
+}
+
+.helpBox3:hover h3 {
+  background-color: var(--helpColor2);
+  top: 0%;
+}
+
+.helpBox1 p {
+  position: absolute;
+  top: 303px;
+  transition: 0.5s;
+}
+
+.helpBox2 p {
+  position: absolute;
+  top: 302px;
+  transition: 0.5s;
+}
+
+.helpBox3 p {
+  position: absolute;
+  top: 303px;
+  transition: 0.5s;
+}
+
+.helpBox1:hover p {
+  top: 40px;
+}
+
+.helpBox2:hover p {
+  top: 40px;
+}
+
+.helpBox3:hover p {
+  top: 40px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  background-color: var(--helpColor1);
+}
+
+h3 {
+  transition: 0.4s;
+  position: absolute;
+  text-align: center;
+  top: 30%;
+}
+
+div.form {
+  padding: 10px;
+  padding-top: 0px;
+  position: relative;
+  left: 10%;
+  border-radius: 2px;
+  width: 1250px;
+  background-color: var(--helpColor1);
+  display: inline-block;
+  text-align: center;
+}
+
+form {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.username {
+  height: 40px;
+  width: 500px;
+  border-style: solid;
+  border-color: var(--negru);
+  font-size: 25px;
+}
+
+.email {
+  height: 40px;
+  width: 500px;
+  border-style: solid;
+  border-color: var(--negru);
+  font-size: 25px;
+}
+
+.submit {
+  height: 45px;
+  width: 185px;
+  border-style: solid;
+  border-color: var(--negru);
+  font-size: 25px;
+  background-color: var(--titlu);
+  transition: 0.3s;
+}
+
+.submit:hover {
+  background-color: var(--helpColor2);
+  cursor: pointer;
+  color: var(--scris);
+}
+
+.question {
+  width: 1200px;
+  height: 40px;
+  border-style: solid;
+  border-color: var(--negru);
+  font-size: 25px;
+}
