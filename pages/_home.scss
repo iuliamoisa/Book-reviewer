@@ -94,14 +94,18 @@ body{
         background-color: $lightest-pale-brown;
         margin-top: 19rem;
         margin-left: 12.5rem;
-        height: 7rem;
+        height:8rem;
         width: 10rem;
         &:hover{
             transform: rotate(-360deg);
             width: 13rem; 
-            height: 10rem;
+            height: 7rem;
             font-weight: bolder;
         }
+    }
+    &--doc{
+        text-decoration: none;
+        color: $red-brown;
     }
     .bubble_text-box {
         @include text_bubble;

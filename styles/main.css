@@ -178,14 +178,18 @@ body {
   background-color: rgba(248, 220, 186, 0.7294117647);
   margin-top: 19rem;
   margin-left: 12.5rem;
-  height: 7rem;
+  height: 8rem;
   width: 10rem;
 }
 .home-main__bubble--four:hover {
   transform: rotate(-360deg);
   width: 13rem;
-  height: 10rem;
+  height: 7rem;
   font-weight: bolder;
+}
+.home-main__bubble--doc {
+  text-decoration: none;
+  color: #8E3200;
 }
 .home-main__bubble .bubble_text-box {
   width: 90%;
@@ -814,7 +818,6 @@ html {
 
 .help-helpBox1 {
   align-items: center;
-  padding: auto;
   padding: 12px;
   display: inline-block;
   position: relative;
@@ -1137,16 +1140,16 @@ html {
   margin-right: auto;
 }
 .terms-main__title {
-  font-style: "Nunito Sans";
+  font-family: "Nunito Sans";
   text-align: center;
   margin: 2rem;
 }
 .terms-main__item {
-  font-style: "Bodoni Moda";
+  font-family: "Bodoni Moda";
   margin: 1rem;
 }
 .terms-main__subtitle {
-  font-style: "Lato", sans-serif;
+  font-family: "Lato", sans-serif;
   margin-bottom: 1.5rem;
 }
 

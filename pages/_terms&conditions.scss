@@ -15,16 +15,16 @@
     margin-left: auto;
     margin-right: auto;
     &__title{
-        font-style: $title-font;
+        font-family: $title-font;
         text-align: center;
         margin:2rem;
     }
     &__item{
-        font-style: $secondary-font;
+        font-family: $secondary-font;
         margin: 1rem;
     }
     &__subtitle{
-        font-style: $primary-font;
+        font-family: $primary-font;
         margin-bottom:1.5rem;
     }
 }

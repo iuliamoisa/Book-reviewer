@@ -1,16 +1,5 @@
 ** color palette: 
 
-/* :root {
-        --maroinchis: #8E3200;
-        --maro: #A64B2A;
-        --cremfoarteinchis: #bc925eba;
-        --cremmaiinchis: #e5b274a2;
-        --creminchis: #d49d5b;
-        --aproapealb: #FFEBC1;
-        --var3: #f8dcbaba;
-        --crem: #D7A86E;
-     }*/ 
-
 #8E3200
 #A64B2A
 #D7A86E
@@ -18,17 +7,14 @@
 
 ** cum setezi variabile pt culori: https://www.w3schools.com/css/css3_variables.asp
 font:
-font-family: 'Lato', sans-serif;
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
 
 ** pagini:
-footer:
-        about us, contact(mail), terms&conditions, copyright
-    Home, (iulia+razvan)
+Home, (iulia)
     Login, Sign up (alex)
     About, (iulia)
     Help (razvan)
+footer:
+        about us, contact(mail), terms&conditions, copyright
+    
 
 ~ dupa logare: buton "join a club" -> pe baza de cod 
