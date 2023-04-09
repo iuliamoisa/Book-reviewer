@@ -9,23 +9,23 @@
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    height: 100%;
+    min-height: 100vh;
     position: absolute;
+    #blur{
+        width: 100%;
+        min-height: 100vh;
+        backdrop-filter: blur(5px);
+    }
+    
     
     
 }
 html{
    
-    font-family: 'Lato', sans-serif;
+    font-family: $primary-font;
 
 }
 
-#logo{
-    width: 80px;
-    height: 80px;
-    margin-left: 3px;
-    border-radius: 50px;
-}
 
 #head{
     width: 100%;
@@ -34,119 +34,184 @@ html{
     display: flex;
     justify-content:flex-start;
     align-items: center;
+    #logo{
+        width: 80px;
+        height: 80px;
+        margin-left: 3px;
+        border-radius: 50px;
+    }
 
 }
 
 
-#title{
-   
-    margin-left: 5px;
-    color: white;
-}
 
 #mainSection{
     display: flex;
     justify-content: center;
+    #square{
+        margin-bottom: 15px;
+        width: 30vw;
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 5px 5px;
+        background-color: $smokey-white;
+        display: flex;
+        justify-content:flex-start;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 50px;
+        color: $crem;
+        #squareTitle{
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        #email,#password{
+            font-weight: bold;
+            font-size: 1.5vw;
+        }
+        .inputs{
+            border: 2px solid $lighter-pale-brown;
+            
+            background-color: $yellowish-white;
+            height: 5vh;
+            width: 17vw;
+            font-size: 1vw;
+            font-style: italic;
+            text-align: center;
+            border-radius: 10px;
+            transition: width 0.5s,height 0.5s,font-size 0.5s;
+            
+        }
+        .inputs:hover{
+            background-color: $lightest-pale-brown;
+            height: 6vh;
+            width: 18vw;
+            font-size: 1.5vw;
+        }
+        #forgPass{
+            font-size: 1vw;
+            position: relative;
+            float: right;
+            margin-top:10px;
+            font-style: italic;
+            text-decoration: none;
+            color: $crem;
+        }
+        #signInBut{
+            height: 5vh;
+            width: 17vw;
+            font-size: 1.5vw;
+            background-color: $crem;
+            font-style: italic;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            color: white;
+        }
+        #signInBut:hover{
+            background-color: $brown;
+            
+        }
+        #signInBut:active{
+            height: 5.5vh;
+        }
+        #fSet{
+            width: 17vw;
+            border-bottom: white;
+            border-left: white;
+            border-right: white;
+            border-top:1px solid $lighter-pale-brown;
+            legend {
+                font-size: 1vw;
+                margin-left: auto;
+                margin-right: auto;
+                font-style: italic;
+            }
+            #signUpBut{
+                height: 5vh;
+                width: 17vw;
+                font-size: 1.5vw;
+                background-color: $crem;
+                font-style: italic;
+                border: none;
+                cursor: pointer;
+                border-radius: 10px;
+                color: white;
+            }
+            #signUpBut:hover{
+                background-color: $brown;
+                
+            }
+            #signUpBut:active{
+                height: 5.5vh;
+            }
+            
+        }
+        
+        
+        
+    }
 }
 
-#blur{
-    width: 100%;
-    height: 100%;
-    
-    backdrop-filter: blur(5px);
-}
 
+@media screen and (max-width: 912px) {
+   #square{
+    min-width: 50vw;
+   }
+   
+   #mainSection{
+    #square{
+        #email,#password{
+            font-size : 3.5vw;
+           }
+        .inputs{
+            height: 6vh;
+            width: 30vw;
+            font-size: 3vw;
+    
+       }
+       .inputs:hover{
+        
+        height: 7vh;
+        width: 33vw;
+        font-size: 3vw;
+    }
+        #forgPass{
+            font-size: 1.5vw;
+            
+        }
+        #signInBut{
+            height: 6vh;
+            width: 30vw;
+            font-size: 3vw;
+            
+        }
+        #signInBut:active{
+            height: 7vh;
+        }
+        
+        
+        #fSet{
+            width: 30vw;
+            legend {
+                font-size: 3vw;
+               
+            }
+            #signUpBut{
+                height: 7vh;
+                width: 30vw;
+                font-size: 3vw;
+                
+            }
+            
+            #signUpBut:active{
+                height: 7vh;
+            }
+        }
+    }
+   }
+   
+  }
 
-#square{
-    width: 500px;
-    height: auto;
-    border-radius: 20px;
-    box-shadow: 5px 5px;
-    background-color: #FFEBC1;
-    display: flex;
-    justify-content:flex-start;
-    flex-direction: column;
-    align-items: center;
-    row-gap: 50px;
-    color: #D7A86E;
-    
-    
-    
-}
-#squareTitle{
-    margin-top: 20px;
-    text-align: center;
-}
-
-#email,#password{
-    font-weight: bold;
-    font-size: 20px;
-}
-.inputs{
-    height: 30px;
-    width: 250px;
-    font-style: italic;
-    border: none;
-    text-align: center;
-    border-radius: 10px;
-    transition: width 0.5s,height 0.5s,font-size 0.5s;
-    
-}
-.inputs:hover{
-    background-color: whitesmoke;
-    height: 40px;
-    width: 270px;
-    font-size: 20px;
-}
-
-#forgPass{
-    font-size: 10px;
-    position: relative;
-    float: right;
-    margin-top:10px;
-    font-style: italic;
-    text-decoration: none;
-    color: #D7A86E;
-}
-
-#signInBut,#signUpBut{
-    height: 30px;
-    width: 250px;
-    font-size: 20px;
-    background-color: #D7A86E;
-    font-style: italic;
-    border: none;
-    cursor: pointer;
-    border-radius: 10px;
-    color: white;
-}
-#signInBut:hover,#signUpBut:hover{
-    background-color: #A64B2A;
-    
-}
-#signInBut:active,#signUpBut:active{
-    height: 35px;
-}
-
-#foot{
-    position: absolute;
-    background-color: #D7A86E;
-    bottom: 0;
-    width: 100%;
-    height: 100px;
-    
-}
-
-#fSet{
-    width: 250px;
-    
-   border-bottom: white;
-   border-left: white;
-   border-right: white;
-}
-legend {
-    
-    margin-left: auto;
-    margin-right: auto;
-    font-style: italic;
-}
+  

@@ -291,19 +291,18 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
   position: absolute;
+}
+#backImage #blur {
+  width: 100%;
+  min-height: 100vh;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
 }
 
 html {
   font-family: "Lato", sans-serif;
-}
-
-#logo {
-  width: 80px;
-  height: 80px;
-  margin-left: 3px;
-  border-radius: 50px;
 }
 
 #head {
@@ -314,30 +313,24 @@ html {
   justify-content: flex-start;
   align-items: center;
 }
-
-#title {
-  margin-left: 5px;
-  color: white;
+#head #logo {
+  width: 80px;
+  height: 80px;
+  margin-left: 3px;
+  border-radius: 50px;
 }
 
 #mainSection {
   display: flex;
   justify-content: center;
 }
-
-#blur {
-  width: 100%;
-  height: 100%;
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-}
-
-#square {
-  width: 500px;
+#mainSection #square {
+  margin-bottom: 15px;
+  width: 30vw;
   height: auto;
   border-radius: 20px;
   box-shadow: 5px 5px;
-  background-color: #FFEBC1;
+  background-color: #f5eddc;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
@@ -345,36 +338,33 @@ html {
   row-gap: 50px;
   color: #D7A86E;
 }
-
-#squareTitle {
+#mainSection #square #squareTitle {
   margin-top: 20px;
   text-align: center;
 }
-
-#email, #password {
+#mainSection #square #email, #mainSection #square #password {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 1.5vw;
 }
-
-.inputs {
-  height: 30px;
-  width: 250px;
+#mainSection #square .inputs {
+  border: 2px solid rgba(229, 178, 116, 0.6352941176);
+  background-color: #FFEBC1;
+  height: 5vh;
+  width: 17vw;
+  font-size: 1vw;
   font-style: italic;
-  border: none;
   text-align: center;
   border-radius: 10px;
   transition: width 0.5s, height 0.5s, font-size 0.5s;
 }
-
-.inputs:hover {
-  background-color: whitesmoke;
-  height: 40px;
-  width: 270px;
-  font-size: 20px;
+#mainSection #square .inputs:hover {
+  background-color: rgba(248, 220, 186, 0.7294117647);
+  height: 6vh;
+  width: 18vw;
+  font-size: 1.5vw;
 }
-
-#forgPass {
-  font-size: 10px;
+#mainSection #square #forgPass {
+  font-size: 1vw;
   position: relative;
   float: right;
   margin-top: 10px;
@@ -382,11 +372,10 @@ html {
   text-decoration: none;
   color: #D7A86E;
 }
-
-#signInBut, #signUpBut {
-  height: 30px;
-  width: 250px;
-  font-size: 20px;
+#mainSection #square #signInBut {
+  height: 5vh;
+  width: 17vw;
+  font-size: 1.5vw;
   background-color: #D7A86E;
   font-style: italic;
   border: none;
@@ -394,130 +383,29 @@ html {
   border-radius: 10px;
   color: white;
 }
-
-#signInBut:hover, #signUpBut:hover {
+#mainSection #square #signInBut:hover {
   background-color: #A64B2A;
 }
-
-#signInBut:active, #signUpBut:active {
-  height: 35px;
+#mainSection #square #signInBut:active {
+  height: 5.5vh;
 }
-
-#foot {
-  position: absolute;
-  background-color: #D7A86E;
-  bottom: 0;
-  width: 100%;
-  height: 100px;
-}
-
-#fSet {
-  width: 250px;
+#mainSection #square #fSet {
+  width: 17vw;
   border-bottom: white;
   border-left: white;
   border-right: white;
+  border-top: 1px solid rgba(229, 178, 116, 0.6352941176);
 }
-
-legend {
+#mainSection #square #fSet legend {
+  font-size: 1vw;
   margin-left: auto;
   margin-right: auto;
   font-style: italic;
 }
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-#backImage {
-  background-image: url("../pictures/backFinal.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-}
-
-html {
-  font-family: "Lato", sans-serif;
-}
-
-#logo {
-  width: 80px;
-  height: 80px;
-  margin-left: 3px;
-  border-radius: 50px;
-}
-
-#head {
-  width: 100%;
-  height: 100px;
-  background: none;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-#title {
-  margin-left: 5px;
-  color: white;
-}
-
-#mainSection {
-  display: flex;
-  justify-content: center;
-}
-
-#blur {
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-}
-
-#square {
-  width: 500px;
-  height: auto;
-  border-radius: 20px;
-  box-shadow: 5px 5px;
-  background-color: #FFEBC1;
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  align-items: center;
-  row-gap: 50px;
-  color: #D7A86E;
-  margin-bottom: 10px;
-}
-
-#squareTitle {
-  margin-top: 20px;
-  text-align: center;
-}
-
-#email, #password, #flname, #rePassword {
-  font-weight: bold;
-  font-size: 20px;
-}
-
-.inputs {
-  height: 30px;
-  width: 250px;
-  font-style: italic;
-  border: none;
-  text-align: center;
-  border-radius: 10px;
-  transition: width 0.5s, height 0.5s, font-size 0.5s;
-}
-
-.inputs:hover {
-  background-color: whitesmoke;
-  height: 40px;
-  width: 270px;
-  font-size: 20px;
-}
-
-#createAcc {
-  height: 30px;
-  width: 250px;
-  font-size: 20px;
+#mainSection #square #fSet #signUpBut {
+  height: 5vh;
+  width: 17vw;
+  font-size: 1.5vw;
   background-color: #D7A86E;
   font-style: italic;
   border: none;
@@ -525,26 +413,53 @@ html {
   border-radius: 10px;
   color: white;
 }
-
-#createAcc:hover {
+#mainSection #square #fSet #signUpBut:hover {
   background-color: #A64B2A;
 }
-
-#createAcc:active {
-  height: 35px;
+#mainSection #square #fSet #signUpBut:active {
+  height: 5.5vh;
 }
 
-#foot {
-  background-color: #D7A86E;
-  width: 100%;
-  height: 100px;
-}
-
-#terms {
-  width: 250px;
-  text-align: center;
-}
-
-.termsA {
-  color: #D7A86E;
+@media screen and (max-width: 912px) {
+  #square {
+    min-width: 50vw;
+  }
+  #mainSection #square #email, #mainSection #square #password {
+    font-size: 3.5vw;
+  }
+  #mainSection #square .inputs {
+    height: 6vh;
+    width: 30vw;
+    font-size: 3vw;
+  }
+  #mainSection #square .inputs:hover {
+    height: 7vh;
+    width: 33vw;
+    font-size: 3vw;
+  }
+  #mainSection #square #forgPass {
+    font-size: 1.5vw;
+  }
+  #mainSection #square #signInBut {
+    height: 6vh;
+    width: 30vw;
+    font-size: 3vw;
+  }
+  #mainSection #square #signInBut:active {
+    height: 7vh;
+  }
+  #mainSection #square #fSet {
+    width: 30vw;
+  }
+  #mainSection #square #fSet legend {
+    font-size: 3vw;
+  }
+  #mainSection #square #fSet #signUpBut {
+    height: 7vh;
+    width: 30vw;
+    font-size: 3vw;
+  }
+  #mainSection #square #fSet #signUpBut:active {
+    height: 7vh;
+  }
 }
