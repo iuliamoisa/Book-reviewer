@@ -1,0 +1,37 @@
+* {
+    font-family: $primary-font;
+}
+
+.terms-body{
+    background-color: $yellowish-white;
+    margin: 0;
+}
+
+.terms-main{
+    padding: 1rem;
+    background-color: $help-background;
+    width: 50rem;
+    height: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    &__title{
+        font-style: $title-font;
+        text-align: center;
+        margin:2rem;
+    }
+    &__item{
+        font-style: $secondary-font;
+        margin: 1rem;
+    }
+    &__subtitle{
+        font-style: $primary-font;
+        margin-bottom:1.5rem;
+    }
+}
+
+@media  screen and (max-width: 830px) {
+    .terms-main{
+        width: 30rem;
+    }
+}
+

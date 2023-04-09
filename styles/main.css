@@ -64,6 +64,9 @@
 }
 
 @media screen and (max-width: 480px) {
+  .home-header {
+    background-color: #D7A86E;
+  }
   .home-header .home-nav {
     background-color: #D7A86E;
   }
@@ -1113,5 +1116,42 @@ html {
   }
   .help-helpBox3__content {
     top: 5%;
+  }
+}
+* {
+  font-family: "Lato", sans-serif;
+}
+
+.terms-body {
+  background-color: #FFEBC1;
+  margin: 0;
+}
+
+.terms-main {
+  padding: 1rem;
+  background-color: rgba(255, 245, 222, 0.9294117647);
+  width: 50rem;
+  height: -moz-max-content;
+  height: max-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+.terms-main__title {
+  font-style: "Nunito Sans";
+  text-align: center;
+  margin: 2rem;
+}
+.terms-main__item {
+  font-style: "Bodoni Moda";
+  margin: 1rem;
+}
+.terms-main__subtitle {
+  font-style: "Lato", sans-serif;
+  margin-bottom: 1.5rem;
+}
+
+@media screen and (max-width: 830px) {
+  .terms-main {
+    width: 30rem;
   }
 }
