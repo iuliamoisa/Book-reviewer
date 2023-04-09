@@ -593,10 +593,8 @@ html {
 
 .help-header {
   display: flex;
-  justify-content: space-around;
-  margin-bottom: 10px;
-  left: 0px;
-  top: 0px;
+  justify-content: space-between;
+  margin-bottom: 0.625rem;
   height: 100px;
   width: 100%;
   background-color: rgba(255, 245, 222, 0.9294117647);
@@ -613,21 +611,28 @@ html {
   text-shadow: -1px 1px 0 #000000, 1px 1px 0 #f5eddc, 1px -1px 0 #f5eddc, -1px -1px 0 #f5eddc;
 }
 .help-header__logo {
+  margin-left: 1vw;
   margin-top: 1rem;
-  height: 5rem;
-  width: 5rem;
+  height: 6rem;
+  width: 6rem;
   border-radius: 150px;
 }
 .help-header__button {
+  border: none;
+  margin-right: 1vw;
   font-size: 1.5rem;
   margin-top: 1rem;
   width: 8rem;
-  height: 4rem;
+  height: 3rem;
   text-decoration: none;
   cursor: pointer;
   background-color: #d49d5b;
-  border-radius: 5px;
+  border-radius: 10px;
   color: #f5eddc;
+  transition: 0.4s;
+}
+.help-header__button:hover {
+  background-color: #8E3200;
 }
 
 .help-form {
@@ -652,7 +657,7 @@ html {
   border-radius: 10px;
   padding: 0.2rem;
   margin: 0.7rem;
-  height: 40px;
+  height: 2.5rem;
   width: 460px;
   border: 3px solid #fce0a4;
   font-size: 25px;
@@ -661,8 +666,7 @@ html {
   border-radius: 10px;
   height: 50px;
   width: 160px;
-  border-style: solid;
-  border-color: #8E3200;
+  border: none;
   font-size: 25px;
   background-color: #FFEBC1;
   transition: 0.3s;
@@ -678,7 +682,7 @@ html {
   border-radius: 3px;
   padding: 0.2rem;
   width: 1130px;
-  height: 40px;
+  height: 2.5rem;
   border-radius: 10px;
   border: 3px solid #fce0a4;
   font-size: 25px;
@@ -800,8 +804,7 @@ html {
 .help-footer {
   height: 5rem;
   position: fixed;
-  bottom: 0px;
-  left: 0px;
+  bottom: 0%;
   width: 100%;
   background-color: #d49d5b;
 }
@@ -818,4 +821,176 @@ html {
   margin-top: 2rem;
   display: block;
   text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .help-header__title {
+    margin-top: 1rem;
+    font-size: 30px;
+  }
+  .help-header__logo {
+    height: 4rem;
+    width: 4rem;
+  }
+  .help-header__button {
+    margin-top: 1rem;
+    font-size: 1rem;
+    width: 4rem;
+    height: 2rem;
+  }
+  .help-form {
+    margin-top: 0.5em;
+    left: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 8rem;
+    width: 20rem;
+    display: block;
+  }
+  .help-form__item {
+    margin: 0.2rem;
+    font-size: 15px;
+    width: 18.1rem;
+    height: 1rem;
+  }
+  .help-form__question {
+    margin: 0.3rem;
+    font-size: 15px;
+    width: 18.1rem;
+    height: 1rem;
+    position: absolute;
+    left: 0.9rem;
+    bottom: 1.8rem;
+  }
+  .help-form__submit {
+    font-size: 0.8rem;
+    position: absolute;
+    height: 1rem;
+    left: 5.5rem;
+    bottom: 0.3rem;
+  }
+  .help-helpBox1 {
+    top: 1rem;
+    left: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 20rem;
+    height: 5rem;
+    overflow: scroll;
+  }
+  .help-helpBox1__title {
+    top: 3%;
+  }
+  .help-helpBox1__content {
+    top: 5%;
+  }
+  .help-helpBox2 {
+    top: 1.5rem;
+    left: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 20rem;
+    height: 5rem;
+    overflow: scroll;
+  }
+  .help-helpBox2__title {
+    top: 3%;
+  }
+  .help-helpBox2__content {
+    top: 5%;
+  }
+  .help-helpBox3 {
+    top: 2rem;
+    left: 0px;
+    margin-bottom: 8rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 20rem;
+    height: 5rem;
+    overflow: scroll;
+  }
+  .help-helpBox3__title {
+    top: 3%;
+  }
+  .help-helpBox3__content {
+    top: 5%;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 1100px) {
+  .help-form {
+    margin-top: 4rem;
+    width: 40rem;
+    height: 17rem;
+    left: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  .help-form__item {
+    width: 38.5rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .help-form__question {
+    width: 38.5rem;
+    position: absolute;
+    left: 0.3rem;
+    bottom: 4rem;
+  }
+  .help-form__submit {
+    position: absolute;
+    bottom: 0.3rem;
+    left: 16rem;
+  }
+  .help-helpBox1 {
+    height: 10rem;
+    width: 30rem;
+    display: block;
+    left: 0px;
+    margin-bottom: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: scroll;
+  }
+  .help-helpBox1__title {
+    top: 3%;
+  }
+  .help-helpBox1__content {
+    top: 5%;
+  }
+  .help-helpBox2 {
+    height: 10rem;
+    width: 30rem;
+    display: block;
+    left: 0px;
+    margin-bottom: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: scroll;
+  }
+  .help-helpBox2__title {
+    top: 3%;
+  }
+  .help-helpBox2__content {
+    top: 5%;
+  }
+  .help-helpBox3 {
+    height: 10rem;
+    width: 30rem;
+    display: block;
+    left: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10rem;
+    overflow: scroll;
+  }
+  .help-helpBox3__title {
+    top: 3%;
+  }
+  .help-helpBox3__content {
+    top: 5%;
+  }
 }
