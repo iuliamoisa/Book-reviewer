@@ -259,7 +259,7 @@ html {
   height: auto;
   border-radius: 20px;
   box-shadow: 5px 5px;
-  background-color: #FFEBC1;
+  background-color: #f5eddc;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
@@ -276,17 +276,18 @@ html {
   font-size: 1.5vw;
 }
 #mainSection #square .inputs {
+  border: 2px solid rgba(229, 178, 116, 0.6352941176);
+  background-color: #FFEBC1;
   height: 5vh;
   width: 17vw;
   font-size: 1vw;
   font-style: italic;
-  border: none;
   text-align: center;
   border-radius: 10px;
   transition: width 0.5s, height 0.5s, font-size 0.5s;
 }
 #mainSection #square .inputs:hover {
-  background-color: whitesmoke;
+  background-color: rgba(248, 220, 186, 0.7294117647);
   height: 6vh;
   width: 18vw;
   font-size: 1.5vw;
@@ -322,6 +323,7 @@ html {
   border-bottom: white;
   border-left: white;
   border-right: white;
+  border-top: 1px solid rgba(229, 178, 116, 0.6352941176);
 }
 #mainSection #square #fSet legend {
   font-size: 1vw;

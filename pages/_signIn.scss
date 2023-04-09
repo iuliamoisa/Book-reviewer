@@ -54,7 +54,7 @@ html{
         height: auto;
         border-radius: 20px;
         box-shadow: 5px 5px;
-        background-color: $yellowish-white;
+        background-color: $smokey-white;
         display: flex;
         justify-content:flex-start;
         flex-direction: column;
@@ -71,18 +71,20 @@ html{
             font-size: 1.5vw;
         }
         .inputs{
+            border: 2px solid $lighter-pale-brown;
+            
+            background-color: $yellowish-white;
             height: 5vh;
             width: 17vw;
             font-size: 1vw;
             font-style: italic;
-            border: none;
             text-align: center;
             border-radius: 10px;
             transition: width 0.5s,height 0.5s,font-size 0.5s;
             
         }
         .inputs:hover{
-            background-color: whitesmoke;
+            background-color: $lightest-pale-brown;
             height: 6vh;
             width: 18vw;
             font-size: 1.5vw;
@@ -119,6 +121,7 @@ html{
             border-bottom: white;
             border-left: white;
             border-right: white;
+            border-top:1px solid $lighter-pale-brown;
             legend {
                 font-size: 1vw;
                 margin-left: auto;
