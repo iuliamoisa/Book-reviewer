@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0", user-scalable=yes">
+    <link rel="stylesheet" href="Scholarly_HTML_files/scholarly.min.css">
+    <script src="./Scholarly_HTML_files/scholarly.min.js.download"></script>
+    <title>Scholarly HTML</title>
+</head>
+<body>
+    <header>
+        <h1>Boo (Book reviewer)</h1>
+      </header>
+
+      <div role="contentinfo">
+
+        <ol role="directory">
+    
+          <!-- Content 1 -->
+          <li><a href="#introduction"><span>1. </span>Introduction</a>
+    
+            <ol role="directory">
+              <li><a href="#purpose"><span>1.1 </span>Purpose</a></li>
+              <li><a href="#conventions"><span>1.2 </span>Document Conventions</a></li>
+              <li><a href="#intended_audience"><span>1.3 </span>Intended Audience and Reading Suggestions</a></li>
+              <li><a href="#product_scope"><span>1.4 </span>Product Scope</a></li>
+              <li><a href="#references"><span>1.5 </span>References</a></li>
+            </ol>
+    
+          </li>
+    
+          <!-- Content 2 -->
+          <li><a href="#overall_description"><span>2. </span>Overall Description</a>
+    
+            <ol role="directory">
+              <li><a href="#product_perspective"><span>2.1 </span>Product Perspective</a></li>
+              <li><a href="#product_functions"><span>2.2 </span>Product Functions</a></li>
+              <li><a href="#user_classes_characteristics"><span>2.3 </span>User Classes and Characteristics</a></li>
+              <li><a href="#operating_environment"><span>2.4 </span>Operating Environment</a></li>
+              <li><a href="#design_implementation_constraints"><span>2.5 </span>Design and Implementation Constraints</a>
+              </li>
+            </ol>
+    
+          </li>
+         <!-- Content 3 -->
+      <li><a href="#external__interface_requirements"><span>3. </span>External Interface Requirements</a>
+
+        <ol role="directory">
+          <li><a href="#user_interfaces"><span>3.1 </span>User Interfaces</a></li>
+          <li><a href="#hardware_interfaces"><span>3.2 </span>Hardware Interfaces</a></li>
+          <li><a href="#software_interfaces"><span>3.3 </span>Software Interfaces</a></li>
+          <li><a href="#communications_interfaces"><span>3.4 </span>Communications Interfaces</a></li>
+        </ol>
+
+      </li>
+
+      <!-- Content 4 -->
+      <li><a href="#system_features"><span>4. </span>System Features</a>
+        <ol role="directory">
+            <li><a href="#home"><span>4.1 </span>Home page</a></li>
+            <li><a href="#sign_in"><span>4.2 </span>Sign in page</a></li>
+            <li><a href="#sign_up"><span>4.3 </span>Sign up page</a></li>
+            <li><a href="#about"><span>4.4 </span>About page</a></li>
+            <li><a href="#help"><span>4.5 </span>Help page</a></li>
+            <li><a href="#change-passw"><span>4.6 </span>Change password page</a>
+            <li><a href="#terms"><span>4.7 </span>Terms and conditions page</a></li>
+          </li>
+        </ol>
+      </li>
+
+      <!-- Content 5 -->
+      <li><a href="#nonfunctional_requirements"><span>5. </span>Other Nonfunctional Requirements</a>
+        <ol role="directory">
+          <li><a href="#safety_requirements"><span>5.1 </span>Safety Requirements</a></li>
+          <li><a href="#security_requirements"><span>5.2 </span>Security Requirements</a></li>
+          <li><a href="#software_quality"><span>5.3 </span>Software Quality Attributes</a></li>
+        </ol>
+      </li>
+
+    </ol>
+
+    <!-- Authors -->
+    <h2 id="authors_credentials">Authors</h2>
+    <ul>
+      <li property="schema:author" typeof="sa:ContributorRole">
+        <a property="schema:author" href="#authors_credentials" typeof="schema:Person">
+          <span property="schema:givenName">Iulia</span>
+          <span property="schema:familyName">Moisa</span>
+        </a>
+        <sup property="sa:roleContactPoint" typeof="schema:ContactPoint">
+          <a property="schema:email" href="mailto:iuliam230@gmail.com" title="corresponding author">&#9993;</a>
+        </sup>
+      </li>
+
+      <li property="schema:author" typeof="sa:ContributorRole">
+        <a property="schema:author" href="#authors_credentials" typeof="schema:Person">
+          <span property="schema:givenName">Alexandru</span>
+          <span property="schema:familyName">Dominte</span>
+        </a>
+        <sup property="sa:roleContactPoint" typeof="schema:ContactPoint">
+          <a property="schema:email" href="mailto:alexxdominte@gmail.com" title="corresponding author">&#9993;</a>
+        </sup>
+      </li>
+
+      <li property="schema:author" typeof="sa:ContributorRole">
+        <a property="schema:author" href="#authors_credentials" typeof="schema:Person">
+          <span property="schema:givenName">Razvan</span>
+          <span property="schema:familyName">Arhip</span>
+        </a>
+        <sup property="sa:roleContactPoint" typeof="schema:ContactPoint">
+          <a property="schema:email" href="mailto:arhip293@gmail.com" title="corresponding author">&#9993;</a>
+        </sup>
+      </li>
+    </ul>
+
+  </div>
+
+
+  <!-- Section 1 -->
+
+  <section id="introduction" role="doc-introduction">
+
+    <h2><span>1. </span>Introduction</h2>
+
+    <h3 id="purpose"><span>1.1 </span>Purpose</h3>
+    <p>
+      The purpose of this document is to present in detail the web application Boo.
+      This page will explain the scope and features of the software, as well as its interfaces, functionalities and
+      constraints.
+      Users of this website are free to use this document as a source of information.
+    </p>
+
+    <h3 id="conventions"><span>1.2 </span>Document Conventions</h3>
+    <p>
+      This document was created based on the Scholarly HTML document format and IEEE template for System Requirement
+      Specification Documents.
+    </p>
+
+    <h3 id="intended_audience"><span>1.3 </span>Intended Audience and Reading Suggestions</h3>
+    <p>
+      The users intended to use this web application are those passionated about reading books and reviewing them.
+      If they wish, they can use this document as a tutorial for the site but this is only optional.
+    </p>
+
+    <h3 id="product_scope"><span>1.4 </span>Product Scope </h3>
+    <p>
+        Boo has been developed as the perfect online space for readers all around the world. Its purpose is to connect people who 
+        are interested in reading, allow them to share their opinions on any book, organize their reading list and so on.
+    </p>
+
+    <h3 id="references"><span>1.5 </span>References </h3>
+    <p>
+      In order to create the web application and this document we did a research on CSS and HTML related sites which are
+      shown below:
+    </p>
+
+    <ul role="list">
+      <li><a href="https://www.w3schools.com/">W3schools</a></li>
+      <li><a href="https://github.com/rick4470/IEEE-SRS-Tempate#other-requirements">IEEE-Tempate</a></li>
+      <li><a href="https://w3c.github.io/scholarly-html/#references">Scholarly HTML</a></li>
+      <li><a href="https://developer.mozilla.org/en-US/">Mozilla</a></li>
+
+    </ul>
+
+  </section>
+
+
+  <!-- Section 2 -->
+  <section id="overall_description" role="doc-introduction">
+
+    <h2><span>2. </span>Overall Description</h2>
+
+    <h3 id="product_perspective"><span>2.1 </span>Product Perspective</h3>
+    <p>
+      Boo allows its users to share their progress and reviews on the books they are reading, no matter if
+      the user is a single person or a group (a club, a classroom).
+    </p>
+
+    <h3 id="product_functions"><span>2.2 </span>Product Functions</h3>
+    <p>
+      The application has different functionalities and properties like:
+
+    <ul role="list">
+      <li>the posibility to create a profile in order to save each user's preferences</li>
+      <li>a navbar that permits the users to easily access the pages of the site</li>
+      <li>the possibility to add books to customized lists</li>
+      <li>the possibility to search for any book</li>
+      <li>checking friends activity via feed</li>
+      <li>the possibility to access all the books and their information stocked in the database</li>
+    </ul>
+
+    </p>
+
+    <h3 id="user_classes_characteristics"><span>2.3 </span>User Classes and Characteristics</h3>
+    <p>
+        The users using the the website are the ones looking to connect to other people who love reading, or the ones who just want to become more
+        organized regarding their reading list. 
+      
+    </p>
+
+    <h3 id="operating_environment"><span>2.4 </span>Operating Environment </h3>
+    <p>
+      The web application can be used on any working device with a web browser and internet connection.
+    </p>
+
+    <h3 id="design_implementation_constraints"><span>2.5 </span>Design and Implementation Constraints </h3>
+    <p>
+      Boo will be designed using HTML, CSS, JavaScript and will have a server made in Java and also a database created in SQLite.
+    </p>
+
+  </section>
+
+
+  <!-- Section 3 -->
+  <section id="external__interface_requirements" role="doc-introduction">
+
+    <h2><span>3. </span>External Interface Requirements</h2>
+
+
+    <h3 id="user_interfaces"><span>3.1 </span>User Interfaces</h3>
+
+    <figure>
+        <figcaption>Boo Homepage</figcaption>
+        <img src="Screenshots/Home.png " alt="home screenshot" width="70%">
+      </figure>
+
+    <figure>
+      <figcaption>Boo Sign in page</figcaption>
+      <img src="Screenshots/SignIn.png " alt="sign_in screenshot" width="70%">
+    </figure>
+    <figure>
+        <figcaption>Boo Forgot Password page</figcaption>
+        <img src="Screenshots/ForgotPassword.png" alt="terms conditions screenshot" width="70%">
+      </figure>
+
+    <figure>
+      <figcaption>Boo Sign up page</figcaption>
+      <img src="Screenshots/SignUp.png " alt="sign_up screenshot" width="70%">
+    </figure>
+    <figure>
+      <figcaption>Boo About page</figcaption>
+      <img src="Screenshots/About.png" alt="about screenshot" width="70%">
+    </figure>
+
+    <figure>
+      <figcaption>Boo Terms and Conditions page</figcaption>
+      <img src="Screenshots/TermsCond.png" alt="terms conditions screenshot" width="70%">
+    </figure>
+
+
+
+    <h3 id="hardware_interfaces"><span>3.2 </span>Hardware Interfaces </h3>
+    <p>
+      The devices which will support the website just need an working browser and internet connection.
+    </p>
+
+    <h3 id="software_interfaces"><span>3.3 </span>Software Interfaces</h3>
+    <p>
+      The application will have a SQLite database and a Java server which will communicate with the interfaces using APIs.
+    </p>
+
+    <h3 id="communications_interfaces"><span>3.4 </span>Communications Interfaces </h3>
+    <p>
+      The communication standard used is HTTP.
+      The book list will be saved in documents formatted PDF and JSON and these will be send through APIs to the
+      server or the database and vice versa.
+    </p>
+
+  </section>
+
+
+  <!-- Section 4 -->
+  <section id="system_features" role="doc-introduction">
+
+    <h2><span>4. </span>System Features</h2>
+
+    <h3 id="home"><span>4.1 </span>Home page</h3>
+    <p>
+     Homepage gives a few fun facts about the site. Here, the user can choose to Sign in, Sign up, read more about the site or access the Help page.
+    </p>
+
+    <h3 id="sign_in"><span>4.2 </span>Sign in page</h3>
+    <p>
+      Users which already have an account on the app can login by entering their credentials and access the informations of the site.
+      Otherwise, users can read about the site and click on the 'create your account' button.
+    </p>
+
+    <h3 id="sign_up"><span>4.3 </span>Sign up page</h3>
+    <p>
+      Users who wish to create an account in order to have access to the site can enter the desired credentials and
+      if they are not taken, a new account will be created for the user's use.
+    </p>
+
+    <h3 id="about"><span>4.4 </span>About page</h3>
+    <p>
+      This page will present general information about the website and what the users can expect to do using it.
+    </p>
+
+    <h3 id="help"><span>4.5 </span>Help page</h3>
+    <p>
+      This page allows the user to ask any questions regarding Boo.
+    </p>
+
+    <h3 id="forgot-passw"><span>4.6 </span>Forgot password page</h3>
+    <p>
+      This page allows an already existing user to change his password.
+    </p>
+
+    <h3 id="terms"><span>4.7 </span>Terms and conditions page</h3>
+    <p>
+      This page contains the terms and conditions.
+    </p>
+   
+  </section>
+
+
+  <!-- Section 5 -->
+  <section id="nonfunctional_requirements" role="doc-introduction">
+
+    <h2><span>5. </span>Other Nonfunctional Requirements</h2>
+
+    <h3 id="safety_requirements"><span>5.1 </span>Safety Requirements</h3>
+    <p>
+      The web application may only suffer from a database loose of information, which is highly unlikely.
+    </p>
+
+    <h3 id="security_requirements"><span>5.2 </span>Security Requirements </h3>
+    <p>
+      The application will cotain SQL injection protection so that the informations can't be stolen.
+    </p>
+
+    <h3 id="software_quality"><span>5.3 </span>Software Quality Attributes</h3>
+    <p>
+    <ul role="list">
+        <li>Availability</li>
+        <li>Portability</li>
+        <li>Adaptability</li>
+        <li>Maintanability</li>
+        <li>Reliability</li>
+        <li>Reusability</li>
+        <li>Testability</li>
+    </ul>
+    </p>
+
+  </section>
+
+</body>
+</html>
