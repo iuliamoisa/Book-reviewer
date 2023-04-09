@@ -61,6 +61,16 @@
   padding: 0.6rem;
 }
 
+@media all and (max-width: 720px) {
+  .home-header {
+    height: 10rem;
+  }
+}
+@media (orientation: landscape) {
+  .home-header {
+    padding: 0px 0.2rem;
+  }
+}
 * {
   font-family: "Lato", sans-serif;
 }
@@ -154,9 +164,9 @@ body {
 }
 .about-main__information {
   float: right;
-  width: 45%;
+  width: 40%;
   padding: 3rem;
-  margin-right: 3rem;
+  margin-right: 3.5rem;
 }
 .about-main__information--title {
   text-transform: uppercase;
@@ -179,7 +189,7 @@ body {
 }
 .about-main__image {
   float: left;
-  width: 40%;
+  width: 35%;
   margin-left: 3rem;
 }
 .about-main__image--pic {
@@ -187,6 +197,67 @@ body {
   width: 100%;
 }
 
+@media all and (max-width: 500px) {
+  h1 {
+    background-color: purple;
+  }
+}
+/*
+@media (orientation: landscape){
+    //destul de ok
+
+    .about-main {
+        padding-top: 2rem;
+
+        &__information{
+            width: 35%;
+            padding: 2rem;
+            &--title{
+                font-size: 2rem;
+                margin-bottom: 2.3rem;
+            }
+            &--question{
+                margin-bottom: 1rem;
+            }
+        }
+        &__image{
+            float: left;
+            width: 35%;
+            margin-left:3rem;
+        }
+    }
+
+}
+*/
+@media screen and (max-width: 820px) and (orientation: portrait) {
+  /* pt ipad air*/
+  .about-main {
+    width: 100%;
+    position: relative;
+    margin: 0 auto;
+    padding-top: 3rem;
+  }
+  .about-main__information {
+    top: 0;
+    left: 0;
+    width: 75%;
+  }
+  .about-main__information--title {
+    font-size: 3.5rem;
+  }
+  .about-main__information--question {
+    font-size: 2.5rem;
+  }
+  .about-main__information--answer {
+    font-size: 1.5rem;
+    line-height: 1.5;
+    margin-bottom: 0.8rem;
+  }
+  .about-main__image {
+    margin-left: 25%;
+    width: 50%;
+  }
+}
 /*
 @media screen and (max-width: 768px){
     .container{

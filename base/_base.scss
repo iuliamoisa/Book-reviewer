@@ -60,3 +60,17 @@
     border-radius: 0.4rem;
     padding:  0.6rem;
 }
+
+@media all and (max-width: 720px){
+    
+    .home-header{
+        height: 10rem;
+    }
+}
+
+@media (orientation: landscape){
+    .home-header{
+        padding: 0px 0.2rem;
+    }
+}
+
