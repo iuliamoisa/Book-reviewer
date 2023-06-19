@@ -1590,3 +1590,414 @@ html {
     height: 7vh;
   }
 }
+.settings-body {
+  background-color: #FFEBC1;
+  margin: 0;
+  font-family: "Lato", sans-serif;
+}
+
+.settings-main {
+  width: auto;
+  height: 23rem;
+  border-bottom: solid;
+  border-width: 1px;
+  border-color: #A64B2A;
+  box-shadow: 2px 2px 4px #000000;
+}
+.settings-main__picture {
+  display: inline;
+  border-radius: 300px;
+  left: 10%;
+  position: relative;
+  margin-top: 3rem;
+  transition: 0.4s;
+  border-style: groove;
+  border-color: #f5eddc;
+}
+.settings-main__picture:hover {
+  box-shadow: 4px 4px 10px #000000;
+  cursor: pointer;
+}
+.settings-main__paragraph {
+  width: -moz-fit-content;
+  width: fit-content;
+  color: white;
+  left: 10%;
+  margin-left: 9.375rem;
+  font-style: "Bodoni Moda";
+  text-shadow: 4px 4px 6px #8E3200;
+}
+.settings-main__paragraph:hover {
+  cursor: pointer;
+}
+.settings-main__details {
+  bottom: 30px;
+  height: 20rem;
+  width: 32rem;
+  border-left: solid;
+  border-right: solid;
+  border-width: 1px;
+  position: relative;
+  left: 30%;
+  bottom: 240px;
+}
+.settings-main__oldPassword {
+  text-align: center;
+  padding: 3px;
+  font-style: "Lato", sans-serif;
+  border-style: solid;
+  border-color: #8E3200;
+  position: relative;
+  top: 2rem;
+  left: 10rem;
+  width: 200px;
+  height: 23px;
+  border-radius: 5px;
+}
+.settings-main__newPassword {
+  text-align: center;
+  padding: 3px;
+  font-style: "Lato", sans-serif;
+  border-style: solid;
+  border-color: #8E3200;
+  position: relative;
+  top: 6rem;
+  right: 3.3rem;
+  width: 200px;
+  height: 23px;
+  border-radius: 5px;
+}
+.settings-main__confirm {
+  text-align: center;
+  padding: 3px;
+  font-style: "Lato", sans-serif;
+  border-style: solid;
+  border-color: #8E3200;
+  position: relative;
+  top: 8rem;
+  left: 10rem;
+  width: 200px;
+  height: 23px;
+  border-radius: 5px;
+}
+.settings-main__button {
+  margin: 0px;
+  border-style: solid;
+  border-color: #A64B2A;
+  color: #FFEBC1;
+  padding: 1px;
+  font-size: 18px;
+  font-style: "Lato", sans-serif;
+  background-color: #A64B2A;
+  border-radius: 5px;
+  position: relative;
+  top: 12.5rem;
+  height: 1.7rem;
+  width: 6rem;
+  transition: 0.4s;
+}
+.settings-main__button:hover {
+  box-shadow: 2px 2px 10px #000000;
+  cursor: pointer;
+}
+.settings-main__title {
+  position: relative;
+  width: -moz-fit-content;
+  width: fit-content;
+  left: 11.7rem;
+  font-style: "Bodoni Moda";
+}
+.settings-main__info {
+  position: relative;
+  bottom: 30px;
+  height: 20rem;
+  width: 26rem;
+  left: 70%;
+  bottom: 560px;
+}
+.settings-main__username {
+  text-align: center;
+  padding: 3px;
+  font-style: "Lato", sans-serif;
+  border-style: solid;
+  border-color: #8E3200;
+  position: relative;
+  width: 200px;
+  height: 23px;
+  border-radius: 5px;
+  top: 2rem;
+  left: 5rem;
+}
+.settings-main__firstName {
+  text-align: center;
+  padding: 3px;
+  font-style: "Lato", sans-serif;
+  border-style: solid;
+  border-color: #8E3200;
+  position: relative;
+  width: 200px;
+  height: 23px;
+  border-radius: 5px;
+  top: 4rem;
+  left: 5rem;
+}
+.settings-main__secondName {
+  text-align: center;
+  padding: 3px;
+  font-style: "Lato", sans-serif;
+  border-style: solid;
+  border-color: #8E3200;
+  position: relative;
+  width: 200px;
+  height: 23px;
+  border-radius: 5px;
+  top: 6rem;
+  left: 5rem;
+}
+.settings-main__submit {
+  border-style: solid;
+  border-color: #A64B2A;
+  color: #FFEBC1;
+  padding: 1px;
+  font-size: 18px;
+  font-style: "Lato", sans-serif;
+  background-color: #A64B2A;
+  border-radius: 5px;
+  position: relative;
+  top: 10.9rem;
+  right: 4.5rem;
+  height: 1.7rem;
+  width: 6rem;
+  transition: 0.4s;
+}
+.settings-main__submit:hover {
+  box-shadow: 2px 2px 10px #000000;
+  cursor: pointer;
+}
+.settings-main__title2 {
+  position: relative;
+  width: -moz-fit-content;
+  width: fit-content;
+  left: 7.5rem;
+  font-style: "Bodoni Moda";
+}
+
+.settings-quote {
+  font-size: 40px;
+  width: -moz-fit-content;
+  width: fit-content;
+  position: relative;
+  font-style: "Nunito Sans";
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 60px;
+  color: white;
+  text-shadow: 4px 4px 10px #8E3200;
+}
+
+@media screen and (max-width: 1268px) {
+  .settings-quote {
+    display: none;
+  }
+  .settings-main {
+    height: -moz-max-content;
+    height: max-content;
+    border-style: hidden;
+    box-shadow: none;
+    position: relative;
+    left: 100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .settings-main__details {
+    margin: 0 auto;
+    left: 0px;
+    border-style: hidden;
+    bottom: 10%;
+    height: 18rem;
+    width: 26rem;
+    margin-top: 3rem;
+  }
+  .settings-main__oldPassword {
+    left: 6.5rem;
+    top: 0.5rem;
+  }
+  .settings-main__newPassword {
+    left: 6.5rem;
+    top: 2rem;
+  }
+  .settings-main__confirm {
+    left: 6.5rem;
+    top: 3.5rem;
+  }
+  .settings-main__title {
+    left: 0px;
+    margin: 0px auto;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  .settings-main__button {
+    right: 3.3rem;
+    top: 8rem;
+  }
+  .settings-main__username {
+    left: 6.5rem;
+    top: 0.5rem;
+  }
+  .settings-main__firstName {
+    left: 6.5rem;
+    top: 2rem;
+  }
+  .settings-main__secondName {
+    left: 6.5rem;
+    top: 3.5rem;
+  }
+  .settings-main__submit {
+    right: 3.3rem;
+    top: 8rem;
+  }
+  .settings-main__title2 {
+    left: 0px;
+    margin: 0px auto;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  .settings-main__info {
+    margin: 0px auto;
+    left: 0px;
+    bottom: 1rem;
+    height: 2rem;
+  }
+  .settings-main__picture {
+    left: 0px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 250px;
+    height: 250px;
+  }
+  .settings-main__paragraph {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+@media screen and (max-height: 720px) and (min-height: 599px) {
+  .settings-main__info {
+    height: 10rem;
+    margin-bottom: 10rem;
+  }
+  .settings-main__picture {
+    margin-top: 1rem;
+  }
+}
+.bookclub-body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+  background-color: #f5eddc;
+}
+
+.bookclub-main {
+  height: 77.5vh;
+  width: 60rem;
+  background: linear-gradient(165deg, #f5eddc, #D7A86E);
+}
+.bookclub-main__profilePic {
+  left: 4rem;
+  top: 2rem;
+  position: relative;
+  border-radius: 300px;
+  box-shadow: -1px 3px 3px 3px #000000;
+}
+.bookclub-main__title {
+  top: -10rem;
+  display: inline;
+  position: relative;
+  left: 12rem;
+  font-size: 60px;
+  font-style: "Nunito Sans";
+  font-weight: bold;
+  color: #A64B2A;
+  text-shadow: 1px 1px #000000;
+}
+.bookclub-main__button {
+  position: relative;
+  width: 8rem;
+  height: 2.7rem;
+  right: 12rem;
+  bottom: 2rem;
+  padding: 2px;
+  font-style: "Bodoni Moda";
+  border-radius: 20px;
+  font-size: 25px;
+  color: #f5eddc;
+  border: solid #A64B2A;
+  background-color: #A64B2A;
+  transition: 0.2s;
+}
+.bookclub-main__button:hover {
+  border: solid #000000;
+  box-shadow: inset 0 0 5px #000000;
+  cursor: pointer;
+}
+.bookclub-main__members {
+  width: -moz-fit-content;
+  width: fit-content;
+  position: relative;
+  left: 44rem;
+  bottom: 4rem;
+  font-style: "Bodoni Moda";
+  font-size: 25px;
+  color: rgba(188, 146, 94, 0.7294117647);
+  text-shadow: 1px 1px #000000;
+}
+.bookclub-main__cover {
+  position: relative;
+  top: 2rem;
+}
+
+.bookclub-description {
+  position: fixed;
+  height: 63vh;
+  top: 6.25rem;
+  left: 60rem;
+  margin-bottom: 7rem;
+  width: 28rem;
+  padding: 4rem;
+  background: linear-gradient(135deg, #A64B2A, #000000);
+  overflow: scroll;
+  transition: 0.2s;
+}
+.bookclub-description:hover {
+  box-shadow: inset 1px -15px 4px 8px #000000;
+}
+.bookclub-description__title {
+  position: relative;
+  font-style: "Lato", sans-serif;
+  color: #f5eddc;
+}
+.bookclub-description__description {
+  position: relative;
+  font-style: "Lato", sans-serif;
+  color: #f5eddc;
+  top: 3rem;
+  margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 1240px) {
+  .bookclub-description {
+    overflow: visible;
+    position: relative;
+    left: 0px;
+    top: 0rem;
+    width: 52rem;
+    height: -moz-fit-content;
+    height: fit-content;
+    margin-bottom: 5rem;
+  }
+  .bookclub-description__title {
+    font-size: 40px;
+  }
+  .bookclub-description__description {
+    font-size: 30px;
+  }
+}
