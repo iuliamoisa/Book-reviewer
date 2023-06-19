@@ -1,0 +1,97 @@
+.book-main {
+    background-color: $crem;
+    height: 70vh;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-right: 12rem;
+    padding-left: 12rem;
+    padding-top: 1rem;
+    padding-bottom:5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    &__image {
+        flex-basis: 15%;
+        max-width: 500px;
+        box-shadow: 10px 0 20px rgba(0, 0, 0, 0.5);
+    }
+    &__details {
+        flex-basis: 60%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        .book-title {
+            color: $brown;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+            
+        .book-author {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #666;
+        }
+            
+        .book-description {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        .add-to-list-button {
+            padding: 10px 20px;
+            background-color: $pale-brown;
+            color: #FFF;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+        }
+            
+        .add-to-list-button:hover {
+            background-color: #a55f34;
+            color: #fff;
+        }
+    }
+}
+
+.book-info {
+    background-color: $lightest-pale-brown;
+    margin-top: -5rem;
+    padding: 50px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    max-width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.book-description-full {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.review-section {
+    margin-top: 30px;
+}
+
+.review {
+    margin-bottom: 20px;
+}
+
+.review-author {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.review-text {
+    color: #666;
+}
+
+
+
+
+
+
+

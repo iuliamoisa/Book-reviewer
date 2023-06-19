@@ -1,0 +1,144 @@
+.connected-main{
+    height: 100%;
+    background: linear-gradient(to right, $yellower-white 48%, $crem 50%);
+    display: flex;
+    flex-wrap: wrap;
+
+  &__left {
+    flex-basis: 100%;
+    flex-basis: calc(50% - 1rem);
+    &--greeting {
+        color: $pale-brown;
+        width: 30%;
+        font-size: 3rem;
+        line-height: 1.2;
+        margin:2rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-shadow: 2px 2px #ccc;
+        margin-bottom: 4rem;
+    }
+    &--book {
+        backdrop-filter: blur(50px);
+        background-color: rgba(255, 255, 255, 0.651);
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+        margin: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
+
+        .book-text {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+          }
+        
+        .book-image {
+            margin-bottom: 20px;
+          }
+        
+         .book-button {
+            background-color: $pale-brown;
+            border: none;
+            border-radius: 3rem;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 20px;
+            cursor: pointer;
+            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+            font-family: 'Helvetica Neue', sans-serif;
+            &:hover{
+                background-color: #a55f34;
+                color: #fff;
+            }
+          }
+      }
+  
+  }
+  &__right { // am pus o sa fie
+    flex-basis: 100%;
+    flex-basis: calc(50% - 1rem);
+    padding: 1rem;
+  }
+}
+.shadow-effect {
+     box-shadow: 10px 0 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .quote-container {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 10px;
+    margin: 50px;
+
+    font-family: Georgia, serif;
+    font-size: 24px;
+    line-height: 1.5;
+    color: #333;
+    border: 2px solid #ccc;
+    text-align: center;
+
+  
+  border-left: 10px solid #ccc;
+  
+
+  font-style: italic;
+  }
+
+  .connected-img{
+    width: 50%;
+    margin-left: 10rem;
+  }
+
+  ////////////////////////////////////////////////////////////////
+  .selectWrapper {
+    width: 100%;
+    position: relative;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 100ms linear 0s;
+    filter: drop-shadow(0 6px 26px rgba(0, 0, 0, 0.24));
+    padding-top: calc(8px / 2);
+  }
+
+  .multiSelect {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    border: 1px solid #cccccc;;
+    box-sizing: border-box;
+    border-radius: calc(8px / 2);
+    position: absolute;
+    width: 9rem;
+    left: -3.5rem;
+    right: 0;
+    overflow: hidden;
+    background: $smokey-white;
+    transition: transform 300ms ease-in-out 0s, clip-path 300ms ease-in-out 0s;
+  }
+  .multiSelect div {
+    color: var(--textPrimary);
+    padding: 16px;
+    width: auto;
+    cursor: pointer;
+  }
+  .multiSelect div:hover {
+    background-color: #f6f6f6;
+  }
+  .bottomBorder {
+    border-bottom: 1px solid  #cccccc;;
+  }
+  .topBorder {
+    border-top: 1px solid #cccccc;;
+  }
+
+  .multiSelect {
+    transform: translateX(100%);
+    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+  }
+  .multiSelect:nth-of-type(1) {
+    transform: translateX(0);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
