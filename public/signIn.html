@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css"> 
+    <title>Sign in</title>
+</head>
+<body>
+    <div class="backImage">
+        <div class="backImage__blur">
+           
+            <header class="head">
+                <a href="home.html">
+                    <img class="home-header__left--logo"  src="pictures/logoBoo-better.png" alt="Logo">
+                </a>
+            </header>
+            <section class="mainSection">
+                <div class="square">
+                    <h1 class="square__squareTitle">Sign in to Boo!</h1>
+                    <div id="error-message" class="error-message"></div>
+
+                    <form action="/signin" method="POST" id="signInForm">
+                        <div><label id="emal" class="square__lab square__lab--email">Email</label><br><input class="square__inputs" placeholder="Enter your email" type="email" name="email"></div>
+                        <div><label id="password" class="square__lab square__lab--password">Password</label><a class="square__forgPass" href="./forgotPassword.html">Forgot password?</a><br><input class="square__inputs" placeholder="Enter your password" type="password" name="password"></div>
+                        <button type="submit" class="square__signInBut" >Sign in</button><br>
+                    </form>
+                    <fieldset class="square__fSet">
+                        <legend class="square__fSet--Legend">New to BOO?</legend>
+                        <button onclick="location.href='/signUp.html'" class="square__fSet--signUpBut" >Sign up</button>
+                   </fieldset>
+                    <br>
+                </div>
+            </section>
+        </div>
+    </div> 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+//     function signIn() {
+//     // Clear previous error message
+//     document.getElementById('error-message').innerText = '';
+
+//     // Get form inputs
+//     const email = document.getElementsByName('email')[0].value;
+//     const password = document.getElementsByName('password')[0].value;
+
+//     // Perform validation
+//     // Perform validation
+//     if (email === '' || password === '') {
+//       // Display error message if any field is empty
+//       document.getElementById('error-message').innerText = 'Please fill in all fields.';
+//       return;
+//     }
+
+//     // Make a fetch request to validate credentials
+//     fetch('/signin', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({ email, password }),
+//     })
+//       .then(response => {
+//         if (response.ok) {
+//           // Successful sign-in, redirect to homeConnected.html
+//           window.location.href = '/homeConnected';
+//         } else if (response.status === 401) {
+//           // Wrong credentials, display error message
+//           return response.text(); // Extract the error message from the response
+//         } else {
+//           // Other error occurred, display generic error message
+//           throw new Error('An error occurred. Please try again later.');
+//         }
+//       })
+//       .then(errorMessage => {
+//         // Display the error message in the error-message element
+//         document.getElementById('error-message').innerText = errorMessage;
+//       })
+//       .catch(error => {
+//         console.error('Error:', error);
+//         document.getElementById('error-message').innerText = 'An error occurred. Please try again later.';
+//       });
+//   }
+
+//   $('#signInForm').submit(function (event) {
+  
+
+//   const email = $('#email').val();
+//   const password = $('#password').val();
+
+//   $.ajax({
+//     url: '/signin',
+//     method: 'POST',
+//     data: { email, password },
+//     success: function (response) {
+//       if (response.status === 'ok') {
+//         // Sign in successful
+//         // Redirect to homeConnected page or show a success message
+//         window.location.href = '/homeConnected.html';
+//       } else {
+//         // Wrong credentials
+//         // Show an error message
+//         $('#errorMessage').text('Wrong credentials. Please try again.');
+//       }
+//     },
+//     error: function (xhr, status, error) {
+//       // Show an error message
+//       console.error(error);
+//       $('#errorMessage').text('Error signing in');
+//     }
+//   });
+// });
+    </script>
+    
+</body>
+</html>

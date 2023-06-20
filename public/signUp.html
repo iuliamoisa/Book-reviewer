@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css"> 
+    <title>Sign up</title>
+</head>
+<body>
+    <div class="backImage">
+        <div class="backImage__blur">
+            
+            <header class="head">
+                <a href="home.html">
+                    <img class="home-header__left--logo" src="pictures/logoBoo-better.png" alt="Logo">
+                </a>
+            </header>
+            <section class="mainSection">
+                <div class="square">
+                    <h1 class="square__squareTitle">Sign up to Boo!</h1>
+                    <form id="myform" action="/add" method="post" > 
+                        <div id="forError"></div>
+                        <div><label id="fname" class="square__lab square__lab--flname">First name</label><br><input id="prenume" class="square__inputs" placeholder="First name" type="text" name="fname"></div>
+                        <div><label id="lname" class="square__lab square__lab--flname">Last name</label><br><input id="nume" class="square__inputs" placeholder="Last name" type="text" name="lname"></div>
+                        <div><label id="username" class="square__lab square__lab--username">Username</label><br><input id="username" class="square__inputs" placeholder="Username" type="text" name="username"></div>
+                        <div><label id="email" class="square__lab square__lab--email">Email</label><br><input id="email" class="square__inputs" placeholder="Enter your email" type="email" name="email"></div>
+                        <div><label id="password" class="square__lab square__lab--password">Password</label><br><input id="password" class="square__inputs" placeholder="At least 6 characters" type="password" name="password" required></div>
+                        <div><label class="square__lab square__lab--rePassword">Re-enter password</label><br><input class="square__inputs"  type="password" name="repassword" required></div> 
+                        <button id="createButton" class="square__createAcc" type="submit">Create account</button> 
+                    </form>
+                    <div class="square__terms">By creating an account, you agree to the Boo 
+                        <a href="terms&conditions.html" class="square__terms--termsA">Terms of Service</a> and <a href="" class="square__terms--termsA">Privacy Policy</a>
+                        <br>Already have an account?<br> <a href="#" onclick="window.location.href = '/signin';" class="square__terms--termsA">Sign in</a></div><br>
+                    
+                </div>
+            </section>
+            <!-- <footer id="foot">
+
+            </footer>  -->
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/signUp.js"></script>
+    
+</body>
+</html>

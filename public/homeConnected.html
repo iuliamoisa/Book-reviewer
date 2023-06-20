@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.0.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/main.css"> 
+    
+    <title>Boo</title>
+</head>
+<body>
+    <header class="home-header">
+        <div class="home-header__left">
+			<a href="homeConnected.html">
+                <img class="home-header__left--logo" src="pictures/logoBoo-better.png" alt="Logo">
+            </a>
+			<h1 class="home-header__left--title">Boo</h1>
+		</div>
+        <div class="home-header__search">
+            <form class="home-header__search--form" action="#" method="get">
+                <input class="home-header__search--input" type="text" placeholder="Search book name, author, user, group...">
+                <button class="home-header__search--button" type="submit"><i class="ri-search-line ri-lg"></i></button>
+            </form>
+        </div>
+        <div class="home-nav">
+            <div class="home-nav__item" onclick="openMulti();">
+                <a class="home-nav__link"  href="#" >
+                    <i class="ri-map-pin-user-fill icon avatar"></i>
+                </a>
+                <div class="selectWrapper">
+                    <div class="multiSelect" id="menu-0">
+                        <div onclick="window.location.href = '/myProfile.html';">My Profile</div>
+                        <div onclick="openMulti();">My bookshelf</div>
+                        <div onclick="openMulti();">Settings</div>
+                        <div class="topBorder" onclick="openMulti();">Log out</div>
+                    </div>
+                </div>
+            </div>
+            <div class="home-nav__item">
+                <a class="home-nav__link" href="#">
+                    <i class="ri-notification-fill icon"></i>
+                </a>
+            </div>
+        </div>
+      </header>
+      <div class="connected-main">
+        <div class="connected-main__left">
+            <h2 class="connected-main__left--greeting" id="">
+              Happy<br />Reading!
+            </h2>
+            <div class="connected-main__left--book">
+                <div class="book-text" id="recText"></div>
+                  <img class="book-image shadow-effect" id="book-image" alt="Book cover">
+                  <!-- <button class="book-button" id="book-button"  >Get recommendtion<i class="ri-arrow-right-up-line"></i></button> -->
+                  <button class="book-button" id="book-button">Get recommendation</button>
+            </div>
+          </div>
+
+          <div class="connected-main__right">
+            <blockquote class="quote-container">
+                <p id="quote"> </p>
+            </blockquote>
+            <img class="connected-img" src="svg/home.svg" alt="Girl reading">
+          </div>
+      </div>
+
+      <section class="feed-section">
+        <div class="feed-navbar">
+            <div class="friends-section" id="friends-container">
+                <h3 class="navbar-sect my-friends" onclick="window.location.href = '/myFriends.html';">My Friends</h3>
+                <div class="friends-list" id="friendsList">
+                    <!-- Add logic here to display friend names -->
+                    
+                </div>
+                <button id="view-more-btn2">View More</button>
+            </div>
+            <div class="line-divider"></div>
+            <div class="groups-section">
+                <h3 class="navbar-sect">My Groups</h3>
+                <div class="groups-list" id="groupsList">
+                    <!-- Add logic here to display group names -->
+                    
+                </div>
+            </div>
+        </div>
+        <div class="feed-posts" id="feed-posts-container">
+            <div class="post">
+                <span class="user-name">John Doe</span>
+                <span class="activity">added a new review</span>
+                <p class="book-name">The Great Gatsby</p>
+            </div>
+            <div class="post">
+                <span class="user-name">Jane Smith</sp>
+                <span class="activity">rated a book</span>
+                <p class="book-name">To Kill a Mockingbird</p>
+                <div class="rating-stars">
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                    <span class="star">&#9733;</span>
+                  </div>
+            </div>
+            <div class="post">
+                <span class="user-name">John Doe</span>
+                <span class="activity">added a new review</span>
+                <p class="book-name">The Great Gatsby</p>
+            </div>
+            <div class="post">
+                <span class="user-name">John Doe</span>
+                <span class="activity">added a new review</span>
+                <p class="book-name">The Great Gatsby</p>
+            </div>
+            <div class="post">
+                <span class="user-name">John Doe</span>
+                <span class="activity">added a new review</span>
+                <p class="book-name">The Great Gatsby</p>
+            </div>
+            <div class="post">
+                <span class="user-name">John Doe</span>
+                <span class="activity">added a new review</span>
+                <p class="review">Lorem, ipsum dolor sit amet consectetur adipisicing elit. A laudantium cumque iste aliquam, veritatis magnam, consectetur quidem unde itaque incidunt quisquam nihil atque sunt nemo porro magni at voluptatibus repellat?</p>
+                <div class="book-info2" id="book-text">
+                    <img class="book-cover" src="https://via.placeholder.com/150x200?text=The+Great+Gasby" alt="Book Cover">
+                    <div class="book-details2">
+                          <p class="author-name">Author: F. Scott Fitzgerald</p>
+                          <p class="book-description2">Short description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="post">
+                <span class="user-name">John Doe</span>
+                <span class="activity">added a new review</span>
+                <p class="book-name">The Great Gatsby</p>
+            </div>
+            <div class="post">
+                <span class="user-name">John Doe</span>
+                <span class="activity">added a new review</span>
+                <p class="book-name">The Great Gatsby</p>
+            </div>
+            <div class="post">
+                <span class="user-name">John Doe</span>
+                <span class="activity">added a new review</span>
+                <p class="book-name">The Great Gatsby</p>
+            </div>
+            
+            <button id="view-more-btn">View More</button>
+
+        </div>
+    </section>
+
+      <script src="js/homeConnected.js"></script>
+</body>
+</html>

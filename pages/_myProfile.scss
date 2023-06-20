@@ -1,0 +1,169 @@
+#topSide {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    padding-top: 10px;
+  }
+  
+  #profilePic {
+    width: 10vw;
+    height: 20vh;
+    background-image: url(../pictures/profile.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+  }
+  
+  #ratings {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .rating {
+    text-decoration: none;
+  }
+  
+  #userName {
+    font-weight: bold;
+    font-size: 25px;
+  }
+  
+  #editProfile {
+    text-decoration: none;
+    font-size: 10px;
+  }
+  
+  .lines {
+    margin-top: 5px;
+    width: 27vw;
+  }
+
+  .detailsANDactivity {
+    display: flex;
+    justify-content: space-between;
+    width: 15vw;
+    margin-top: 7px;
+  }
+  
+  span:nth-child(1) {
+    font-weight: bold;
+  }
+  
+  #yearBooks {
+    margin-top: 25px;
+  }
+  
+  #titleYear {
+    font-size: 15px;
+  }
+  
+  #yearBooksContent {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 4px;
+  }
+  
+  #yearImage {
+    background-image: url(../pictures/yearBooks.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 10vw;
+    height: 23vh;
+  }
+  
+  #yearContent {
+    width: 10vw;
+    font-size: 13px;
+    text-align: center;
+  }
+  
+  #books2022 {
+    font-weight: bold;
+  }
+  
+  #link2022 {
+    text-decoration: none;
+  }
+  
+  #bottomSide {
+    margin-top: 4vh;
+    margin-bottom: 2vh;
+    gap: 3vw;
+    display: flex;
+    justify-content: center;
+  }
+  
+  #readToRead {
+    display: flex;
+    justify-content: center;
+    gap: 3vw;
+    width: 25vw;
+  }
+  
+  .toReadStyle {
+    text-decoration: none;
+  }
+  
+  .bookshelfLine {
+    margin-top: 2vh;
+    width: 40vw;
+  }
+  
+  #recentUpdates {
+    margin-top: 7vh;
+  }
+  
+  #listOfFriends {
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  #friendsTitle {
+    font-weight: bold;
+  }
+  
+  .friendsLine {
+    margin-top: 2vh;
+    width: 20vw;
+  }
+  
+  .friendPicture {
+    width: 5vw;
+    height: 12vh;
+    border-radius: 10%;
+    background-image: url(../pictures/profile.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .personFriend {
+    display: flex;
+    gap: 2vw;
+    font-size: 15px;
+  }
+  
+  .nameForFriend {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  #f1 {
+    background-image: url(../pictures/astro.jpeg);
+  }
+  
+  #f2 {
+    background-image: url(../pictures/doctor.jpeg);
+  }
+  
+  #f3 {
+    background-image: url(../pictures/teacher.jpeg);
+  }
+  
+  #f4 {
+    background-image: url(../pictures/plumber.jpeg);
+  }

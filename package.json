@@ -1,0 +1,26 @@
+{
+  "name": "proiect-tehnologii-web",
+  "version": "1.0.0",
+  "description": "Proiect Tehnologii web - Boo ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iuliamoisa/Proiect-Tehnologii-Web.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iuliamoisa/Proiect-Tehnologii-Web/issues"
+  },
+  "homepage": "https://github.com/iuliamoisa/Proiect-Tehnologii-Web#readme",
+  "dependencies": {
+    "-": "^0.0.1",
+    "global": "^4.4.0",
+    "gulp-cli": "^2.3.0",
+    "node-sass": "^9.0.0",
+    "pg": "^8.11.0"
+  }
+}

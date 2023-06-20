@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.0.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/main.css"> 
+    <title>My profile </title>
+</head>
+<body>
+    <header class="home-header">
+        <div class="home-header__left">
+			<a href="homeConnected.html">
+                <img class="home-header__left--logo" src="pictures/logoBoo-better.png" alt="Logo">
+            </a>
+			<h1 class="home-header__left--title">Boo</h1>
+		</div>
+        <div class="home-header__search">
+            <form class="home-header__search--form" action="#" method="get">
+                <input class="home-header__search--input" type="text" placeholder="Search book name, author, user, group...">
+                <button class="home-header__search--button" type="submit"><i class="ri-search-line ri-lg"></i></button>
+            </form>
+        </div>
+        <div class="home-nav">
+            <div class="home-nav__item" onclick="openMulti();">
+                <a class="home-nav__link"  href="#" >
+                    <i class="ri-map-pin-user-fill icon avatar"></i>
+                </a>
+                <div class="selectWrapper">
+                    <div class="multiSelect" id="menu-0">
+                        <div onclick="window.location.href = '/myProfile.html';">My Profile</div>
+                        <div onclick="openMulti();">My bookshelf</div>
+                        <div onclick="openMulti();">Settings</div>
+                        <div class="topBorder" onclick="openMulti();">Log out</div>
+                    </div>
+                </div>
+            </div>
+            <div class="home-nav__item">
+                <a class="home-nav__link" href="#">
+                    <i class="ri-notification-fill icon"></i>
+                </a>
+            </div>
+        </div>
+      </header>
+
+
+    <div id="topSide">
+        <div id="credentials">
+            <p id="profilePic"></p>
+            <p id="ratings">
+                <a class="rating" href="">1 rating(5 avg)</a>
+                <a class="rating" href="">0 reviews</a>
+                <a class="rating" href="">more photos(0)</a>
+            </p>
+        </div>
+        <div>
+            <p class="p3w" id="userName">John Doe <a href="" id="editProfile"> (edit profile)</a></p>
+            <hr class="lines" id="line1">
+            <p class="detailsANDactivity p3w">
+                <span>Details</span>
+                <span>Roman 17</span>
+            </p>
+            <p class="detailsANDactivity p3w"><span>Activity</span>   
+                <span> Joined in May 1989</span> 
+            </p>
+        </div>
+        <div  id="yearBooks">
+            <p id="titleYear">JOHNNY'S YEAR IN BOOKS</p>
+            <hr class="lines">
+            <div id="yearBooksContent">
+                <p id="yearImage"></p>
+                <p id ="yearContent"><span id="books2022">Your 2022 Year in Books</span><br><br>
+                    Take a look at Your Year in Books. The good, the bad, the long, the short—it's all here.<br><br><br>
+                    <a id="link2022" href="">Go to Your 2022 Year in Books</a></p>
+
+            </div>
+        </div>
+        
+    </div>
+    <div id="bottomSide">
+        <div id="persBookshelf">
+            <p>Johnny's bookshelves</p>
+            <hr class="bookshelfLine">
+            <div id="readToRead">
+                <a href="" class="toReadStyle">read(70)</a>
+                <a href="" class="toReadStyle">currently reading(23)</a>
+                <a href="" class="toReadStyle">to-read(30)</a>
+
+            </div>
+            <p id="recentUpdates">Johnny's recent updates</p>
+            <hr class="bookshelfLine">
+        </div>
+        <div id="listOfFriends1">
+            <p id="friendsTitle">Johnny's friends(10)</p>
+            <hr class="friendsLine">
+            <div id="listOfFriends">
+                <div class="personFriend">
+                    <p id="f1" class="friendPicture"></p>
+                    <p id="nameFriends"><span class="nameForFriend">Johnny austronaut </span><br> 130 books | 30 friends</p>
+
+                </div>
+                <div class="personFriend">
+                    <p id="f2" class="friendPicture"></p>
+                    <p id="nameFriends"><span class="nameForFriend">Johnny doctor </span><br> 130 books | 30 friends</p>
+
+                </div>
+                <div class="personFriend">
+                    <p id="f3" class="friendPicture"></p>
+                    <p id="nameFriends"><span class="nameForFriend">Johnny teacher </span><br> 130 books | 30 friends</p>
+
+                </div>
+                <div class="personFriend">
+                    <p id="f4" class="friendPicture"></p>
+                    <p id="nameFriends"><span class="nameForFriend">Johnny teacher </span><br> 130 books | 30 friends</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/myProfile.js"></script>
+</body>
+</html>
