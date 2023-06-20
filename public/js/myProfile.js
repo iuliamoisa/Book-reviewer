@@ -1,5 +1,28 @@
 window.addEventListener('load',fetchProfileFriends);
 window.addEventListener('load',fetchFriendsCount);
+window.addEventListener('load', fetchProfileData);
+
+function fetchProfileData() {
+  fetch('http://localhost:3000/getProfileData')
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      const userNameElement = document.getElementById("userName");
+      const nrOfBooksElement = document.getElementById("nrOfBooks");
+      userNameElement.textContent = data.name;
+      nrOfBooksElement.textContent = data.booksCount;
+      console.log("CEVAaaaa " + data.booksCount);
+       //const profilePicElement = document.getElementById("profilePic");
+      //const readBooksElement = document.getElementById("readBooks");
+      // profilePicElement.innerHTML = `<img src="${data.profilePicUrl}" alt="Profile Picture">`;
+      // readBooksElement.textContent = `Read Books: ${data.readBooksCount}`;
+    })
+    .catch(error => {
+      console.error('Error fetching profile data:', error);
+    });
+}
+
+
 function fetchProfileFriends(){
     fetch('http://localhost:3000/getProfileFriends')
     .then(response => response.json())
@@ -35,6 +58,27 @@ function fetchFriendsCount(){
     .catch(error => {
       console.error('Error fetching request:', error);
     });
+}
+/////////////////////// LOGOUT
+
+function logout() {
+  console.log("MERGE LOGOUT");
+  fetch('http://localhost:3000/getFriendsCount', {
+    method: 'GET',
+    credentials: 'same-origin' // Include cookies in the request
+  })
+  .then((response) => {
+    if (response.ok) {
+      window.location.href = '/signIn.html';
+    } else {
+      // Handle the error
+      console.error('Logout failed:', response.statusText);
+    }
+  })
+  .catch((error) => {
+    // Handle the error
+    console.error('Logout failed:', error);
+  });
 }
 
 ////////////////////// DROPDOWN MENU

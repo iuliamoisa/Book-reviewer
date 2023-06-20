@@ -268,7 +268,50 @@ const server = http.createServer((req, res) => {
         res.end();
       }
     });
-  } else  {
+  }
+  else if (req.method === 'GET' && parsedUrl.pathname === '/getProfileData') {
+    (async () => {
+      try {
+        const query = 'SELECT * FROM utilizatori WHERE id = $1';
+        const values = [userId];
+        const result = await pool.query(query, values);
+        const user = result.rows[0];
+        const getBooksQuery = 'SELECT COUNT(*) AS finishedBooksCount FROM progres WHERE id_utilizator = $1 AND status_carte = true';
+        const getBooksValues = [userId];
+        const booksResult = await pool.query(getBooksQuery, getBooksValues);
+        const booksCount = booksResult.rows[0].finishedbookscount;
+        if (user) {
+          const profileData = {
+            name: `${user.nume} ${user.prenume}`,
+            booksCount: booksCount
+            // profilePicUrl: user.profilePicUrl, // Replace with the actual column name for the profile picture URL
+            // readBooksCount: user.readBooksCount // Replace with the actual column name for the read books count
+          };
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.write(JSON.stringify(profileData));
+          res.end();
+        } else {
+          res.writeHead(404, { 'Content-Type': 'application/json' });
+          res.write(JSON.stringify({ error: 'User not found' }));
+          res.end();
+        }
+      } catch (error) {
+        console.error('Error getting profile data:', error);
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.write(JSON.stringify({ error: 'Internal server error' }));
+        res.end();
+      }
+    })();
+  }
+  else if (req.method === 'GET' && parsedUrl.pathname === '/logout') {
+    // Clear the userId or perform any other necessary logout actions
+    userId = null;
+  
+    // Redirect the user to the login page or any other desired destination
+    res.writeHead(302, { 'Location': '/signIn.html' });
+    res.end();
+  }
+   else  {
     // Serve static files
     let filePath = path.join(__dirname, 'public', parsedUrl.pathname);
     if (parsedUrl.pathname === '/') {

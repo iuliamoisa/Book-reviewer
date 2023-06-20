@@ -31,8 +31,8 @@
                     <div class="multiSelect" id="menu-0">
                         <div onclick="window.location.href = '/myProfile.html';">My Profile</div>
                         <div onclick="openMulti();">My bookshelf</div>
-                        <div onclick="openMulti();">Settings</div>
-                        <div class="topBorder" onclick="openMulti();">Log out</div>
+                        <div  onclick="window.location.href = '/settings.html';">Settings</div>
+                        <div class="topBorder" onclick="logout()">Log out</div>
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@
             </p>
         </div>
         <div  id="yearBooks">
-            <p id="titleYear">JOHNNY'S YEAR IN BOOKS</p>
+            <p id="titleYear">YEAR IN BOOKS</p>
             <hr class="lines">
             <div id="yearBooksContent">
                 <p id="yearImage"></p>
@@ -80,10 +80,10 @@
     </div>
     <div id="bottomSide">
         <div id="persBookshelf">
-            <p>Johnny's bookshelves</p>
+            <p>Bookshelves</p>
             <hr class="bookshelfLine">
             <div id="readToRead">
-                <a href="" class="toReadStyle">read(70)</a>
+                <a href="" class="toReadStyle">read(<span id="nrOfBooks">0</span>)</a>
                 <a href="" class="toReadStyle">currently reading(23)</a>
                 <a href="" class="toReadStyle">to-read(30)</a>
 
