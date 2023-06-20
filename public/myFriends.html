@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.0.0/fonts/remixicon.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css"> 
+    <title>Friends</title>
+</head>
+<body>
+    <header class="home-header">
+        <div class="home-header__left">
+			<a href="home.html">
+                <img class="home-header__left--logo" src="./pictures/logoBoo-better.png" alt="Logo">
+            </a>
+			<h1 class="home-header__left--title">Boo</h1>
+		</div>
+        <div class="home-header__search">
+            <form class="home-header__search--form" action="#" method="get">
+                <input class="home-header__search--input" type="text" placeholder="Search book name, author, user, group...">
+                <button class="home-header__search--button" type="submit"><i class="ri-search-line ri-lg"></i></button>
+            </form>
+        </div>
+        <div class="home-nav">
+            <div class="home-nav__item" onclick="openMulti();">
+                <a class="home-nav__link"  href="#" >
+                    <i class="ri-map-pin-user-fill icon avatar"></i>
+                </a>
+                <div class="selectWrapper">
+                    <div class="multiSelect" id="menu-0">
+                        <div onclick="window.location.href = '/myProfile.html';">My Profile</div>
+                        <div onclick="openMulti();">My bookshelf</div>
+                        <div onclick="openMulti();">Settings</div>
+                        <div class="topBorder" onclick="openMulti();">Log out</div>
+                    </div>
+                </div>
+            </div>
+            <div class="home-nav__item">
+                <a class="home-nav__link" href="#">
+                    <i class="ri-notification-fill icon"></i>
+                </a>
+            </div>
+        </div>
+      </header>
+      <div class="friends-container">
+       
+        <div class="friends-menu">
+            <h3 class="navbar-sect"  id="getMyFriends" >My Friends </h3>
+            <h3 class="navbar-sect" id="getMyReq" >Friend Requests</h3>
+            <h3 class="navbar-sect" id="getMySugg" >Friend Suggestions</h3>
+        </div>
+        <div id="profiles-content" class="profiles-content">
+
+        </div>
+    </div>
+  <script src="js/homeConnected.js"></script>
+  <script src="js/myFriends.js"></script>
+</body>
+</html>

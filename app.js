@@ -3,7 +3,7 @@ const path = require('path');
 const querystring = require('querystring');
 const http = require('http');
 const url = require('url');
-const fs = require('fs');
+const fs = require('fs'); // acces la sistemul de fisiere
 let userId;
 
 const pool = new Pool({

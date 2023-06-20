@@ -8,12 +8,24 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.0.0/fonts/remixicon.css" rel="stylesheet">
     <title>Help</title>
 </head>
-<body class="help-body">
-    <header class="help-header">
-        <img  src="pictures/logoBoo-better.png" class="help-header__logo" alt="Boo logo">
-        <h1 class="help-header__title">We're here for you!</h1>
-        <button onclick="location.href = 'home.html' " class="help-header__button">Home</button>
-    </header>
+<body>
+    <header class="home-header">
+		<div class="home-header__left">
+			<a href="home.html">
+                <img class="home-header__left--logo" src="pictures/logoBoo-better.png" alt="Logo">
+            </a>
+			<h1 class="home-header__left--title">Boo</h1>
+		</div>
+		<div class="home-nav">
+            <h1 class="help-header__title">We're here for you!</h1>
+			<div class="home-nav__item">
+                <a class="home-nav__link" href="home.html">Home</a>
+            </div>
+			<div class="home-nav__item">
+				<a class="home-nav__link" href="about.html">About</a>
+			</div>
+		</div>
+	</header>
     
         <form class="help-form">
             <div class="help-form__details">
@@ -23,25 +35,26 @@
             </div>
             <input type="text" class="help-form__question" maxlength="200" placeholder="Your question here">
         </form>
-    
-    <div class="help-helpBox1">
-        <h3 class="help-helpBox1__title">HOW TO CREATE AN ACCOUNT</h3>
-        <p class="help-helpBox1__content">Go to the main page of the website then click on <i>'sign in'</i> button. There you find a form to fill with the nickname you want, 
-            your email adress and then you must create a strong password. After that you can add a profile pic so your friends 
-            recognize you easier.</p>
-    </div>
-    <div class="help-helpBox2">
-        <h3 class="help-helpBox2__title">HOW TO TRACK YOUR READING</h3>
-        <p class="help-helpBox2__content">In your profile page you can find an <i>'new book'</i> button to add a new book that you're reading or you can use 
-        one that you're already reading it, for that you have a <i>'manage books'</i> button, that will show you the lists of your books, 
-        curently reading list of books or finished books. You go on to the book you want to track and press the <i>'manage'</i> button, 
-        there you can select the chapter or even page that you're on and even add notes to that.</p>
-    </div>
-    <div class="help-helpBox3">
-        <h3 class="help-helpBox3__title">HOW TO SHARE WITH FRIENDS</h3>
-        <p class="help-helpBox3__content">You can share anything with your friends on Boo! After every event like adding a new book to reading list or a note on a 
-            chapter that you enjoyed you can share it by pressing the <i>'share'</i> button on the screen, so that this event will 
-            appear on your friend's feed!</p>
+    <div id="help-container">
+        <div class="helpBox">
+            <h3 class="helpBox__title">HOW TO CREATE AN ACCOUNT</h3>
+            <p class="helpBox__content">Go to the main page of the website then click on <i>'sign in'</i> button. There you find a form to fill with the nickname you want, 
+                your email adress and then you must create a strong password. After that you can add a profile pic so your friends 
+                recognize you easier.</p>
+        </div>
+        <div class="helpBox">
+            <h3 class="helpBox__title">HOW TO TRACK YOUR READING</h3>
+            <p class="helpBox__content">In your profile page you can find an <i>'new book'</i> button to add a new book that you're reading or you can use 
+            one that you're already reading it, for that you have a <i>'manage books'</i> button, that will show you the lists of your books, 
+            curently reading list of books or finished books. You go on to the book you want to track and press the <i>'manage'</i> button, 
+            there you can select the chapter or even page that you're on and even add notes to that.</p>
+        </div>
+        <div class="helpBox">
+            <h3 class="helpBox__title">HOW TO SHARE WITH FRIENDS</h3>
+            <p class="helpBox__content">You can share anything with your friends on Boo! After every event like adding a new book to reading list or a note on a 
+                chapter that you enjoyed you can share it by pressing the <i>'share'</i> button on the screen, so that this event will 
+                appear on your friend's feed!</p>
+        </div>
     </div>
     <footer class="help-footer">
         <div class="help-footer__links">
