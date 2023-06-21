@@ -215,3 +215,24 @@ function fetchFriends() {
 
 
   
+  /////////////////////// LOGOUT
+
+function logout() {
+  console.log("MERGE LOGOUT");
+  fetch('http://localhost:3000/getFriendsCount', {
+    method: 'GET',
+    credentials: 'same-origin' // Include cookies in the request
+  })
+  .then((response) => {
+    if (response.ok) {
+      window.location.href = '/signIn.html';
+    } else {
+      // Handle the error
+      console.error('Logout failed:', response.statusText);
+    }
+  })
+  .catch((error) => {
+    // Handle the error
+    console.error('Logout failed:', error);
+  });
+}
