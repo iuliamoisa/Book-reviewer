@@ -272,20 +272,29 @@ const server = http.createServer((req, res) => {
   else if (req.method === 'GET' && parsedUrl.pathname === '/getProfileData') {
     (async () => {
       try {
-        const query = 'SELECT * FROM utilizatori WHERE id = $1';
-        const values = [userId];
-        const result = await pool.query(query, values);
+        const query1 = 'SELECT * FROM utilizatori WHERE id = $1';
+        const values = [userId];const getBooksValues = [userId];const getReadingBooksValues = [userId];
+        const result = await pool.query(query1, values);
         const user = result.rows[0];
-        const getBooksQuery = 'SELECT COUNT(*) AS finishedBooksCount FROM progres WHERE id_utilizator = $1 AND status_carte = true';
-        const getBooksValues = [userId];
-        const booksResult = await pool.query(getBooksQuery, getBooksValues);
+
+        const query2 = 'SELECT COUNT(*) AS finishedBooksCount FROM progres WHERE id_utilizator = $1 AND status_carte = true';
+        const booksResult = await pool.query(query2, getBooksValues);
         const booksCount = booksResult.rows[0].finishedbookscount;
+
+        const query3 = 'SELECT COUNT(*) AS readingBooksCount FROM progres WHERE id_utilizator = $1 AND status_carte = false AND data_start is not null';
+        const readingBooksResult = await pool.query(query3, getReadingBooksValues);
+        const readingBooksCount = readingBooksResult.rows[0].readingbookscount;
+
+        const query4 = 'SELECT COUNT(*) AS toReadBooksCount FROM progres WHERE id_utilizator = $1 AND status_carte = false AND data_start is null';
+        const toReadBooksResult = await pool.query(query4, getReadingBooksValues);
+        const toReadBooksCount = toReadBooksResult.rows[0].toreadbookscount;
         if (user) {
           const profileData = {
             name: `${user.nume} ${user.prenume}`,
-            booksCount: booksCount
+            booksCount: booksCount,
+            readingBooksCount: readingBooksCount,
+            toReadBooksCount: toReadBooksCount
             // profilePicUrl: user.profilePicUrl, // Replace with the actual column name for the profile picture URL
-            // readBooksCount: user.readBooksCount // Replace with the actual column name for the read books count
           };
           res.writeHead(200, { 'Content-Type': 'application/json' });
           res.write(JSON.stringify(profileData));

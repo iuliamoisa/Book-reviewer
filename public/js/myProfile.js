@@ -9,9 +9,14 @@ function fetchProfileData() {
       console.log(data);
       const userNameElement = document.getElementById("userName");
       const nrOfBooksElement = document.getElementById("nrOfBooks");
+      const nrOfReadingBooksElement = document.getElementById("readingBooks");
+      const nrOfToReadBooksElement = document.getElementById("toReadBooks");
       userNameElement.textContent = data.name;
       nrOfBooksElement.textContent = data.booksCount;
+      nrOfReadingBooksElement.textContent = data.readingBooksCount;
+      nrOfToReadBooksElement.textContent = data.toReadBooksCount;
       console.log("CEVAaaaa " + data.booksCount);
+      console.log("ALtcevaAaaaa " + data.toReadBooksCount);
        //const profilePicElement = document.getElementById("profilePic");
       //const readBooksElement = document.getElementById("readBooks");
       // profilePicElement.innerHTML = `<img src="${data.profilePicUrl}" alt="Profile Picture">`;
@@ -51,9 +56,7 @@ function fetchFriendsCount(){
       console.log(data);
       const liOfFriends=document.getElementById("friendsTitle");
       liOfFriends.innerHTML='';
-      liOfFriends.innerHTML=`Johhny's friends(${data})`;
-      
-     
+      liOfFriends.innerHTML=`Friends(${data})`;
     })
     .catch(error => {
       console.error('Error fetching request:', error);
