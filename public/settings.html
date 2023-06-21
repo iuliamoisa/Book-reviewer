@@ -45,21 +45,27 @@
       </header>
 
     <div class="settings-main">
-         <img src="pictures/shrek.png" alt="Profile picture" class="settings-main__picture" width="200" height="200" marginTop="2rem" >
-         <p class="settings-main__paragraph">Change your profile picture</p>
+        <div class="avatarImg">
+            <label class="-label" for="file">
+                <span>Change Image</span>
+            </label>
+            <input class="avatarImg__inputFile" id="file" type="file" onchange="loadFile(event)"/>
+            <img src="pictures/shrek.png" alt="Profile picture" class="settings-main__picture" width="200" height="200" id="output" >
+        </div>
+        
          <div class="settings-main__details">
             <h3 class="settings-main__title">Change password?</h3>
-            <input type="password" class="settings-main__oldPassword" placeholder="Enter your old password">
-            <input type="password" class="settings-main__newPassword" placeholder="Enter your new password">
-            <input type="password" class="settings-main__confirm" placeholder="Confirm your password">
+            <input type="password" class="set-info settings-main__option" placeholder="Enter your old password">
+            <input type="password" class="set-info settings-main__option" placeholder="Enter your new password">
+            <input type="password" class="set-info settings-main__option" placeholder="Confirm your password">
             <input type="submit" class="settings-main__button">
          </div> 
          <div class="settings-main__info">
             <h3 class="settings-main__title2">Change details?</h3>
-            <input type="text" class="settings-main__username" placeholder="Enter your new username">
-            <input type="text" class="settings-main__firstName" placeholder="Enter your new first name">
-            <input type="text" class="settings-main__secondName" placeholder="Enter your new second name">
-            <input type="submit" class="settings-main__submit">
+            <input type="text" class="set-info settings-main__option" placeholder="Enter your new username">
+            <input type="text" class="set-info settings-main__option" placeholder="Enter your new first name">
+            <input type="text" class="set-info settings-main__option" placeholder="Enter your new second name">
+            <input type="submit" class="settings-main__button">
          </div>
     </div>
     <h1 class="settings-quote"><i>"The meassure of intelligence is the ability to change"</i> - Albert Einstein</h1>
@@ -71,6 +77,6 @@
         </div>
         <p class="help-footer__copyright"><i class="ri-copyright-line"></i>Copyrights | All rights reserved 2023-2025</p>
     </footer>
-    <script src="js/myProfile.js"></script>
+    <script src="js/settings.js"></script>
 </body>
 </html>
