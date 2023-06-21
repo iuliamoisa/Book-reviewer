@@ -1328,7 +1328,6 @@ body {
 
 .help-footer {
   height: 5rem;
-  position: fixed;
   bottom: 0%;
   width: 100%;
   background-color: #d49d5b;
@@ -1680,13 +1679,14 @@ html {
   border-width: 1px;
   border-color: #A64B2A;
   box-shadow: 2px 2px 4px #000000;
+  margin: 2rem;
+  background-color: #D7A86E;
 }
 .settings-main__picture {
   display: inline;
   border-radius: 300px;
-  left: 10%;
+  left: 7%;
   position: relative;
-  margin-top: 3rem;
   transition: 0.4s;
   border-style: groove;
   border-color: #f5eddc;
@@ -1697,10 +1697,8 @@ html {
 }
 .settings-main__paragraph {
   width: fit-content;
-  color: white;
-  left: 10%;
-  margin-left: 9.375rem;
-  font-style: "Bodoni Moda";
+  color: #A64B2A;
+  margin-left: 6rem;
   text-shadow: 4px 4px 6px #8E3200;
 }
 .settings-main__paragraph:hover {
@@ -1780,7 +1778,8 @@ html {
   position: relative;
   width: fit-content;
   left: 11.7rem;
-  font-style: "Bodoni Moda";
+  color: #A64B2A;
+  margin-top: 1rem;
 }
 .settings-main__info {
   position: relative;
@@ -1853,17 +1852,13 @@ html {
   position: relative;
   width: fit-content;
   left: 7.5rem;
-  font-style: "Bodoni Moda";
+  color: #A64B2A;
 }
 
 .settings-quote {
   font-size: 40px;
-  width: fit-content;
-  position: relative;
   font-style: "Nunito Sans";
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 60px;
+  margin: 3rem;
   color: white;
   text-shadow: 4px 4px 10px #8E3200;
 }
@@ -1938,28 +1933,15 @@ html {
     bottom: 1rem;
     height: 2rem;
   }
-  .settings-main__picture {
-    left: 0px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 250px;
-    height: 250px;
-  }
   .settings-main__paragraph {
     margin-left: auto;
     margin-right: auto;
   }
 }
-@media screen and (max-height: 720px) and (min-height: 599px) {
-  .settings-main__info {
-    height: 10rem;
-    margin-bottom: 10rem;
-  }
-  .settings-main__picture {
-    margin-top: 1rem;
-  }
+.settings-main__picture {
+  margin-top: 2rem;
 }
+
 .bookclub-body {
   margin: 0;
   font-family: "Lato", sans-serif;
@@ -2073,12 +2055,12 @@ html {
   display: flex;
   gap: 20px;
   justify-content: center;
-  padding-top: 10px;
+  padding-top: 1.5rem;
 }
 
 #profilePic {
-  width: 10vw;
-  height: 20vh;
+  width: 150px;
+  height: 150px;
   background-image: url(../pictures/profile.jpg);
   background-position: center;
   background-size: cover;
@@ -2098,28 +2080,37 @@ html {
 
 #userName {
   font-weight: bold;
-  font-size: 25px;
-}
-
-#editProfile {
-  text-decoration: none;
-  font-size: 10px;
+  font-size: 2rem;
+  text-align: center;
+  padding: 1.5rem;
+  color: #8E3200;
 }
 
 .lines {
   margin-top: 5px;
-  width: 27vw;
+  width: 100%;
 }
 
 .detailsANDactivity {
   display: flex;
   justify-content: space-between;
-  width: 15vw;
-  margin-top: 7px;
+  width: 50vw;
+  margin-top: 1rem;
 }
 
-span:nth-child(1) {
-  font-weight: bold;
+.firstspan {
+  font-weight: 700;
+  margin: 1rem;
+  padding: 1rem;
+  font-size: 1.5rem;
+  color: #8E3200;
+}
+
+.secondspan {
+  font-weight: 500;
+  padding: 2rem;
+  font-size: 1rem;
+  color: #A64B2A;
 }
 
 #yearBooks {
@@ -2237,6 +2228,110 @@ span:nth-child(1) {
 
 #f4 {
   background-image: url(../pictures/plumber.jpeg);
+}
+
+#wrapper {
+  display: flex;
+  gap: 5vw;
+}
+
+#leftSide {
+  margin-top: 1.5rem;
+  min-height: calc(100vh - 6.25rem);
+  width: 25vw;
+  display: flex;
+  flex-flow: column;
+  margin-left: 2px;
+  justify-content: flex-start;
+  gap: 10px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-right: 5px solid #D7A86E;
+  height: 100vh;
+  padding-right: 2rem;
+}
+
+#bookTitle {
+  text-align: center;
+  font-size: 2.2rem;
+  color: #8E3200;
+}
+
+.shelfList {
+  font-size: 1.7rem;
+  text-align: center;
+  margin: 0.5rem;
+  border-radius: 10px;
+  box-shadow: 0px 3px;
+  background-color: #f8dcba;
+  color: #8E3200;
+  font-family: "Lato", sans-serif;
+  cursor: pointer;
+  transition: background-color 0.5s;
+  padding: 0.3rem;
+}
+
+.shelfList:hover {
+  background-color: rgba(229, 178, 116, 0.6352941176);
+}
+
+#picpic {
+  flex-grow: 10;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 1rem;
+  margin-top: 2rem;
+}
+
+#rightSide {
+  margin-top: 7vh;
+  display: grid;
+  row-gap: 10px;
+  column-gap: 10px;
+  width: 70vw;
+  height: calc(100vh - 8rem);
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: 33% 33% 33%;
+}
+
+.bookMember {
+  border-radius: 20px;
+  height: 23vh;
+  width: 20vw;
+  background-color: #f8dcba;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  text-align: center;
+}
+
+.checked {
+  color: orange;
+}
+
+.booksTitle, .booksAuthor {
+  font-size: 1.5vw;
+  color: #8E3200;
+  font-family: "Lato", sans-serif;
+}
+
+.borderProgress {
+  margin: auto auto;
+  height: 2vh;
+  width: 10vw;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.borderGrey {
+  border-radius: 10px;
+  height: 2vh;
+  width: 80%;
+  background-color: grey;
+  text-align: center;
+  font-size: smaller;
 }
 
 /*# sourceMappingURL=main.css.map */

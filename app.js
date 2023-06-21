@@ -150,7 +150,6 @@ const server = http.createServer((req, res) => {
         const values = [userId];
         const result = await pool.query(query, values);
         const friends = result.rows;
-
         if (friends.length > 0) {
           res.writeHead(200, { 'Content-Type': 'application/json' });
           res.write(JSON.stringify(friends));

@@ -18,7 +18,7 @@
 		</div>
         <div class="home-header__search">
             <form class="home-header__search--form" action="#" method="get">
-                <input class="home-header__search--input" type="text" placeholder="Search book name, author, user, group...">
+                <input class="home-header__search--input" type="text" placeholder="Search books...">
                 <button class="home-header__search--button" type="submit"><i class="ri-search-line ri-lg"></i></button>
             </form>
         </div>
@@ -30,7 +30,7 @@
                 <div class="selectWrapper">
                     <div class="multiSelect" id="menu-0">
                         <div onclick="window.location.href = '/myProfile.html';">My Profile</div>
-                        <div onclick="openMulti();">My bookshelf</div>
+                        <div onclick="window.location.href = '/myBookshelf.html';">My bookshelf</div>
                         <div  onclick="window.location.href = '/settings.html';">Settings</div>
                         <div class="topBorder" onclick="logout()">Log out</div>
                     </div>
@@ -53,18 +53,15 @@
                 <a class="rating" href="">0 reviews</a>
             </p>
         </div>
-        <div>
-            <p class="p3w" id="userName">John Doe </p><a href="settings.html" id="editProfile"> (edit profile)</a>
+        <div id="utilizator-info">
+            <p class="p3w" id="userName">John Doe </p>
             <hr class="lines" id="line1">
             <p class="detailsANDactivity p3w">
-                <span>Details</span>
-                <span>Roman 17</span>
-            </p>
-            <p class="detailsANDactivity p3w"><span>Activity</span>   
-                <span> Joined in May 1989</span> 
+                <span class="firstspan">About me</span>
+                <span class="secondspan">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta a aut quia modi quis provident eos dolorem? Nam voluptatum obcaecati consectetur, veritatis explicabo maxime, dolore neque delectus animi quos eaque.</span>
             </p>
         </div>
-        <div  id="yearBooks">
+        <div id="yearBooks">
             <p id="titleYear">YEAR IN BOOKS</p>
             <hr class="lines">
             <div id="yearBooksContent">

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.0.0/fonts/remixicon.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/main.css"> 
+    <title>My bookshelf </title>
+</head>
+<body >
+    <header class="home-header">
+        <div class="home-header__left">
+			<a href="homeConnected.html">
+                <img class="home-header__left--logo" src="pictures/logoBoo-better.png" alt="Logo">
+            </a>
+			<h1 class="home-header__left--title">Boo</h1>
+		</div>
+	<div class="home-header__search">
+		<form class="home-header__search--form" action="#" method="get">
+			<input class="home-header__search--input" type="text" placeholder="Search book name, author, user, group...">
+			<button class="home-header__search--button" type="submit"><i class="ri-search-line ri-lg"></i></button>
+		</form>
+	</div>
+	<div class="home-nav">
+		<div class="home-nav__item" onclick="openMulti();">
+			<a class="home-nav__link"  href="#" >
+				<i class="ri-map-pin-user-fill icon avatar"></i>
+			</a>
+			<div class="selectWrapper">
+				<div class="multiSelect" id="menu-0">
+					<div onclick="window.location.href = '/myProfile.html';">My Profile</div>
+					<div onclick="openMulti();">My bookshelf</div>
+					<div onclick="openMulti();">Settings</div>
+					<div class="topBorder" onclick="openMulti();">Log out</div>
+				</div>
+			</div>
+		</div>
+		<div class="home-nav__item">
+			<a class="home-nav__link" href="#">
+				<i class="ri-notification-fill icon"></i>
+			</a>
+		</div>
+	</div>
+  </header>
+    <div id="wrapper">
+		<div id="leftSide">
+			<h1 id="bookTitle">My bookshelf</h1>
+			<p class="shelfList">All books</p>
+			<p class="shelfList">Currently reading</p>
+			<p class="shelfList">Want to read</p>
+			<p class="shelfList">Read</p>
+			<img src="svg/bookshelf.svg" alt="avatar reading" id="picpic"></img>
+	
+		</div>
+		<div id="rightSide">
+			<div class="bookMember">
+				<p class="booksTitle">Titlu</p>
+				<p class="booksAuthor">Autor</p>
+				<div>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+				</div>
+				<div class="borderProgress"></span>
+					<div class="borderGrey" >80%</div>
+				</div>
+			</div>
+			<div class="bookMember">
+				<p class="booksTitle">Titlu</p>
+				<p class="booksAuthor">Autor</p>
+				<div>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+				</div>
+				<div class="borderProgress">
+					<div class="borderGrey" >80%</div>
+				</div>
+			</div>
+			<div class="bookMember">
+				<p class="booksTitle">Titlu</p>
+				<p class="booksAuthor">Autor</p>
+				<div>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+				</div>
+				<div class="borderProgress">
+					<div class="borderGrey" >80%</div>
+				</div>
+			</div>
+			<div class="bookMember">
+				<p class="booksTitle">Titlu</p>
+				<p class="booksAuthor">Autor</p>
+				<div>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+				</div>
+				<div class="borderProgress">
+					<div class="borderGrey" >80%</div>
+				</div>
+			</div>
+			<div class="bookMember">
+				<p class="booksTitle">Titlu</p>
+				<p class="booksAuthor">Autor</p>
+				<div>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+				</div>
+				<div class="borderProgress">
+					<div class="borderGrey" >80%</div>
+				</div>
+			</div>
+			<div class="bookMember">
+				<p class="booksTitle">Titlu</p>
+				<p class="booksAuthor">Autor</p>
+				<div>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+				</div>
+				<div class="borderProgress">
+					<div class="borderGrey" >80%</div>
+				</div>
+				
+			</div>
+			<div class="bookMember">
+				<p class="booksTitle">Titlu</p>
+				<p class="booksAuthor">Autor</p>
+				<div>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+				</div>
+				<div class="borderProgress">
+					<div class="borderGrey" >80%</div>
+				</div>
+				
+			</div>
+			<div class="bookMember">
+				<p class="booksTitle">Titlu</p>
+				<p class="booksAuthor">Autor</p>
+				<div>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+				</div>
+				<div class="borderProgress">
+					<div class="borderGrey" >80%</div>
+				</div>
+				
+			</div>
+			<div class="bookMember">
+				<p class="booksTitle">Titlu</p>
+				<p class="booksAuthor">Autor</p>
+				<div>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+				</div>
+				<div class="borderProgress">
+					<div class="borderGrey" >80%</div>
+				</div>
+				
+			</div>
+			<div class="bookMember">
+				<p class="booksTitle">Titlu</p>
+				<p class="booksAuthor">Autor</p>
+				<div>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+				</div>
+				<div class="borderProgress">
+					<div class="borderGrey" >80%</div>
+				</div>
+				
+			</div>
+			<div class="bookMember">
+				<p class="booksTitle">Titlu</p>
+				<p class="booksAuthor">Autor</p>
+				<div>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+				</div>
+				<div class="borderProgress">
+					<div class="borderGrey" >80%</div>
+				</div>
+				
+			</div>
+			<div class="bookMember">
+				<p class="booksTitle">Titlu</p>
+				<p class="booksAuthor">Autor</p>
+				<div>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+				</div>
+				<div class="borderProgress">
+					<div class="borderGrey" >80%</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+    
+    <script src="js/homeConnected.js"></script>
+</body>
+</html>

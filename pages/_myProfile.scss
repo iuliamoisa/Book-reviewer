@@ -1,13 +1,16 @@
+// #utilizator-info{
+//   background-color: pink;
+// }
 #topSide {
     display: flex;
     gap: 20px;
     justify-content: center;
-    padding-top: 10px;
+    padding-top: 1.5rem;
   }
   
   #profilePic {
-    width: 10vw;
-    height: 20vh;
+    width: 150px;
+    height: 150px;
     background-image: url(../pictures/profile.jpg);
     background-position: center;
     background-size: cover;
@@ -27,30 +30,38 @@
   
   #userName {
     font-weight: bold;
-    font-size: 25px;
+    font-size: 2rem;
+    text-align: center;
+    padding: 1.5rem;
+    color: $red-brown;
   }
-  
-  #editProfile {
-    text-decoration: none;
-    font-size: 10px;
-  }
+ 
   
   .lines {
     margin-top: 5px;
-    width: 27vw;
+    width: 100%;
   }
 
   .detailsANDactivity {
     display: flex;
     justify-content: space-between;
-    width: 15vw;
-    margin-top: 7px;
+    width: 50vw;
+    margin-top: 1rem;
   }
   
-  span:nth-child(1) {
-    font-weight: bold;
+  .firstspan {
+    font-weight: 700;
+    margin: 1rem;
+    padding: 1rem;
+    font-size: 1.5rem;
+    color: $red-brown;
   }
-  
+ .secondspan {
+    font-weight: 500;
+    padding: 2rem;
+    font-size: 1rem;
+    color: $brown;
+  }
   #yearBooks {
     margin-top: 25px;
   }

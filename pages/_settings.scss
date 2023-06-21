@@ -11,12 +11,13 @@
     border-width: 1px;
     border-color: $brown;
     box-shadow: 2px 2px 4px $negru;
+    margin: 2rem;
+    background-color: $crem;
     &__picture{
         display: inline;
         border-radius: 300px;
-        left:10%;
+        left:7%;
         position: relative;
-        margin-top: 3rem;
         transition: 0.4s;
         border-style: groove;
         border-color: $smokey-white;
@@ -28,10 +29,8 @@
     }
     &__paragraph{
         width: fit-content;
-        color:white;
-        left:10%;
-        margin-left: 9.375rem;
-        font-style: $secondary-font;
+        color:$brown;
+        margin-left: 6rem;
         text-shadow: 4px 4px 6px $red-brown;
         &:hover{    
             cursor: pointer;    
@@ -111,7 +110,8 @@
         position: relative;
         width: fit-content;
         left:11.7rem;
-        font-style: $secondary-font;    
+        color: $brown;   
+        margin-top: 1rem;
     }
     &__info{
         position: relative;
@@ -184,18 +184,14 @@
         position: relative;
         width: fit-content;
         left:7.5rem;
-        font-style: $secondary-font;
+        color: $brown;  
     }
 }
 
 .settings-quote{
     font-size: 40px;
-    width: fit-content;
-    position: relative;
     font-style: $title-font;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 60px;
+    margin:3rem;
     color: white;
     text-shadow: 4px 4px 10px $red-brown;
 }
@@ -269,30 +265,25 @@
             bottom: 1rem;
             height: 2rem;
         }
-        &__picture{
-            left:0px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 250px;
-            height: 250px;
-        }
+        
         &__paragraph{
             margin-left: auto;
             margin-right: auto;
         }
     }
 }
-
-@media screen and (max-height:720px) and (min-height:599px) {
-    .settings-main{
-        &__info{
-            height: 10rem;
-            margin-bottom: 10rem;
-        }
-        &__picture{
-            margin-top: 1rem;
-        }
-    }
-    
+.settings-main__picture{
+    margin-top: 2rem;
 }
+// @media screen and (max-height:720px) and (min-height:599px) {
+//     .settings-main{
+//         &__info{
+//             height: 10rem;
+//             margin-bottom: 10rem;
+//         }
+//         &__picture{
+//             margin-top: 1rem;
+//         }
+//     }
+    
+// }
