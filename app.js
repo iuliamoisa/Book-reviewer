@@ -17,7 +17,92 @@ const pool = new Pool({
 
 const server = http.createServer((req, res) => {
   const parsedUrl = url.parse(req.url, true);
-  if (req.method === 'GET' && parsedUrl.pathname === '/getFriendsCount') {
+  if (req.method === 'PUT' && parsedUrl.pathname === '/addFriendFromSugg') {
+    let data='';
+    req.on('data', chunk => {
+      data += chunk;
+    });
+    req.on('end', async( ) => {
+     
+      
+      data=JSON.parse(data);
+      let idP=data.idFriend;
+      console.log(idP);
+      const query = 'call add_friend_from_sugg ($1,$2);';
+      const values = [userId,idP];
+
+      pool.query(query, values);
+      let status='ok';
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.write(JSON.stringify(status));
+      console.log(JSON.stringify({'status':'ok'}));
+      res.end();
+    });
+  
+    
+  }
+ else if (req.method === 'DELETE' && parsedUrl.pathname === '/refuseFriend') {
+    let data='';
+    req.on('data', chunk => {
+      data += chunk;
+    });
+    req.on('end', async( ) => {
+     
+      
+      data=JSON.parse(data);
+      let idP=data.idFriend;
+      console.log(idP);
+      const query = 'call refuse_request ($1,$2);';
+      const values = [idP,userId];
+
+      pool.query(query, values);
+      let status='ok';
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.write(JSON.stringify(status));
+      console.log(JSON.stringify({'status':'ok'}));
+      res.end();
+    });
+  
+    
+  }
+ else if (req.method === 'PUT' && parsedUrl.pathname === '/acceptFriend') {
+    (async () => {
+      try {
+        let data='';
+        req.on('data', chunk => {
+          data += chunk;
+        });
+        req.on('end', async( ) => {
+         
+          
+          data=JSON.parse(data);
+          let idP=data.idFriend;
+          console.log(idP);
+          const query = 'call accept_request ($1,$2);';
+        const values = [idP,userId];
+
+        pool.query(query, values);
+          let status='ok';
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.write(JSON.stringify(status));
+          console.log(JSON.stringify({'status':'ok'}));
+          res.end();
+        
+        
+       
+        
+        });
+      
+        
+      } catch (error) {
+        console.error('Error getting friends count:', error);
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.write(JSON.stringify({ error: 'Internal server error' }));
+        res.end();
+      }
+    })();
+  }
+ else if (req.method === 'GET' && parsedUrl.pathname === '/getFriendsCount') {
     (async () => {
       try {
         const query = 'SELECT COUNT(*) AS friends_count FROM prieteni WHERE id_utilizator = $1';
@@ -81,7 +166,7 @@ const server = http.createServer((req, res) => {
           res.end();
         } else {
           res.writeHead(200, { 'Content-Type': 'application/json' });
-          res.write('');
+          res.write(JSON.stringify({ string: 'notOk' }));
           res.end();
         }
       } catch (error) {
@@ -107,7 +192,7 @@ const server = http.createServer((req, res) => {
           res.end();
         } else {
           res.writeHead(200, { 'Content-Type': 'application/json' });
-          res.write('');
+          res.write(JSON.stringify({ string: 'notOk' }));
           res.end();
         }
       } catch (error) {
@@ -156,7 +241,7 @@ const server = http.createServer((req, res) => {
           res.end();
         } else {
           res.writeHead(404, { 'Content-Type': 'application/json' });
-          res.write(JSON.stringify({ error: 'Friends not found' }));
+          res.write(JSON.stringify({ string: 'notOk' }));
           res.end();
         }
       } catch (error) {
