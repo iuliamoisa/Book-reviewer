@@ -323,7 +323,7 @@ const server = http.createServer(async(req, res) => {
     
     (async () => {
       try {
-        const query = 'SELECT friend_name, book_title, book_description FROM get_random_friend_book($1)';
+        const query = 'SELECT book_id, friend_name, book_title, book_description FROM get_random_friend_book($1)';
         const values = [userId];
         const result = await pool.query(query, values);
         const recommendation = result.rows[0];
@@ -516,17 +516,13 @@ const server = http.createServer(async(req, res) => {
     req.on('data', (chunk) => {
       body += chunk;
     });
-
-    // Process the request after the request body has been fully received
     req.on('end', () => {
       body = JSON.parse(body);
-      console.log(body.bookId);
       let bookId = body.bookId;
       console.log("AICI: " + bookId);
       console.log(userId);
-      // Perform the database query to insert a new row in the "biblioteca" table
       const query = 'INSERT INTO biblioteca (id_utilizator, id_carte, categorie) VALUES ($1, $2, $3)';
-      const values = [userId, bookId, 1]; // Replace userId with the actual user ID
+      const values = [userId, bookId, 1]; 
 
       pool.query(query, values, (err) => {
         if (err) {
