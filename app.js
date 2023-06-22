@@ -15,8 +15,78 @@ const pool = new Pool({
 });
 
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async(req, res) => {
   const parsedUrl = url.parse(req.url, true);
+  if (req.method === 'GET' && parsedUrl.pathname === '/getProfilePic') {
+    
+    (async () => {
+      try {
+        const query = 'SELECT imagine FROM utilizatori where id=$1';
+        const values = [userId];
+        const result = await pool.query(query, values);
+        const imagine = result.rows[0];
+
+        if (imagine) {
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.write(JSON.stringify(imagine));
+          res.end();
+        } else {
+          res.writeHead(404, { 'Content-Type': 'application/json' });
+          res.write(JSON.stringify({ error: 'Recommendation not found' }));
+          res.end();
+        }
+      } catch (error) {
+        console.error('Error getting recommendation:', error);
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.write(JSON.stringify({ error: 'Internal server error' }));
+        res.end();
+      }
+    })();
+  }else
+  if (req.url === '/getImage' && req.method === 'GET') {
+    try {
+      // Retrieve the image data from the database
+      const result = await pool.query('SELECT image_data FROM images WHERE id_utilizator = $1', [userId]);
+      const imageData = result.rows[0];
+  
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({ imageData }));
+    } catch (error) {
+      console.error(error);
+      res.statusCode = 500;
+      res.setHeader('Content-Type', 'text/plain');
+      res.end('Error retrieving image.');
+    }
+  }
+  
+  else
+  if (req.url === '/upload' && req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => {
+      body += chunk;
+    });
+    req.on('end', () => {
+      const data = JSON.parse(body);
+      const src = data.src;
+      
+        
+      pool.query('update utilizatori set imagine=$1 where id=$2', [src,userId]);
+      let status='ok';
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.write(JSON.stringify(status));
+      console.log(JSON.stringify({'status':'ok'}));
+      res.end();
+      
+      // Process the received image source as needed
+      console.log('Received image source:', src);
+
+     
+      res.writeHead(302, { 'Location': '/settings.html' });
+      res.end();
+    });
+  }
+  else
   if (req.method === 'PUT' && parsedUrl.pathname === '/addFriendFromSugg') {
     let data='';
     req.on('data', chunk => {
