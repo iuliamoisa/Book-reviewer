@@ -41,19 +41,19 @@
             </div>
         </div>
       </header>
-    <div class="book-main">
-		<div class="book-main__image">
-			<img src="https://via.placeholder.com/150x200?text=The+Great+Gasby" alt="Book Cover">
-		</div>
-		<div class="book-main__details">
-			<h1 class="book-title">Book Title</h1>
-			<h2 class="book-author">Author Name</h2>
-			<p class="book-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac mauris quis nulla tempus lobortis. Donec sit amet est nec quam lobortis luctus.</p>
-			<button class="add-to-list-button">Add to Reading List</button>
-		</div>
-	</div>
+      <div class="book-main">
+        <div class="book-main__image">
+            <img src="{{book-image}}" alt="Book Cover">
+        </div>
+        <div class="book-main__details">
+            <h1 class="book-title">{{book-title}}</h1>
+            <h2 class="book-author">{{book-author}}</h2>
+            <p class="book-description">{{book-description}}</p>
+            <button class="add-to-list-button" id="add-to-list-button" onclick="addToReadingList2()">Add to Reading List</button>
+        </div>
+    </div>
     <div class="book-info">
-		<p class="book-description-full">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac mauris quis nulla tempus lobortis. Donec sit amet est nec quam lobortis luctus. Proin sed est eu magna dapibus semper. Fusce id orci vitae sapien dapibus tincidunt nec vitae felis. Sed suscipit mauris justo, eget facilisis nisi euismod vel. Nulla ...facilisi magna vel, pretium commodo ex. Curabitur non elit sit amet enim feugiat vulputate. Nulla imperdiet sapien et diam interdum, quis viverra sem commodo. Vestibulum eget dolor augue. Aliquam id ligula ac urna pulvinar lacinia in vitae magna. Sed vitae enim sit amet ante commodo elementum.</p>
+        <!--<p class="book-description-full">{{book-description-full}}</p>-->
         <div class="review-section">
             <div class="review">
                 <p class="review-author">John Doe</p>

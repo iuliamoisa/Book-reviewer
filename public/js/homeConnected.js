@@ -32,15 +32,44 @@ const books = [
 
 
 const randomBook = books[Math.floor(Math.random() * books.length)];
-document.getElementById("book-image").src = randomBook.image;
+//document.getElementById("book-image").src = randomBook.image;
 document.getElementById("book-text").textContent =`Have you tried the book ${randomBook.title}? ${randomBook.description}`;
 
-// Set the link for the "Start Reading" button
-const bookButton = document.getElementById("book-button");
-bookButton.addEventListener("click", () => {
-  window.location.href = randomBook.link;
-
+// DE AICI MODIFIC!!!!!!!!!!!!!!!!!!!!!!!!!! 
+const bookButton = document.getElementById('book-button');
+bookButton.addEventListener('click', () => {
+  const bookId = Math.floor(Math.random() * books.length) + 1;
+  window.location.href = `/book?bookId=${bookId}`;
 });
+
+function addToReadingList2(){
+  console.log("BLA");
+  const urlParams = new URLSearchParams(window.location.search);
+  const bookId = urlParams.get('bookId');
+  addToReadingList(bookId);
+}
+function addToReadingList(bookId) {
+  // Send a POST request to the server to add the book to the "to read" list
+  fetch('http://localhost:3000/add-to-reading-list', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ bookId : bookId }),
+  })
+    .then((response) => {
+      if (response.ok) {
+        console.log('Book added to reading list');
+      } else {
+        console.error('Failed to add book to reading list');
+      }
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+}
+
+////////////////////////////////////////////
 
 const quotes = [
     "The purpose of literature is to turn blood into ink. \n(T.S. Eliot)",
@@ -152,9 +181,6 @@ let bookTitle,friendName,bookDesc;
           friendName=data.friend_name;
           bookDesc=data.book_description;
         }
-       // document.getElementById('friend-name').textContent = data.friend_name;
-        //document.getElementById('book-title').textContent = data.book_title;
-        //document.getElementById('book-description').textContent = data.book_description;
       })
       .catch(error => {
         console.error('Error fetching recommendation:', error);

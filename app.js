@@ -23,7 +23,6 @@ const server = http.createServer((req, res) => {
       data += chunk;
     });
     req.on('end', async( ) => {
-     
       
       data=JSON.parse(data);
       let idP=data.idFriend;
@@ -87,9 +86,6 @@ const server = http.createServer((req, res) => {
           res.write(JSON.stringify(status));
           console.log(JSON.stringify({'status':'ok'}));
           res.end();
-        
-        
-       
         
         });
       
@@ -403,6 +399,76 @@ const server = http.createServer((req, res) => {
     // Redirect the user to the login page or any other desired destination
     res.writeHead(302, { 'Location': '/signIn.html' });
     res.end();
+  }else if(parsedUrl.pathname ==='/book'){
+    const bookId = parsedUrl.query.bookId;
+    (async () => {
+      try {
+        const client = await pool.connect();
+        const result = await client.query('SELECT * FROM carti WHERE id = $1', [bookId]);
+        const book = result.rows[0];
+  
+        if (book) {
+          fs.readFile('./public/book.html', 'utf8', (err, data) => {
+            if (err) {
+              console.error('Error reading book.html file:', err);
+              res.writeHead(500, { 'Content-Type': 'text/plain' });
+              res.end('Internal Server Error');
+            } else {
+              // Replace placeholders in the HTML template with book details
+              const html = data
+                .replace('{{book-image}}',`https://via.placeholder.com/150x200?text=${encodeURIComponent(book.titlu)}`)
+                .replace('{{book-title}}', book.titlu)
+                .replace('{{book-author}}', book.autor)
+                .replace('{{book-description}}', book.descriere);
+  
+              res.writeHead(200, { 'Content-Type': 'text/html' });
+              res.write(html);
+              res.end();
+            }
+          });
+        } 
+        else {
+          res.writeHead(404, { 'Content-Type': 'text/plain' });
+          res.end('Book not found');
+        }
+  
+        client.release();
+      } catch (error) {
+        console.error('Error retrieving book details:', error);
+        res.writeHead(500, { 'Content-Type': 'text/plain' });
+        res.end('Internal Server Error');
+      }
+    })();
+
+  }else // ADAUGA IN TO READ LIST
+  if (req.method === 'POST' && req.url === '/add-to-reading-list') {
+    let body = '';
+    req.on('data', (chunk) => {
+      body += chunk;
+    });
+
+    // Process the request after the request body has been fully received
+    req.on('end', () => {
+      body = JSON.parse(body);
+      console.log(body.bookId);
+      let bookId = body.bookId;
+      console.log("AICI: " + bookId);
+      console.log(userId);
+      // Perform the database query to insert a new row in the "biblioteca" table
+      const query = 'INSERT INTO biblioteca (id_utilizator, id_carte, categorie) VALUES ($1, $2, $3)';
+      const values = [userId, bookId, 1]; // Replace userId with the actual user ID
+
+      pool.query(query, values, (err) => {
+        if (err) {
+          console.error('Error adding book to reading list:', err);
+          res.statusCode = 500;
+          res.end();
+        } else {
+          res.statusCode = 200;
+          res.end();
+        }
+      });
+    });
   }
    else  {
     // Serve static files
