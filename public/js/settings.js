@@ -1,10 +1,95 @@
 //////////////////////////// CHOOSE AVATAR
+//window.addEventListener('load',checkImage);
 
-var loadFile = function (event) {
-    var image = document.getElementById("output");
-    image.src = URL.createObjectURL(event.target.files[0]);
-  };
+// var loadFile = function (event) {
+//   var file = event.target.files[0];
+//   var image = document.getElementById("output");
+//   image.src = URL.createObjectURL(file);
+//   //changeImage(file);
+// };
 
+window.addEventListener('load',fetchProfilePic);
+
+function fetchProfilePic() {
+  console.log("111111111");
+    fetch('http://localhost:3000/getProfilePic')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        console.log(data.length);
+       
+        const imagine=document.getElementById('output');
+        imagine.src=data.imagine;
+      })
+      .catch(error => {
+        console.error('Error fetching friends:', error);
+      });
+  }
+
+
+
+
+
+function redirect (){
+  window.location.href='./avatars.html';
+}
+
+
+
+function checkImage() {
+  fetch('http://localhost:3000/getImage')
+    .then((response) => response.json())
+    .then((data) => {
+      // Create an <img> element and set the src attribute
+      console.log(data);
+      const imgElement = document.createElement('img');
+      console.log(data.imageData); // Check the imageData property
+      console.log(data.imageData.image_data); // Check the image_data property
+      const imageDataArray = data.imageData.image_data.data;
+      const uint8Array = new Uint8Array(imageDataArray);
+      const binaryString = uint8Array.reduce(
+        (accumulator, value) => accumulator + String.fromCharCode(value),
+        ''
+      );
+      const base64String = btoa(binaryString);
+      console.log(base64String); // Check the base64String
+      imgElement.src = 'data:image/jpeg;base64,' + base64String;
+
+      // Append the <img> element to a container on the webpage
+      const container = document.getElementById('bla');
+      container.innerHTML=`<img src=data:image/jpeg;base64,${base64String} width="200" height="200">`
+      //container.appendChild(imgElement);
+      console.log(imgElement);
+    })
+    .catch((error) => {
+      console.error(error); // Handle error
+    });
+}
+
+
+
+
+
+
+
+// const fileInput = document.getElementById('output');
+// fileInput.addEventListener('change', () => {
+//   const file = fileInput.files[0];
+//   const formData = new FormData();
+//   formData.append('image', file);
+
+//   fetch('http://localhost:3000/upload', {
+//     method: 'POST',
+//     body: formData,
+//   })
+//     .then((response) => response.text())
+//     .then((result) => {
+//       console.log(result); // Display success message
+//     })
+//     .catch((error) => {
+//       console.error(error); // Handle error
+//     });
+// });
   
 /////////////////////// LOGOUT
 

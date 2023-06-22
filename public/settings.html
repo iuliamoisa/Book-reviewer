@@ -49,8 +49,11 @@
             <label class="-label" for="file">
                 <span>Change Image</span>
             </label>
-            <input class="avatarImg__inputFile" id="file" type="file" onchange="loadFile(event)"/>
-            <img src="pictures/shrek.png" alt="Profile picture" class="settings-main__picture" width="200" height="200" id="output" >
+            <button class="avatarImg__inputFile" id="file" onclick="redirect()" ></button>
+            
+             <img src="pictures/blank.png" alt="Profile picture" class="settings-main__picture" width="200" height="200" id="output" >
+
+            
         </div>
         
          <div class="settings-main__details">
@@ -77,6 +80,7 @@
         </div>
         <p class="help-footer__copyright"><i class="ri-copyright-line"></i>Copyrights | All rights reserved 2023-2025</p>
     </footer>
+    <div id="bla"></div>
     <script src="js/settings.js"></script>
 </body>
 </html>
