@@ -31,9 +31,9 @@
                 <div class="selectWrapper">
                     <div class="multiSelect" id="menu-0">
                         <div onclick="window.location.href = '/myProfile.html';">My Profile</div>
-                        <div onclick="openMulti();">My bookshelf</div>
-                        <div onclick="openMulti();">Settings</div>
-                        <div class="topBorder" onclick="openMulti();">Log out</div>
+                        <div onclick="window.location.href = '/myBookshelf.html';">My bookshelf</div>
+                        <div  onclick="window.location.href = '/settings.html';">Settings</div>
+                        <div class="topBorder" onclick="logout()">Log out</div>
                     </div>
                 </div>
             </div>
@@ -51,9 +51,10 @@
             </h2>
             <div class="connected-main__left--book">
                 <div class="book-text" id="recText"></div>
-                  <img class="book-image shadow-effect" id="book-image" alt="Book cover">
+                  <img class="book-image shadow-effect" id="book-image" alt="Book cover" src="./pictures/carte.jpg" height="200px" width="200px">
                   <!-- <button class="book-button" id="book-button"  >Get recommendtion<i class="ri-arrow-right-up-line"></i></button> -->
                   <button class="book-button" id="book-button">Get recommendation</button>
+                  <button class="book-button" id="see-book-button">See book</button>
             </div>
           </div>
 

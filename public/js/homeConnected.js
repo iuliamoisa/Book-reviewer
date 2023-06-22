@@ -1,46 +1,69 @@
 
-const books = [
-    {
-      title: "Harry Potter",
-      description: "It's really great, we think you will love it.",
-      image: "https://via.placeholder.com/150x200?text=Harry+Potter",
-      link: "https://www.example.com/harry-potter",
+// const books = [
+//     {
+//       title: "Harry Potter",
+//       description: "It's really great, we think you will love it.",
+//       image: "https://via.placeholder.com/150x200?text=Harry+Potter",
+//       link: "https://www.example.com/harry-potter",
+//     },
+//     {
+//       title: "The Great Gatsby",
+//       description: "A classic novel that you won't be able to put down.",
+//       image: "https://via.placeholder.com/150x200?text=The+Great+Gasby",
+//       link: "https://www.example.com/the-great-gatsby",
+//     },
+//     {
+//         title: "The Hunger Games",
+//         author: "Suzanne Collins",
+//         image: "https://via.placeholder.com/150x200?text=The+Hunger+Games",
+//         description:
+//           "It's really great, we think you will love it.",
+//         link: "https://www.example.com/the-hunger-games"
+//       },
+//       {
+//         title: "To Kill a Mockingbird",
+//         author: "Harper Lee",
+//         image: "https://via.placeholder.com/150x200?text=To+Kill+a+Mockingbird",
+//         description:
+//           "It's really great, we think you will love it.",
+//         link: "https://www.example.com/to-kill-a-mockingbird"
+//       }
+//   ];
+
+
+// const randomBook = books[Math.floor(Math.random() * books.length)];
+// //document.getElementById("book-image").src = randomBook.image;
+// document.getElementById("book-text").textContent =`Have you tried the book ${randomBook.title}? ${randomBook.description}`;
+
+
+function addToReadingList2(){
+  console.log("BLA");
+  const urlParams = new URLSearchParams(window.location.search);
+  const bookId = urlParams.get('bookId');
+  addToReadingList(bookId);
+}
+function addToReadingList(bookId) {
+  // Send a POST request to the server to add the book to the "to read" list
+  fetch('http://localhost:3000/add-to-reading-list', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
     },
-    {
-      title: "The Great Gatsby",
-      description: "A classic novel that you won't be able to put down.",
-      image: "https://via.placeholder.com/150x200?text=The+Great+Gasby",
-      link: "https://www.example.com/the-great-gatsby",
-    },
-    {
-        title: "The Hunger Games",
-        author: "Suzanne Collins",
-        image: "https://via.placeholder.com/150x200?text=The+Hunger+Games",
-        description:
-          "It's really great, we think you will love it.",
-        link: "https://www.example.com/the-hunger-games"
-      },
-      {
-        title: "To Kill a Mockingbird",
-        author: "Harper Lee",
-        image: "https://via.placeholder.com/150x200?text=To+Kill+a+Mockingbird",
-        description:
-          "It's really great, we think you will love it.",
-        link: "https://www.example.com/to-kill-a-mockingbird"
+    body: JSON.stringify({ bookId : bookId }),
+  })
+    .then((response) => {
+      if (response.ok) {
+        console.log('Book added to reading list');
+      } else {
+        console.error('Failed to add book to reading list');
       }
-  ];
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+}
 
-
-const randomBook = books[Math.floor(Math.random() * books.length)];
-document.getElementById("book-image").src = randomBook.image;
-document.getElementById("book-text").textContent =`Have you tried the book ${randomBook.title}? ${randomBook.description}`;
-
-// Set the link for the "Start Reading" button
-const bookButton = document.getElementById("book-button");
-bookButton.addEventListener("click", () => {
-  window.location.href = randomBook.link;
-
-});
+////////////////////////////////////////////
 
 const quotes = [
     "The purpose of literature is to turn blood into ink. \n(T.S. Eliot)",
@@ -59,23 +82,6 @@ const quoteElement = document.getElementById("quote");
 const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
 quoteElement.textContent = randomQuote;
 
-///////////////
-/* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content 
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-  }
-  
-  // Close the dropdown if the user clicks outside of it
-  window.onclick = function(e) {
-    if (!e.target.matches('.dropbtn')) {
-    var myDropdown = document.getElementById("myDropdown");
-      if (myDropdown.classList.contains('show')) {
-        myDropdown.classList.remove('show');
-      }
-    }
-  }
-*/
 
 //////////////////// PT PAGINA SPEICIFCA UNEI CARTI
 
@@ -130,7 +136,7 @@ function resetAllMenus() {
 
 ///////////////// RANDOM RECOMMENDATIONS BASED ON FRIENDS INTERESTS
 
-let bookTitle,friendName,bookDesc;
+let bookTitle,friendName,bookDesc,bookIdGlobal;
 
   function fetchRecommendation() {
     fetch('http://localhost:3000/recommendation')
@@ -147,24 +153,26 @@ let bookTitle,friendName,bookDesc;
           fetchRecommendation();
         else{
           rec.innerHTML = `You should try ${data.book_title}, your friend ${data.friend_name} has it in their bookshelf.<br><br> <span class="bookRec-description">Here is a quick description: <i> ${data.book_description}</i></span>`;
-
+          bookIdGlobal=data.book_id;
           bookTitle=data.book_title;
           friendName=data.friend_name;
           bookDesc=data.book_description;
+         // window.location.href = `/book?bookId=${data.book_id}`;
         }
-       // document.getElementById('friend-name').textContent = data.friend_name;
-        //document.getElementById('book-title').textContent = data.book_title;
-        //document.getElementById('book-description').textContent = data.book_description;
       })
       .catch(error => {
         console.error('Error fetching recommendation:', error);
       });
   }
-
-  window.addEventListener('load', fetchRecommendation);
+  function afiseazaCarte(){
+    window.location.href = `/book?bookId=${bookIdGlobal}`;
+  }
+  //window.addEventListener('load', fetchRecommendation);
 
   const button = document.getElementById('book-button');
+  const button2 = document.getElementById('see-book-button');
   button.addEventListener('click', fetchRecommendation);
+  button2.addEventListener('click', afiseazaCarte);
 
   
 

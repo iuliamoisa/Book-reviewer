@@ -17,7 +17,88 @@ const pool = new Pool({
 
 const server = http.createServer((req, res) => {
   const parsedUrl = url.parse(req.url, true);
-  if (req.method === 'GET' && parsedUrl.pathname === '/getFriendsCount') {
+  if (req.method === 'PUT' && parsedUrl.pathname === '/addFriendFromSugg') {
+    let data='';
+    req.on('data', chunk => {
+      data += chunk;
+    });
+    req.on('end', async( ) => {
+      
+      data=JSON.parse(data);
+      let idP=data.idFriend;
+      console.log(idP);
+      const query = 'call add_friend_from_sugg ($1,$2);';
+      const values = [userId,idP];
+
+      pool.query(query, values);
+      let status='ok';
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.write(JSON.stringify(status));
+      console.log(JSON.stringify({'status':'ok'}));
+      res.end();
+    });
+  
+    
+  }
+ else if (req.method === 'DELETE' && parsedUrl.pathname === '/refuseFriend') {
+    let data='';
+    req.on('data', chunk => {
+      data += chunk;
+    });
+    req.on('end', async( ) => {
+     
+      
+      data=JSON.parse(data);
+      let idP=data.idFriend;
+      console.log(idP);
+      const query = 'call refuse_request ($1,$2);';
+      const values = [idP,userId];
+
+      pool.query(query, values);
+      let status='ok';
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.write(JSON.stringify(status));
+      console.log(JSON.stringify({'status':'ok'}));
+      res.end();
+    });
+  
+    
+  }
+ else if (req.method === 'PUT' && parsedUrl.pathname === '/acceptFriend') {
+    (async () => {
+      try {
+        let data='';
+        req.on('data', chunk => {
+          data += chunk;
+        });
+        req.on('end', async( ) => {
+         
+          
+          data=JSON.parse(data);
+          let idP=data.idFriend;
+          console.log(idP);
+          const query = 'call accept_request ($1,$2);';
+        const values = [idP,userId];
+
+        pool.query(query, values);
+          let status='ok';
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.write(JSON.stringify(status));
+          console.log(JSON.stringify({'status':'ok'}));
+          res.end();
+        
+        });
+      
+        
+      } catch (error) {
+        console.error('Error getting friends count:', error);
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.write(JSON.stringify({ error: 'Internal server error' }));
+        res.end();
+      }
+    })();
+  }
+ else if (req.method === 'GET' && parsedUrl.pathname === '/getFriendsCount') {
     (async () => {
       try {
         const query = 'SELECT COUNT(*) AS friends_count FROM prieteni WHERE id_utilizator = $1';
@@ -81,7 +162,7 @@ const server = http.createServer((req, res) => {
           res.end();
         } else {
           res.writeHead(200, { 'Content-Type': 'application/json' });
-          res.write('');
+          res.write(JSON.stringify({ string: 'notOk' }));
           res.end();
         }
       } catch (error) {
@@ -107,7 +188,7 @@ const server = http.createServer((req, res) => {
           res.end();
         } else {
           res.writeHead(200, { 'Content-Type': 'application/json' });
-          res.write('');
+          res.write(JSON.stringify({ string: 'notOk' }));
           res.end();
         }
       } catch (error) {
@@ -156,7 +237,7 @@ const server = http.createServer((req, res) => {
           res.end();
         } else {
           res.writeHead(404, { 'Content-Type': 'application/json' });
-          res.write(JSON.stringify({ error: 'Friends not found' }));
+          res.write(JSON.stringify({ string: 'notOk' }));
           res.end();
         }
       } catch (error) {
@@ -172,7 +253,7 @@ const server = http.createServer((req, res) => {
     
     (async () => {
       try {
-        const query = 'SELECT friend_name, book_title, book_description FROM get_random_friend_book($1)';
+        const query = 'SELECT book_id, friend_name, book_title, book_description FROM get_random_friend_book($1)';
         const values = [userId];
         const result = await pool.query(query, values);
         const recommendation = result.rows[0];
@@ -318,6 +399,72 @@ const server = http.createServer((req, res) => {
     // Redirect the user to the login page or any other desired destination
     res.writeHead(302, { 'Location': '/signIn.html' });
     res.end();
+  }else if(parsedUrl.pathname ==='/book'){
+    const bookId = parsedUrl.query.bookId;
+    (async () => {
+      try {
+        const client = await pool.connect();
+        const result = await client.query('SELECT * FROM carti WHERE id = $1', [bookId]);
+        const book = result.rows[0];
+  
+        if (book) {
+          fs.readFile('./public/book.html', 'utf8', (err, data) => {
+            if (err) {
+              console.error('Error reading book.html file:', err);
+              res.writeHead(500, { 'Content-Type': 'text/plain' });
+              res.end('Internal Server Error');
+            } else {
+              // Replace placeholders in the HTML template with book details
+              const html = data
+                .replace('{{book-image}}',`https://via.placeholder.com/150x200?text=${encodeURIComponent(book.titlu)}`)
+                .replace('{{book-title}}', book.titlu)
+                .replace('{{book-author}}', book.autor)
+                .replace('{{book-description}}', book.descriere);
+  
+              res.writeHead(200, { 'Content-Type': 'text/html' });
+              res.write(html);
+              res.end();
+            }
+          });
+        } 
+        else {
+          res.writeHead(404, { 'Content-Type': 'text/plain' });
+          res.end('Book not found');
+        }
+  
+        client.release();
+      } catch (error) {
+        console.error('Error retrieving book details:', error);
+        res.writeHead(500, { 'Content-Type': 'text/plain' });
+        res.end('Internal Server Error');
+      }
+    })();
+
+  }else // ADAUGA IN TO READ LIST
+  if (req.method === 'POST' && req.url === '/add-to-reading-list') {
+    let body = '';
+    req.on('data', (chunk) => {
+      body += chunk;
+    });
+    req.on('end', () => {
+      body = JSON.parse(body);
+      let bookId = body.bookId;
+      console.log("AICI: " + bookId);
+      console.log(userId);
+      const query = 'INSERT INTO biblioteca (id_utilizator, id_carte, categorie) VALUES ($1, $2, $3)';
+      const values = [userId, bookId, 1]; 
+
+      pool.query(query, values, (err) => {
+        if (err) {
+          console.error('Error adding book to reading list:', err);
+          res.statusCode = 500;
+          res.end();
+        } else {
+          res.statusCode = 200;
+          res.end();
+        }
+      });
+    });
   }
    else  {
     // Serve static files
