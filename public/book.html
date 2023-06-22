@@ -11,7 +11,9 @@
 <body>
     <header class="home-header">
         <div class="home-header__left">
-			<img class="home-header__left--logo" src="pictures/logoBoo-better.png" alt="Logo">
+			<a href="homeConnected.html">
+                <img class="home-header__left--logo" src="pictures/logoBoo-better.png" alt="Logo">
+            </a>
 			<h1 class="home-header__left--title">Boo</h1>
 		</div>
         <div class="home-header__search">
@@ -27,10 +29,10 @@
                 </a>
                 <div class="selectWrapper">
                     <div class="multiSelect" id="menu-0">
-                        <div onclick="openMulti();">My Profile</div>
-                        <div onclick="openMulti();">My bookshelf</div>
-                        <div onclick="openMulti();">Settings</div>
-                        <div class="topBorder" onclick="openMulti();">Log out</div>
+                        <div onclick="window.location.href = '/myProfile.html';">My Profile</div>
+                        <div onclick="window.location.href = '/myBookshelf.html';">My bookshelf</div>
+                        <div  onclick="window.location.href = '/settings.html';">Settings</div>
+                        <div class="topBorder" onclick="logout()">Log out</div>
                     </div>
                 </div>
             </div>
@@ -53,8 +55,28 @@
         </div>
     </div>
     <div class="book-info">
-        <!--<p class="book-description-full">{{book-description-full}}</p>-->
+        <form id="review-form">
+              <div class="rating-box">
+                <h3>What are your thoughts on this book?</h3>
+                <div class="stars">
+                    <span >&#9733;</span>
+                    <span >&#9733;</span>
+                    <span >&#9733;</span>
+                    <span >&#9733;</span>
+                    <span >&#9733;</span>
+                </div>
+              
+              <div class="review-input">
+                <label for="add-review" id="paragraph-review">Write a review:</label>
+                <textarea id="add-review" name="reviewText" rows="4" placeholder="Write your review here..."></textarea>
+              </div>
+              <button type="submit" id="buton-review">Submit</button>
+          </form>
+        </div>
         <div class="review-section">
+            <div id="reviews-container">
+                <!-- Reviews will be dynamically added here -->
+           <!--
             <div class="review">
                 <p class="review-author">John Doe</p>
                 <p class="review-text">"This book is fantastic! I couldn't put it down."</p>
@@ -66,9 +88,12 @@
             <div class="review">
                 <p class="review-author">Bob Johnson</p>
                 <p class="review-text">"Not my favorite book, but still worth reading."</p>
+            </div>-->
+            
             </div>
+            
         </div>
     </div>
-    <script src="js/homeConnected.js"></script>
+    <script src="js/book.js"></script>
 </body>
 </html>

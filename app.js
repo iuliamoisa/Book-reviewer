@@ -4,7 +4,7 @@ const querystring = require('querystring');
 const http = require('http');
 const url = require('url');
 const fs = require('fs'); // acces la sistemul de fisiere
-let userId;
+let userId, bookId;
 
 const pool = new Pool({
   user: 'postgres',
@@ -257,7 +257,7 @@ const server = http.createServer((req, res) => {
         const values = [userId];
         const result = await pool.query(query, values);
         const recommendation = result.rows[0];
-
+        bookId =  recommendation.book_id;
         if (recommendation) {
           res.writeHead(200, { 'Content-Type': 'application/json' });
           res.write(JSON.stringify(recommendation));
@@ -414,7 +414,6 @@ const server = http.createServer((req, res) => {
               res.writeHead(500, { 'Content-Type': 'text/plain' });
               res.end('Internal Server Error');
             } else {
-              // Replace placeholders in the HTML template with book details
               const html = data
                 .replace('{{book-image}}',`https://via.placeholder.com/150x200?text=${encodeURIComponent(book.titlu)}`)
                 .replace('{{book-title}}', book.titlu)
@@ -440,7 +439,42 @@ const server = http.createServer((req, res) => {
       }
     })();
 
-  }else // ADAUGA IN TO READ LIST
+  } else  if (parsedUrl.pathname === '/reviews' && req.method === 'GET') { // TOATE RECENZIILE
+    const query = 'SELECT u.nume, u.prenume, r.timestamp AS review_timestamp, r.rating, r.recenzie_text, c.titlu, c.autor FROM recenzii r JOIN carti c ON r.id_carte = c.id JOIN utilizatori u ON r.id_utilizator = u.id';
+
+    pool.query(query, (err, result) => {
+      if (err) {
+        console.error('Error fetching reviews:', err);
+        res.statusCode = 500;
+        res.end('Error fetching reviews');
+      } else {
+        res.setHeader('Content-Type', 'application/json');
+        res.statusCode = 200;
+        res.end(JSON.stringify(result.rows));
+      }
+    });
+  }
+  else if (parsedUrl.pathname === '/certainBookReviews' && req.method === 'GET') {
+    console.log("e asta book id?" + bookId);
+    (async () => {
+      try {
+        const query = 'SELECT r.rating, r.recenzie_text, u.nume, u.prenume FROM recenzii r INNER JOIN utilizatori u ON r.id_utilizator = u.id WHERE r.id_carte = $1';
+        const result = await pool.query(query, [bookId]);
+  
+        const reviews = result.rows;
+  console.log(reviews);
+        res.setHeader('Content-Type', 'application/json');
+        res.statusCode = 200;
+        res.end(JSON.stringify(reviews));
+      } catch (error) {
+        console.error('Error fetching reviews:', error);
+        res.statusCode = 500;
+        res.end('Error fetching reviews');
+      }
+    })();
+  }
+    
+  else // ADAUGA IN TO READ LIST
   if (req.method === 'POST' && req.url === '/add-to-reading-list') {
     let body = '';
     req.on('data', (chunk) => {
@@ -465,8 +499,48 @@ const server = http.createServer((req, res) => {
         }
       });
     });
-  }
-   else  {
+  }else if (req.method === 'POST' && req.url === '/submit-review') {
+    let body = '';
+    req.on('data', chunk => {
+      body += chunk.toString();
+    });
+    const bookId = parsedUrl.query.bookId;
+    req.on('end', () => {
+      try {
+        const data = JSON.parse(body);
+        if (!data.rating) {
+          res.statusCode = 400;
+          res.end('Rating is required');
+          return;
+        }
+        const query = `
+          INSERT INTO recenzii (id_utilizator, id_carte, recenzie_text, rating, timestamp)
+          VALUES ($1, $2, $3, $4, $5)
+        `;
+        const parameters = [
+          userId,
+          data.book_id,
+          data.reviewText,
+          data.rating,
+          new Date()
+        ];
+        pool.query(query, parameters, (err) => {
+          if (err) {
+            console.error('Error inserting review:', err);
+            res.statusCode = 500;
+            res.end('Error inserting review');
+          } else {
+            res.statusCode = 200;
+            res.end('Review submitted successfully');
+          }
+        });
+      } catch (error) {
+        console.error('Error parsing request body:', error);
+        res.statusCode = 400;
+        res.end('Invalid request body');
+      }
+    });
+  }else  {
     // Serve static files
     let filePath = path.join(__dirname, 'public', parsedUrl.pathname);
     if (parsedUrl.pathname === '/') {

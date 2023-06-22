@@ -89,6 +89,60 @@
     color: #666;
 }
 
+.rating-box {
+    background-color: #f1f1f1;
+    border-radius: 25px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    padding: 15px 30px;
+    width: 60%;
+    margin: 0 auto;
+  }
+  .rating-box h3, #paragraph-review {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .rating-box .stars {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+  }
+  .stars span {
+    font-size: 2rem;
+    color: #b5b8b1;
+    transition: all 0.2s;
+    cursor: pointer;
+    margin: 0 auto;
+  }
+  .stars span.active {
+    color: #ffb851;
+    transform: scale(1.2);
+  }
+
+#add-review {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+  }
+
+  #buton-review {
+    padding: 10px 20px;
+    background-color: $pale-brown;
+    color: #FFF;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    &:hover{
+        background-color: #a55f34;
+        color: #fff;
+    }
+}
+  
+
+
 
 
 

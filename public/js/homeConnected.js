@@ -1,70 +1,4 @@
 
-// const books = [
-//     {
-//       title: "Harry Potter",
-//       description: "It's really great, we think you will love it.",
-//       image: "https://via.placeholder.com/150x200?text=Harry+Potter",
-//       link: "https://www.example.com/harry-potter",
-//     },
-//     {
-//       title: "The Great Gatsby",
-//       description: "A classic novel that you won't be able to put down.",
-//       image: "https://via.placeholder.com/150x200?text=The+Great+Gasby",
-//       link: "https://www.example.com/the-great-gatsby",
-//     },
-//     {
-//         title: "The Hunger Games",
-//         author: "Suzanne Collins",
-//         image: "https://via.placeholder.com/150x200?text=The+Hunger+Games",
-//         description:
-//           "It's really great, we think you will love it.",
-//         link: "https://www.example.com/the-hunger-games"
-//       },
-//       {
-//         title: "To Kill a Mockingbird",
-//         author: "Harper Lee",
-//         image: "https://via.placeholder.com/150x200?text=To+Kill+a+Mockingbird",
-//         description:
-//           "It's really great, we think you will love it.",
-//         link: "https://www.example.com/to-kill-a-mockingbird"
-//       }
-//   ];
-
-
-// const randomBook = books[Math.floor(Math.random() * books.length)];
-// //document.getElementById("book-image").src = randomBook.image;
-// document.getElementById("book-text").textContent =`Have you tried the book ${randomBook.title}? ${randomBook.description}`;
-
-
-function addToReadingList2(){
-  console.log("BLA");
-  const urlParams = new URLSearchParams(window.location.search);
-  const bookId = urlParams.get('bookId');
-  addToReadingList(bookId);
-}
-function addToReadingList(bookId) {
-  // Send a POST request to the server to add the book to the "to read" list
-  fetch('http://localhost:3000/add-to-reading-list', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ bookId : bookId }),
-  })
-    .then((response) => {
-      if (response.ok) {
-        console.log('Book added to reading list');
-      } else {
-        console.error('Failed to add book to reading list');
-      }
-    })
-    .catch((error) => {
-      console.error('Error:', error);
-    });
-}
-
-////////////////////////////////////////////
-
 const quotes = [
     "The purpose of literature is to turn blood into ink. \n(T.S. Eliot)",
     "We read to know we're not alone. \n(William Nicholson)",
@@ -83,27 +17,6 @@ const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
 quoteElement.textContent = randomQuote;
 
 
-//////////////////// PT PAGINA SPEICIFCA UNEI CARTI
-
-// function redirectToBookPage() {
-//   // Get the book information from the "connected page"
-//   const bookTitle = document.getElementById("book-title").textContent;
-//   const bookCover = document.getElementById("book-image").src;
-//   const bookDescription = document.getElementById("book-description").textContent;
-//   const bookAuthor = document.getElementById("book-author").textContent;
-
-//   // Encode the book information into the URL
-//   const queryParams = new URLSearchParams({
-//     title: bookTitle,
-//     cover: bookCover,
-//     description: bookDescription,
-//     author: bookAuthor
-//   });
-
-//   // Redirect the user to the "book page" with the book information in the URL
-//  // window.location.href = "book.html?" + queryParams.toString();
-//  window.location.href = "book.html";
-// }
 
 ////////////////////// DROPDOWN MENU
 
@@ -328,7 +241,6 @@ window.addEventListener('load',fetchGroupsList);
 
 
   function fetchFriendsList() {
-  
     fetch('http://localhost:3000/getFriends')
       .then(response => response.json())
       .then(data => {
@@ -370,3 +282,92 @@ window.addEventListener('load',fetchGroupsList);
         console.error('Error fetching friends:', error);
       });
   }
+
+  //// AFISARE REVIEWS PE FEED
+
+  function fetchReviews() {
+    return fetch('/reviews')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error fetching reviews');
+        }
+        return response.json();
+      })
+      .catch(error => {
+        console.error('Error fetching reviews:', error);
+        // Handle the error gracefully
+      });
+  }
+
+  fetchReviews()
+  .then((reviews) => {
+    displayReviews(reviews);
+  })
+  .catch((error) => {
+    console.error('Error fetching reviews:', error);
+  });
+
+  function createReviewHTML(review) {
+    let reviewHTML = '<div class="post">';
+    reviewHTML += `<span class="user-name">${review.nume} ${review.prenume}  </span>`;
+    reviewHTML += '<span class="activity"> added a new review </span>';
+    reviewHTML += `<span class="timestamp">${review.review_timestamp}</span>`; 
+    reviewHTML += `<p class="book-name">${review.titlu}</p>`;
+    
+    if (review.rating) {
+      reviewHTML += `<div class="rating-stars">`;
+      for (let i = 0; i < review.rating; i++) {
+        reviewHTML += '<span class="star">&#9733;</span>';
+      }
+      reviewHTML += `</div>`;
+    }
+    
+    if (review.recenzie_text) {
+      reviewHTML += `<p class="review">${review.recenzie_text}</p>`;
+      reviewHTML += `<div class="book-info2" id="book-text">`;
+      reviewHTML += `<img class="book-cover" src="https://via.placeholder.com/150x200?text=${encodeURIComponent(review.titlu)}" alt="Book Cover">`;
+      reviewHTML += `<div class="book-details2">`;
+      reviewHTML += `<p class="author-name">Author: ${review.autor}</p>`;
+      reviewHTML += `<p class="book-description2">Short description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>`;
+      reviewHTML += `</div>`;
+      reviewHTML += `</div>`;
+    }
+    
+    reviewHTML += `</div>`;
+    
+    return reviewHTML;
+  }
+  
+
+  function displayReviews(reviews) {
+    const feedPostsContainer = document.getElementById('feed-posts-container');
+    feedPostsContainer.innerHTML = '';
+    
+    // Generate HTML for each review and append it to the container
+    reviews.forEach((review) => {
+      const reviewHTML = createReviewHTML(review);
+      feedPostsContainer.innerHTML += reviewHTML;
+    });
+  }
+
+  /////////////////////// LOGOUT
+
+function logout() {
+  console.log("MERGE LOGOUT");
+  fetch('http://localhost:3000/getFriendsCount', {
+    method: 'GET',
+    credentials: 'same-origin' // Include cookies in the request
+  })
+  .then((response) => {
+    if (response.ok) {
+      window.location.href = '/signIn.html';
+    } else {
+      // Handle the error
+      console.error('Logout failed:', response.statusText);
+    }
+  })
+  .catch((error) => {
+    // Handle the error
+    console.error('Logout failed:', error);
+  });
+}
