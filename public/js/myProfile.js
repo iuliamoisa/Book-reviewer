@@ -1,11 +1,24 @@
-window.addEventListener('load',fetchProfileFriends);
-window.addEventListener('load',fetchFriendsCount);
-window.addEventListener('load', fetchProfileData);
-window.addEventListener('load',fetchProfilePic);
+//window.addEventListener('load',fetchProfileFriends);
+//window.addEventListener('load',fetchFriendsCount);
+//window.addEventListener('load', fetchProfileData);
+//window.addEventListener('load',fetchProfilePic);
 
-function fetchProfilePic() {
-  console.log("111111111");
-    fetch('http://localhost:3000/getProfilePic')
+window.addEventListener('DOMContentLoaded', function () {
+  // Get the friend ID from the URL query parameter
+  const urlParams = new URLSearchParams(window.location.search);
+  const friendId = urlParams.get('idFriend');
+  console.log("blaaaaa",friendId);
+  // Fetch the friend's profile data using the friendId
+  fetchProfileFriends(friendId);
+  fetchProfileData(friendId);
+ 
+  fetchFriendsCount(friendId);
+  fetchProfilePic(friendId);
+});
+
+function fetchProfilePic(friendId) {
+  
+    fetch(`http://localhost:3000/getProfilePic?idFriend=${friendId}`)
       .then(response => response.json())
       .then(data => {
         console.log(data);
@@ -19,8 +32,9 @@ function fetchProfilePic() {
       });
   }
 
-function fetchProfileData() {
-  fetch('http://localhost:3000/getProfileData')
+function fetchProfileData(friendId) {
+  console.log("???",friendId);
+  fetch(`http://localhost:3000/getProfileData?idFriend=${friendId}`)
     .then(response => response.json())
     .then(data => {
       console.log(data);
@@ -49,8 +63,9 @@ function fetchProfileData() {
 }
 
 
-function fetchProfileFriends(){
-    fetch('http://localhost:3000/getProfileFriends')
+function fetchProfileFriends(friendId){
+  console.log("######",friendId);
+    fetch(`http://localhost:3000/getProfileFriends?idFriend=${friendId}`)
     .then(response => response.json())
     .then(data => {
       console.log(data);
@@ -59,7 +74,7 @@ function fetchProfileFriends(){
       for(let i=0;i<data.length;i++){
         liOfFriends.innerHTML+=`<div class="personFriend">
                         <p id="f1" class="friendPicture"></p>
-                        <p id="nameFriends"><span class="nameForFriend">${data[i].friend_name} </span><br> ${data[i].book_count} books | ${data[i].friend_count} friends</p>
+                        <p id="nameFriends"><span class="nameForFriend" onclick="redirectPage(${data[i].friend_id})">${data[i].friend_name} </span><br> ${data[i].book_count} books | ${data[i].friend_count} friends</p>
                       </div>`;
       }
       
@@ -70,8 +85,11 @@ function fetchProfileFriends(){
     });
 }
 
-function fetchFriendsCount(){
-    fetch('http://localhost:3000/getFriendsCount')
+
+
+
+function fetchFriendsCount(friendId){
+    fetch(`http://localhost:3000/getFriendsCount?idFriend=${friendId}`)
     .then(response => response.json())
     .then(data => {
       console.log(data);
@@ -83,6 +101,10 @@ function fetchFriendsCount(){
       console.error('Error fetching request:', error);
     });
 }
+function redirectPage(idFriend){
+  window.location.href = `/myProfile.html?idFriend=${idFriend}`;
+}
+
 /////////////////////// LOGOUT
 
 function logout() {
