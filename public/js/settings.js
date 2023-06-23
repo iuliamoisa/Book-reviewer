@@ -1,3 +1,37 @@
+//////////////// CHANGE DESCRIPTION
+const form = document.getElementById('textForm');
+form.addEventListener('submit', function(event) {
+  event.preventDefault(); 
+  const textInput = document.getElementById('textInput').value;
+      console.log("aiciiiiiii: ", textInput);
+    if (textInput.length === 0) {
+      alert('Please write a description!');
+      return;
+    }
+    const data = {
+      descriere:textInput
+    };
+    fetch('/updateDescription', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => {
+      if (response.ok) {
+        alert('Description updated successfully');
+        form.reset();
+      } else {
+        throw new Error('Error updating description');
+      }
+    })
+    .catch(error => {
+      console.error('Error submitting review:', error);
+    });
+    document.getElementById('textInput').value = '';
+});
+
 //////////////////////////// CHOOSE AVATAR
 
 window.addEventListener('load',fetchProfilePic);
@@ -17,11 +51,6 @@ function fetchProfilePic() {
         console.error('Error fetching friends:', error);
       });
   }
-
-
-
-
-
 function redirect (){
   window.location.href='./avatars.html';
 }

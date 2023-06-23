@@ -1841,7 +1841,7 @@ html {
   align-items: center;
   padding-top: 2rem;
 }
-.settings-main__info {
+.settings-main__input-field {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -1860,7 +1860,7 @@ html {
   height: 2.9rem;
   width: 6rem;
   transition: 0.4s;
-  margin-top: 1rem;
+  margin: 1.2rem;
 }
 .settings-main__button:hover {
   box-shadow: 2px 2px 10px #000000;
@@ -1872,14 +1872,11 @@ html {
   margin-bottom: 2.2rem;
 }
 .settings-main__option {
-  text-align: center;
-  padding: 0.7rem;
   font-style: "Lato", sans-serif;
   border-style: solid;
   border-color: #8E3200;
-  width: 200px;
-  height: 23px;
   border-radius: 5px;
+  height: 50vh;
 }
 
 .settings-quote {
@@ -1891,8 +1888,12 @@ html {
 }
 
 .set-info {
-  width: 200px;
-  margin-bottom: 1rem;
+  width: 400px;
+  height: 40vh;
+}
+
+#textInput {
+  padding: 12px;
 }
 
 .bookclub-body {

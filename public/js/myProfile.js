@@ -28,12 +28,16 @@ function fetchProfileData() {
       const nrOfBooksElement = document.getElementById("nrOfBooks");
       const nrOfReadingBooksElement = document.getElementById("readingBooks");
       const nrOfToReadBooksElement = document.getElementById("toReadBooks");
+      const descriptionElement = document.getElementById("description");
       userNameElement.textContent = data.name;
       nrOfBooksElement.textContent = data.booksCount;
       nrOfReadingBooksElement.textContent = data.readingBooksCount;
       nrOfToReadBooksElement.textContent = data.toReadBooksCount;
-      console.log("CEVAaaaa " + data.booksCount);
-      console.log("ALtcevaAaaaa " + data.toReadBooksCount);
+      
+      if(data.descriere == null) 
+        descriptionElement.textContent ="No description added.";
+      else descriptionElement.textContent = data.descriere;
+      console.log("CEVAaaaa " + data.descriere);
        //const profilePicElement = document.getElementById("profilePic");
       //const readBooksElement = document.getElementById("readBooks");
       // profilePicElement.innerHTML = `<img src="${data.profilePicUrl}" alt="Profile Picture">`;

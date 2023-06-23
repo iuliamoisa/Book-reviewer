@@ -440,8 +440,8 @@ const server = http.createServer(async(req, res) => {
             name: `${user.nume} ${user.prenume}`,
             booksCount: booksCount,
             readingBooksCount: readingBooksCount,
-            toReadBooksCount: toReadBooksCount
-            // profilePicUrl: user.profilePicUrl, // Replace with the actual column name for the profile picture URL
+            toReadBooksCount: toReadBooksCount,
+            descriere: user.descriere, // Replace with the actual column name for the profile picture URL
           };
           res.writeHead(200, { 'Content-Type': 'application/json' });
           res.write(JSON.stringify(profileData));
@@ -741,6 +741,43 @@ const server = http.createServer(async(req, res) => {
     }
     )();
 
+  }
+  else if (req.method === 'POST' && req.url === '/updateDescription') {
+    let body = '';
+    req.on('data', chunk => {
+      body += chunk.toString();
+    });
+    req.on('end', () => {
+      try {
+        const data = JSON.parse(body);
+        if (!data.descriere) {
+          res.statusCode = 400;
+          res.end('Description is required');
+          return;
+        }
+        const query= ` UPDATE utilizatori
+        SET descriere = $1
+        WHERE id = $2`;
+        const parameters = [
+          data.descriere,
+          userId
+        ];
+        pool.query(query, parameters, (err) => {
+          if (err) {
+            console.error('Error updating description', err);
+            res.statusCode = 500;
+            res.end('Error inserting review');
+          } else {
+            res.statusCode = 200;
+            res.end('Description updated successfully');
+          }
+        });
+      } catch (error) {
+        console.error('Error parsing request body:', error);
+        res.statusCode = 400;
+        res.end('Invalid request body');
+      }
+    });
   }
   else  {
     // Serve static files
