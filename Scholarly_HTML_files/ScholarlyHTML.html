@@ -152,7 +152,7 @@
 
     <h3 id="references"><span>1.5 </span>References </h3>
     <p>
-      In order to create the web application and this document we did a research on CSS and HTML related sites which are
+      In order to create the web application and this document we did a research on CSS, HTML, JavaScript and Node.js sites which are
       shown below:
     </p>
 
@@ -161,7 +161,25 @@
       <li><a href="https://github.com/rick4470/IEEE-SRS-Tempate#other-requirements">IEEE-Tempate</a></li>
       <li><a href="https://w3c.github.io/scholarly-html/#references">Scholarly HTML</a></li>
       <li><a href="https://developer.mozilla.org/en-US/">Mozilla</a></li>
+      <li><a href="https://nodejs.dev/en/learn/">Node.js Tutorial</a></li>
+    </ul>
 
+    <p>
+      We also used the following books:
+    </p>
+
+    <ul role="list">
+      <li><a href="https://www.amazon.com/HTML-CSS-Design-Build-Websites/dp/1118008189">HTML and CSS: Design and Build Websites</a></li>
+      <li><a href="https://www.amazon.com/JavaScript-JQuery-Interactive-Front-End-Development/dp/1118531647">JavaScript and JQuery: Interactive Front-End Web Development</a></li>
+    </ul>
+
+    <p>
+      And we did research for REST API and FETCH API on the following sites:
+    </p>
+
+    <ul role="list">
+      <li><a href="https://www.restapitutorial.com/">REST API Tutorial</a></li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">Fetch API</a></li>
     </ul>
 
   </section>
@@ -174,9 +192,24 @@
 
     <h3 id="product_perspective"><span>2.1 </span>Product Perspective</h3>
     <p>
-      Boo allows its users to share their progress and reviews on the books they are reading, no matter if
-      the user is a single person or a group (a club, a classroom).
+      Boo allows its users to share their progress and reviews on the books they are reading, as well as to discover new books from their friends.
     </p>
+    <figure>
+      <figcaption>Usecase Diagram</figcaption>
+      <img src="Screenshots/UseCase.png" alt="usecase diagram" width="70%">
+    </figure>
+    <p>
+      The first 2 levels of the C4 diagram offer more details about the product's perspective.
+    </p>
+
+    <figure>
+      <figcaption>C4 Level 1 Diagram</figcaption>
+      <img src="Screenshots/C4Level1.png" alt="C4 level 1" width="70%">
+    </figure>
+    <figure>
+      <figcaption>C4 Level 2 Diagram</figcaption>
+      <img src="Screenshots/C4Level2.png" alt="C4 level 2" width="70%">
+    </figure>
 
     <h3 id="product_functions"><span>2.2 </span>Product Functions</h3>
     <p>
@@ -207,9 +240,8 @@
 
     <h3 id="design_implementation_constraints"><span>2.5 </span>Design and Implementation Constraints </h3>
     <p>
-      Boo will be designed using HTML, CSS, JavaScript and will have a server made in Java and also a database created in SQLite.
+      Boo will be designed using HTML, CSS, JavaScript and will have a server made in JavaScript and also a database created in DBeaver.
     </p>
-
   </section>
 
 
@@ -248,7 +280,34 @@
       <figcaption>Boo Terms and Conditions page</figcaption>
       <img src="Screenshots/TermsCond.png" alt="terms conditions screenshot" width="70%">
     </figure>
-
+    <figure>
+      <figcaption>Boo Help page</figcaption>
+      <img src="Screenshots/Help.png" alt="help screenshot" width="70%">
+    </figure>
+    <figure>
+      <figcaption>Boo Logged In page</figcaption>
+      <img src="Screenshots/HomeLoggedIn.png" alt="HomeLoggedIn screenshot" width="70%">
+    </figure>
+    <figure>
+      <figcaption>Boo Book page</figcaption>
+      <img src="Screenshots/Book.png" alt="book screenshot" width="70%">
+    </figure>
+    <figure>
+      <figcaption>Boo MyBookshelf page</figcaption>
+      <img src="Screenshots/MyBookshelf.png" alt="bookshelf screenshot" width="70%">
+    </figure>
+    <figure>
+      <figcaption>Boo Profile page</figcaption>
+      <img src="Screenshots/MyProfile.png" alt="profile screenshot" width="70%">
+    </figure>
+    <figure>
+      <figcaption>Boo Settings page</figcaption>
+      <img src="Screenshots/Settings.png" alt="settings screenshot" width="70%">
+    </figure>
+    <figure>
+      <figcaption>Boo Friends page</figcaption>
+      <img src="Screenshots/MyFriends.png" alt="friends screenshot" width="70%">
+    </figure>
 
 
     <h3 id="hardware_interfaces"><span>3.2 </span>Hardware Interfaces </h3>
@@ -258,7 +317,7 @@
 
     <h3 id="software_interfaces"><span>3.3 </span>Software Interfaces</h3>
     <p>
-      The application will have a SQLite database and a Java server which will communicate with the interfaces using APIs.
+      The application will have a DBeaver database and a JavaScript server which will communicate with the interfaces using REST and FETCH APIs.
     </p>
 
     <h3 id="communications_interfaces"><span>3.4 </span>Communications Interfaces </h3>
@@ -312,6 +371,38 @@
     <p>
       This page contains the terms and conditions.
     </p>
+
+    <h3 id="book"><span>4.8 </span>Book page</h3>
+    <p>
+      This page contains the information about the book.
+    </p>
+
+    <h3 id="loggedin"><span>4.9 </span>Logged In page</h3>
+    <p>
+      This page is the one displayed when the user logs in.
+    </p>
+
+    <h3 id="bookshelf"><span>4.10 </span>Bookshelf page</h3>
+    <p>
+      This page contains the books that the user has added to his bookshelf.
+    </p>
+
+    <h3 id="friends"><span>4.11 </span>Friends page</h3>
+    <p>
+      This page contains the friends that the user has added.
+    </p>
+
+    <h3 id="profile"><span>4.12 </span>Profile page</h3>
+    <p>
+      This page contains the user's profile information.
+    </p>
+
+    <h3 id="settings"><span>4.13 </span>Settings page</h3>
+    <p>
+      This page contains the user's settings.
+    </p>
+
+
    
   </section>
 
@@ -344,6 +435,15 @@
     </ul>
     </p>
 
+  </section>
+  <section id="design" role="doc-introduction">
+      
+      <h2><span>6. </span>Why did we chose this design</h2>
+      <p>
+        We chose this design because it is simple and easy to use. The user can easily navigate through the website and find what he is looking for.
+        We also tried to combine some warm colors in order to create a cozy and friendly atmosphere, related to the books.
+      </p>
+    
   </section>
 
 </body>
