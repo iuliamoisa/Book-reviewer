@@ -111,6 +111,10 @@ form.addEventListener('submit', function(event) {
 ////////////////////////////// BUTON DE ADAUGA IN LISTA DE ''TO READ''
 
 function addToReadingList2(){
+
+  const button = document.getElementById('add-to-list-button');
+  button.disabled = true; // Disable the button
+  button.textContent = 'Added!'; // Change the button text
     console.log("BLA");
     const urlParams = new URLSearchParams(window.location.search);
     const bookId = urlParams.get('bookId');

@@ -272,10 +272,7 @@ window.addEventListener('load',fetchGroupsList);
         for(let i=0;i<data.length;i++){
           groupsList.innerHTML+=`<p>${data[i].group_name}</p>`
         }
-        
-       // document.getElementById('friend-name').textContent = data.friend_name;
-        //document.getElementById('book-title').textContent = data.book_title;
-        //document.getElementById('book-description').textContent = data.book_description;
+  
       })
       .catch(error => {
         console.error('Error fetching friends:', error);
