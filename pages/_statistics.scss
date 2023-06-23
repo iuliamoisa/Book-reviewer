@@ -49,12 +49,25 @@
        }
        
        &__doi {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        width: 50%;
-        margin: 2rem;
+        padding: 2rem;
+        background-color: $crem;
+        width: 30%;
+        border-radius: 2rem;
+        &--stat-text{
+          background-color: $lightest-pale-brown;
+          border-radius: 5rem;
+          font-size:2rem;
+          text-align: center;
+          color: $red-brown;
+          font-weight: bold;
+          padding:0.4rem;
+        }
+        &--stat-value{
+          font-size:2rem;
+          text-align: center;
+          margin: 1rem;
+          font-weight: normal;
+        }
       }
 
       .stat2-left, .stat2-right{
@@ -64,7 +77,6 @@
         font-size: 2rem;
         border-radius: 2rem;
         background-color: $light-brown;
-        margin:1rem;
        }
        .stat2-left{
         width: 70%;

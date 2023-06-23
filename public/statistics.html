@@ -50,12 +50,12 @@
         <div class="statistics-main__prima">
             <div class="stat1-left">
               <p class="stat-text">Total number of read books: 
-                <p class="stat-text__value">10</p>
+                <p class="stat-text__value" id="totalCarti">10</p>
               </p>
             </div>
             <div class="stat1-right">
               <p class="stat-text">Total number of read pages:
-                <p class="stat-text__value">2000</p>
+                <p class="stat-text__value" id="totalPagini">2000</p>
               </p>
             </div>
         </div>
@@ -63,37 +63,32 @@
         <div class="statistics-main__prima">
             <div class="stat1-left">
               <p class="stat-text">The shortest book: 
-                <p class="stat-text__value">blabla</p>
+                <p class="stat-text__value" id="shortestBook">blabla</p>
+                <p id="shortPages"></p>
               </p>
             </div>
             <div class="stat1-right">
               <p class="stat-text">The longest book:
-                <p class="stat-text__value">blabla</p>
+                <p class="stat-text__value" id="longestBook">blabla</p>
+                <p id="longPages"></p>
               </p>
             </div>
         </div>
 
         <div class="statistics-main__doi">
-            <div class="stat2-left">
-              <p class="stat2-left__text">Average book length
-              </p>
-            </div>
-            <div class="stat2-right">
-              <p class="stat2-right__text">Pages:
-                <p class="stat-text__value">256</p>
-              </p>
-            </div>
+              <p class="statistics-main__doi--stat-text">Average book length</p>
+              <p class="statistics-main__doi--stat-value" id="avgPages">256</p>
         </div>
 
         <div class="statistics-main__prima">
             <div class="stat1-left">
               <p class="stat-text">The most read author:
-                <p class="stat-text__value">eu </p>
+                <p class="stat-text__value" id="bestAuthor">eu </p>
               </p>
             </div>
             <div class="stat1-right">
               <p class="stat-text">The least read author:
-                <p class="stat-text__value">tu</p>
+                <p class="stat-text__value" id="worstAuthor">tu</p>
               </p>
             </div>
         </div>
@@ -101,15 +96,19 @@
         <div class="statistics-main__prima">
             <div class="stat1-left">
               <p class="stat-text">The most read book:
-                <p class="stat-text__value">eu </p>
+                <p class="stat-text__value" id="bestBook">eu </p>
               </p>
             </div>
             <div class="stat1-right">
               <p class="stat-text">The least read book:
-                <p class="stat-text__value">tu</p>
+                <p class="stat-text__value" id="worstBook">tu</p>
               </p>
             </div>
         </div>
+        <div class="statistics-main__doi">
+          <p class="statistics-main__doi--stat-text">Average rating</p>
+          <p class="statistics-main__doi--stat-value" id="avgRating">888</p>
+      </div>
         <footer class="help-footer">
             <div class="help-footer__links">
                     <a href="about.html" class="help-footer__item">About us</a>

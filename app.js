@@ -564,6 +564,31 @@ const server = http.createServer(async(req, res) => {
       }
     })();
   }
+  else if (req.method === 'GET' && parsedUrl.pathname === '/getStatsDoi') {
+    (async () => {
+      try {
+        const query = 'SELECT * FROM get_user_book_stats($1)';
+        const values = [userId];
+        const result = await pool.query(query, values);
+      const statistics2 = result.rows;
+      console.log("statistics2", statistics2);
+        if (statistics2) {
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.write(JSON.stringify(statistics2));
+          res.end();
+        } else {
+          res.writeHead(404, { 'Content-Type': 'application/json' });
+          res.write(JSON.stringify({ error: 'Statistics2 not found' }));
+          res.end();
+        }
+      } catch (error) {
+        console.error('Error getting statistics2:', error);
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.write(JSON.stringify({ error: 'Internal server error' }));
+        res.end();
+      }
+    })();
+  }
   else // ADAUGA IN TO READ LIST
   if (req.method === 'POST' && req.url === '/add-to-reading-list') {
     let body = '';

@@ -2321,12 +2321,25 @@ html {
   font-weight: normal;
 }
 .statistics-main__doi {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 50%;
-  margin: 2rem;
+  padding: 2rem;
+  background-color: #D7A86E;
+  width: 30%;
+  border-radius: 2rem;
+}
+.statistics-main__doi--stat-text {
+  background-color: #f8dcba;
+  border-radius: 5rem;
+  font-size: 2rem;
+  text-align: center;
+  color: #8E3200;
+  font-weight: bold;
+  padding: 0.4rem;
+}
+.statistics-main__doi--stat-value {
+  font-size: 2rem;
+  text-align: center;
+  margin: 1rem;
+  font-weight: normal;
 }
 .statistics-main .stat2-left, .statistics-main .stat2-right {
   padding: 1.5rem;
@@ -2335,7 +2348,6 @@ html {
   font-size: 2rem;
   border-radius: 2rem;
   background-color: #d49d5b;
-  margin: 1rem;
 }
 .statistics-main .stat2-left {
   width: 70%;
