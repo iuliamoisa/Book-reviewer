@@ -16,12 +16,14 @@
             </a>
 			<h1 class="home-header__left--title">Boo</h1>
 		</div>
-        <div class="home-header__search">
-            <form class="home-header__search--form" action="#" method="get">
-                <input class="home-header__search--input" type="text" placeholder="Search books...">
-                <button class="home-header__search--button" type="submit"><i class="ri-search-line ri-lg"></i></button>
-            </form>
+      <div class="home-header__search">
+        <form class="home-header__search--form" action="#" method="get">
+            <input id="search-bar" class="home-header__search--input" type="text" placeholder="Search books..." oninput="performSearch()" autocomplete="off">
+            <button class="home-header__search--button" type="submit"><i class="ri-search-line ri-lg"></i></button>
+        </form>
+        <div class="home-header__search-results" id="search-results">
         </div>
+      </div>
         <div class="home-nav">
             <div class="home-nav__item" onclick="openMulti();">
                 <a class="home-nav__link"  href="#" >
@@ -123,5 +125,6 @@
       <script src="js/myProfile.js"></script>
       <script src="js/settings.js"></script>
       <script src="js/statistics.js"></script>
+      <script src="js/homeConnected.js"></script>
 </body>
 </html>

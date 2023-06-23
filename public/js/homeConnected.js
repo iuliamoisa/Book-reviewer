@@ -1,4 +1,3 @@
-
 const quotes = [
     "The purpose of literature is to turn blood into ink. \n(T.S. Eliot)",
     "We read to know we're not alone. \n(William Nicholson)",
@@ -370,4 +369,45 @@ function logout() {
     // Handle the error
     console.error('Logout failed:', error);
   });
+}
+
+///////////////////////////////////// SEARCHBAR
+
+function performSearch(){
+  const searchResultsContainer = document.getElementById('search-results');
+  const searchInput = document.getElementById('search-bar');
+  const keyword = searchInput.value;
+  console.log(keyword);
+
+  if(keyword.length==0){
+    searchResultsContainer.innerHTML='';
+    return;
+  }
+
+  fetch(`http://localhost:3000/getByKeyword?keyword=${keyword}`)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      console.log(data.length);
+      console.log(data[0].titlu);
+      console.log(data[0].id);
+      searchResultsContainer.innerHTML='';
+      for(let i=0;i<data.length;i++){
+        searchResultsContainer.innerHTML+=`<p id="search-results-element" class="home-header__search-results--element" onclick="assignValue(${data[i].id})">${data[i].titlu}</p>`
+      }
+
+    })
+    .catch(error => {
+      console.error('Error fetching Keyword', error);
+    });
+}
+
+function assignValue(bookID) {
+  const searchResultsContainerElement = document.getElementById('search-results-element');
+  const searchResultsContainer = document.getElementById('search-results');
+  const searchInput = document.getElementById('search-bar');
+  searchInput.value=searchResultsContainerElement.textContent;
+  searchResultsContainer.innerHTML='';
+
+  window.location.href = `/book?bookId=${bookID}`;
 }

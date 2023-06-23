@@ -721,6 +721,26 @@ const server = http.createServer(async(req, res) => {
         res.end();
       }
     })();
+  }else if(req.method === 'GET' && parsedUrl.pathname === '/getByKeyword') {
+    const keyword = parsedUrl.query.keyword;
+    const query = 'SELECT id, titlu FROM carti WHERE titlu LIKE $1';
+    const values = [`%${keyword}%`];
+    (async () => {
+      try {
+        const result = await pool.query(query, values);
+        const books = result.rows;
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.write(JSON.stringify(books));
+        res.end();
+      } catch (error) {
+        console.error('Error getting books:', error);
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.write(JSON.stringify({ error: 'Internal server error' }));
+        res.end();
+      }
+    }
+    )();
+
   }
   else  {
     // Serve static files
