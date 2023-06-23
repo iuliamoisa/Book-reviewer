@@ -4,7 +4,7 @@ const querystring = require('querystring');
 const http = require('http');
 const url = require('url');
 const fs = require('fs'); // acces la sistemul de fisiere
-let userId;
+let userId, bookId;
 
 const pool = new Pool({
   user: 'postgres',
@@ -15,8 +15,78 @@ const pool = new Pool({
 });
 
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async(req, res) => {
   const parsedUrl = url.parse(req.url, true);
+  if (req.method === 'GET' && parsedUrl.pathname === '/getProfilePic') {
+    
+    (async () => {
+      try {
+        const query = 'SELECT imagine FROM utilizatori where id=$1';
+        const values = [userId];
+        const result = await pool.query(query, values);
+        const imagine = result.rows[0];
+
+        if (imagine) {
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.write(JSON.stringify(imagine));
+          res.end();
+        } else {
+          res.writeHead(404, { 'Content-Type': 'application/json' });
+          res.write(JSON.stringify({ error: 'Recommendation not found' }));
+          res.end();
+        }
+      } catch (error) {
+        console.error('Error getting recommendation:', error);
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.write(JSON.stringify({ error: 'Internal server error' }));
+        res.end();
+      }
+    })();
+  }else
+  if (req.url === '/getImage' && req.method === 'GET') {
+    try {
+      // Retrieve the image data from the database
+      const result = await pool.query('SELECT image_data FROM images WHERE id_utilizator = $1', [userId]);
+      const imageData = result.rows[0];
+  
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({ imageData }));
+    } catch (error) {
+      console.error(error);
+      res.statusCode = 500;
+      res.setHeader('Content-Type', 'text/plain');
+      res.end('Error retrieving image.');
+    }
+  }
+  
+  else
+  if (req.url === '/upload' && req.method === 'POST') {
+    let body = '';
+    req.on('data', chunk => {
+      body += chunk;
+    });
+    req.on('end', () => {
+      const data = JSON.parse(body);
+      const src = data.src;
+      
+        
+      pool.query('update utilizatori set imagine=$1 where id=$2', [src,userId]);
+      let status='ok';
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.write(JSON.stringify(status));
+      console.log(JSON.stringify({'status':'ok'}));
+      res.end();
+      
+      // Process the received image source as needed
+      console.log('Received image source:', src);
+
+     
+      res.writeHead(302, { 'Location': '/settings.html' });
+      res.end();
+    });
+  }
+  else
   if (req.method === 'PUT' && parsedUrl.pathname === '/addFriendFromSugg') {
     let data='';
     req.on('data', chunk => {
@@ -250,14 +320,13 @@ const server = http.createServer((req, res) => {
   }
 
   else if (req.method === 'GET' && parsedUrl.pathname === '/recommendation') {
-    
     (async () => {
       try {
         const query = 'SELECT book_id, friend_name, book_title, book_description FROM get_random_friend_book($1)';
         const values = [userId];
         const result = await pool.query(query, values);
         const recommendation = result.rows[0];
-
+        bookId =  recommendation.book_id;
         if (recommendation) {
           res.writeHead(200, { 'Content-Type': 'application/json' });
           res.write(JSON.stringify(recommendation));
@@ -274,9 +343,7 @@ const server = http.createServer((req, res) => {
         res.end();
       }
     })();
-  }
-  
-  else if (req.method === 'POST' && parsedUrl.pathname === '/add') {
+  }else if (req.method === 'POST' && parsedUrl.pathname === '/add') {
     let requestBody = '';
 
     req.on('data', (chunk) => {
@@ -414,7 +481,6 @@ const server = http.createServer((req, res) => {
               res.writeHead(500, { 'Content-Type': 'text/plain' });
               res.end('Internal Server Error');
             } else {
-              // Replace placeholders in the HTML template with book details
               const html = data
                 .replace('{{book-image}}',`https://via.placeholder.com/150x200?text=${encodeURIComponent(book.titlu)}`)
                 .replace('{{book-title}}', book.titlu)
@@ -440,7 +506,90 @@ const server = http.createServer((req, res) => {
       }
     })();
 
-  }else // ADAUGA IN TO READ LIST
+  } else  if (parsedUrl.pathname === '/reviews' && req.method === 'GET') { // TOATE RECENZIILE
+    const query = 'SELECT u.nume, u.prenume, r.timestamp AS review_timestamp, r.rating, r.recenzie_text, c.titlu, c.autor FROM recenzii r JOIN carti c ON r.id_carte = c.id JOIN utilizatori u ON r.id_utilizator = u.id';
+
+    pool.query(query, (err, result) => {
+      if (err) {
+        console.error('Error fetching reviews:', err);
+        res.statusCode = 500;
+        res.end('Error fetching reviews');
+      } else {
+        res.setHeader('Content-Type', 'application/json');
+        res.statusCode = 200;
+        res.end(JSON.stringify(result.rows));
+      }
+    });
+  }
+  else if (parsedUrl.pathname === '/certainBookReviews' && req.method === 'GET') {
+    (async () => {
+      try {
+        const query = 'SELECT r.rating, r.recenzie_text, u.nume, u.prenume FROM recenzii r INNER JOIN utilizatori u ON r.id_utilizator = u.id WHERE r.id_carte = $1';
+        const result = await pool.query(query, [bookId]);
+  
+        const reviews = result.rows;
+  console.log(reviews);
+        res.setHeader('Content-Type', 'application/json');
+        res.statusCode = 200;
+        res.end(JSON.stringify(reviews));
+      } catch (error) {
+        console.error('Error fetching reviews:', error);
+        res.statusCode = 500;
+        res.end('Error fetching reviews');
+      }
+    })();
+  }
+  else if (req.method === 'GET' && parsedUrl.pathname === '/getStatsUnu') {
+    (async () => {
+      try {
+        const query = 'SELECT * from get_user_reading_stats($1)';
+        const values = [userId];
+        const result = await pool.query(query, values);
+      const statistics = result.rows;
+      console.log("statistics", statistics);
+        if (statistics) {
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.write(JSON.stringify(statistics));
+          res.end();
+        } else {
+          res.writeHead(404, { 'Content-Type': 'application/json' });
+          res.write(JSON.stringify({ error: 'Statistics not found' }));
+          res.end();
+        }
+      } catch (error) {
+        console.error('Error getting statistics:', error);
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.write(JSON.stringify({ error: 'Internal server error' }));
+        res.end();
+      }
+    })();
+  }
+  else if (req.method === 'GET' && parsedUrl.pathname === '/getStatsDoi') {
+    (async () => {
+      try {
+        const query = 'SELECT * FROM get_user_book_stats($1)';
+        const values = [userId];
+        const result = await pool.query(query, values);
+      const statistics2 = result.rows;
+      console.log("statistics2", statistics2);
+        if (statistics2) {
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.write(JSON.stringify(statistics2));
+          res.end();
+        } else {
+          res.writeHead(404, { 'Content-Type': 'application/json' });
+          res.write(JSON.stringify({ error: 'Statistics2 not found' }));
+          res.end();
+        }
+      } catch (error) {
+        console.error('Error getting statistics2:', error);
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.write(JSON.stringify({ error: 'Internal server error' }));
+        res.end();
+      }
+    })();
+  }
+  else // ADAUGA IN TO READ LIST
   if (req.method === 'POST' && req.url === '/add-to-reading-list') {
     let body = '';
     req.on('data', (chunk) => {
@@ -453,7 +602,8 @@ const server = http.createServer((req, res) => {
       console.log(userId);
       const query = 'INSERT INTO biblioteca (id_utilizator, id_carte, categorie) VALUES ($1, $2, $3)';
       const values = [userId, bookId, 1]; 
-
+      const query2 = 'INSERT INTO progres (id_utilizator, id_carte, pagina_curenta, data_start, status_carte) VALUES ($1, $2, $3, $4, $5)';
+      const values2 = [userId, bookId, 0, new Date(),false]
       pool.query(query, values, (err) => {
         if (err) {
           console.error('Error adding book to reading list:', err);
@@ -464,9 +614,135 @@ const server = http.createServer((req, res) => {
           res.end();
         }
       });
+      pool.query(query2, values2, (err) => {
+        if (err) {
+          console.error('Error adding book to progress list:', err);
+          res.statusCode = 500;
+          res.end();
+        } else {
+          res.statusCode = 200;
+          res.end();
+        }
+      });
     });
+  }else if (req.method === 'POST' && req.url === '/submit-review') {
+    let body = '';
+    req.on('data', chunk => {
+      body += chunk.toString();
+    });
+    const bookId = parsedUrl.query.bookId;
+    req.on('end', () => {
+      try {
+        const data = JSON.parse(body);
+        if (!data.rating) {
+          res.statusCode = 400;
+          res.end('Rating is required');
+          return;
+        }
+        const query = `
+          INSERT INTO recenzii (id_utilizator, id_carte, recenzie_text, rating, timestamp)
+          VALUES ($1, $2, $3, $4, $5)
+        `;
+        const parameters = [
+          userId,
+          data.book_id,
+          data.reviewText,
+          data.rating,
+          new Date()
+        ];
+        pool.query(query, parameters, (err) => {
+          if (err) {
+            console.error('Error inserting review:', err);
+            res.statusCode = 500;
+            res.end('Error inserting review');
+          } else {
+            res.statusCode = 200;
+            res.end('Review submitted successfully');
+          }
+        });
+      } catch (error) {
+        console.error('Error parsing request body:', error);
+        res.statusCode = 400;
+        res.end('Invalid request body');
+      }
+    });
+  }else if (req.method === 'GET' && parsedUrl.pathname === '/getBookDetails') {
+    (async () => {
+      try {
+        const query = 'SELECT * FROM get_user_book_progress($1);';
+        const values = [userId];
+        const result = await pool.query(query, values);
+        const book_details = result.rows;
+        if (book_details) {
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.write(JSON.stringify(book_details));
+          res.end();
+        } else {
+          res.writeHead(404, { 'Content-Type': 'application/json' });
+          res.write(JSON.stringify({ error: 'book_details not found' }));
+          res.end();
+        }
+      } catch (error) {
+        console.error('Error getting book_details:', error);
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.write(JSON.stringify({ error: 'Internal server error' }));
+        res.end();
+      }
+    })();
   }
-   else  {
+  else if (req.method === 'GET' && (parsedUrl.pathname === '/getCurrentlyReadingDetails' ||
+  parsedUrl.pathname === '/getToReadDetails' || 
+  parsedUrl.pathname === '/getReadDetails')) {
+    (async () => {
+      try {
+        const query = 'SELECT * FROM get_all_books($1,$2);';
+        let values ;
+        if(parsedUrl.pathname === '/getCurrentlyReadingDetails')
+          values = [userId, 2];
+        else if(parsedUrl.pathname === '/getToReadDetails')
+          values = [userId, 1];
+        else if(parsedUrl.pathname === '/getReadDetails')
+          values = [userId, 3];
+        const result = await pool.query(query, values);
+        const book_details = result.rows;
+        if (book_details) {
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.write(JSON.stringify(book_details));
+          res.end();
+        } else {
+          res.writeHead(404, { 'Content-Type': 'application/json' });
+          res.write(JSON.stringify({ error: 'book_details not found' }));
+          res.end();
+        }
+      } catch (error) {
+        console.error('Error getting book_details:', error);
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.write(JSON.stringify({ error: 'Internal server error' }));
+        res.end();
+      }
+    })();
+  }else if(req.method === 'GET' && parsedUrl.pathname === '/getByKeyword') {
+    const keyword = parsedUrl.query.keyword;
+    const query = 'SELECT id, titlu FROM carti WHERE titlu LIKE $1';
+    const values = [`%${keyword}%`];
+    (async () => {
+      try {
+        const result = await pool.query(query, values);
+        const books = result.rows;
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.write(JSON.stringify(books));
+        res.end();
+      } catch (error) {
+        console.error('Error getting books:', error);
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.write(JSON.stringify({ error: 'Internal server error' }));
+        res.end();
+      }
+    }
+    )();
+
+  }
+  else  {
     // Serve static files
     let filePath = path.join(__dirname, 'public', parsedUrl.pathname);
     if (parsedUrl.pathname === '/') {

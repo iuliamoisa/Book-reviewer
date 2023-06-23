@@ -1,6 +1,23 @@
 window.addEventListener('load',fetchProfileFriends);
 window.addEventListener('load',fetchFriendsCount);
 window.addEventListener('load', fetchProfileData);
+window.addEventListener('load',fetchProfilePic);
+
+function fetchProfilePic() {
+  console.log("111111111");
+    fetch('http://localhost:3000/getProfilePic')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        console.log(data.length);
+       
+        const imagine=document.getElementById('profilePic');
+        imagine.src=data.imagine;
+      })
+      .catch(error => {
+        console.error('Error fetching friends:', error);
+      });
+  }
 
 function fetchProfileData() {
   fetch('http://localhost:3000/getProfileData')

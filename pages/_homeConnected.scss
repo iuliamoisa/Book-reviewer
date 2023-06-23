@@ -41,6 +41,7 @@
           }
         
          .book-button {
+          margin:0.5rem;
             background-color: $pale-brown;
             border: none;
             border-radius: 3rem;
@@ -156,14 +157,18 @@
   }
   
   .friends-section, .groups-section{
+    
+    background-color: $lightest-pale-brown;
     padding: 1rem;
   }
   .navbar-sect{
     margin-bottom: 1rem;
   }
   .my-friends{
+    font-size: 1.5rem;
     cursor: pointer;
-    color: #fff7ee;
+    text-align: center;
+    color: $red-brown;
     transition: color 0.3s; /* Add transition for smooth color change */
   }
   
@@ -260,6 +265,8 @@
   
    .friends-list {
     margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: $brown;
   }
   .groups-list {
     margin-bottom: 10px;
@@ -280,7 +287,9 @@
   
   
   .user-name {
-    font-weight: bold;
+    color: $brown;
+    font-size: 1.4rem;
+    font-weight: bolder;
     width: 50%; 
   }
   
@@ -296,6 +305,15 @@
     grid-template-columns: auto 1fr;
     gap: 3rem; 
     margin-top: 1.5rem;
+  }
+  .book-name{
+    width: 100%;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: $red-brown;
+    margin-top: 1rem;
+    font-style: italic;
   }
   .bookRec-description{
     font-size: 1rem;
@@ -319,12 +337,13 @@
   }
   
   .rating-stars {
+    width: 100%;
     color: gold; 
     font-size: 20px; 
+    text-align: center;
   }
   
   .star {
-    display: inline-block;
     margin-right: 2px;
   }
   
@@ -354,4 +373,18 @@
   
   #view-more-btn:hover {
     background-color: #f2f2f2;
+  }
+
+  .connected-buttons{
+    padding: 0.5rem;
+  }
+
+  .review{
+    border: 1px solid #ccc;
+    padding: 20px;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
   }

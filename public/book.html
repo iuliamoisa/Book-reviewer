@@ -11,14 +11,18 @@
 <body>
     <header class="home-header">
         <div class="home-header__left">
-			<img class="home-header__left--logo" src="pictures/logoBoo-better.png" alt="Logo">
+			<a href="homeConnected.html">
+                <img class="home-header__left--logo" src="pictures/logoBoo-better.png" alt="Logo">
+            </a>
 			<h1 class="home-header__left--title">Boo</h1>
 		</div>
         <div class="home-header__search">
             <form class="home-header__search--form" action="#" method="get">
-                <input class="home-header__search--input" type="text" placeholder="Search book name, author, edition...">
+                <input id="search-bar" class="home-header__search--input" type="text" placeholder="Search books..." oninput="performSearch()" autocomplete="off">
                 <button class="home-header__search--button" type="submit"><i class="ri-search-line ri-lg"></i></button>
             </form>
+            <div class="home-header__search-results" id="search-results">
+            </div>
         </div>
         <div class="home-nav">
             <div class="home-nav__item" onclick="openMulti();">
@@ -27,10 +31,10 @@
                 </a>
                 <div class="selectWrapper">
                     <div class="multiSelect" id="menu-0">
-                        <div onclick="openMulti();">My Profile</div>
-                        <div onclick="openMulti();">My bookshelf</div>
-                        <div onclick="openMulti();">Settings</div>
-                        <div class="topBorder" onclick="openMulti();">Log out</div>
+                        <div onclick="window.location.href = '/myProfile.html';">My Profile</div>
+                        <div onclick="window.location.href = '/myBookshelf.html';">My bookshelf</div>
+                        <div  onclick="window.location.href = '/settings.html';">Settings</div>
+                        <div class="topBorder" onclick="logout()">Log out</div>
                     </div>
                 </div>
             </div>
@@ -53,22 +57,32 @@
         </div>
     </div>
     <div class="book-info">
-        <!--<p class="book-description-full">{{book-description-full}}</p>-->
+        <form id="review-form">
+              <div class="rating-box">
+                <h3>What are your thoughts on this book?</h3>
+                <div class="stars">
+                    <span >&#9733;</span>
+                    <span >&#9733;</span>
+                    <span >&#9733;</span>
+                    <span >&#9733;</span>
+                    <span >&#9733;</span>
+                </div>
+              
+              <div class="review-input">
+                <label for="add-review" id="paragraph-review">Write a review:</label>
+                <textarea id="add-review" name="reviewText" rows="4" placeholder="Write your review here..."></textarea>
+              </div>
+              <button type="submit" id="buton-review">Submit</button>
+          </form>
+        </div>
         <div class="review-section">
-            <div class="review">
-                <p class="review-author">John Doe</p>
-                <p class="review-text">"This book is fantastic! I couldn't put it down."</p>
+            <div id="reviews-container">
+            
             </div>
-            <div class="review">
-                <p class="review-author">Jane Smith</p>
-                <p class="review-text">"I loved everything about this book. Highly recommended!"</p>
-            </div>
-            <div class="review">
-                <p class="review-author">Bob Johnson</p>
-                <p class="review-text">"Not my favorite book, but still worth reading."</p>
-            </div>
+            
         </div>
     </div>
+    <script src="js/book.js"></script>
     <script src="js/homeConnected.js"></script>
 </body>
 </html>

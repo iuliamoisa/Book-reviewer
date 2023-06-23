@@ -18,10 +18,12 @@
 		</div>
         <div class="home-header__search">
             <form class="home-header__search--form" action="#" method="get">
-                <input class="home-header__search--input" type="text" placeholder="Search book name, author, user, group...">
+                <input id="search-bar" class="home-header__search--input" type="text" placeholder="Search books..." oninput="performSearch()" autocomplete="off">
                 <button class="home-header__search--button" type="submit"><i class="ri-search-line ri-lg"></i></button>
             </form>
-        </div>
+            <div class="home-header__search-results" id="search-results">
+            </div>
+          </div>
         <div class="home-nav">
             <div class="home-nav__item" onclick="openMulti();">
                 <a class="home-nav__link"  href="#" >
@@ -49,8 +51,11 @@
             <label class="-label" for="file">
                 <span>Change Image</span>
             </label>
-            <input class="avatarImg__inputFile" id="file" type="file" onchange="loadFile(event)"/>
-            <img src="pictures/shrek.png" alt="Profile picture" class="settings-main__picture" width="200" height="200" id="output" >
+            <button class="avatarImg__inputFile" id="file" onclick="redirect()" ></button>
+            
+             <img src="pictures/blank.png" alt="Profile picture" class="settings-main__picture" width="200" height="200" id="output" >
+
+            
         </div>
         
          <div class="settings-main__details">
@@ -77,6 +82,8 @@
         </div>
         <p class="help-footer__copyright"><i class="ri-copyright-line"></i>Copyrights | All rights reserved 2023-2025</p>
     </footer>
+    <div id="bla"></div>
     <script src="js/settings.js"></script>
+    <script src="js/homeConnected.js"></script>
 </body>
 </html>
