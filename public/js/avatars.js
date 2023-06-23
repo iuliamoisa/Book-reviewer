@@ -1,4 +1,4 @@
-const images = document.getElementsByClassName('settings-main__picture');
+const images = document.getElementsByClassName('choose-avatar-picture');
 
 
 // Attach click event listeners to each image

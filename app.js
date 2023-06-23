@@ -522,7 +522,6 @@ const server = http.createServer(async(req, res) => {
     });
   }
   else if (parsedUrl.pathname === '/certainBookReviews' && req.method === 'GET') {
-    console.log("e asta book id?" + bookId);
     (async () => {
       try {
         const query = 'SELECT r.rating, r.recenzie_text, u.nume, u.prenume FROM recenzii r INNER JOIN utilizatori u ON r.id_utilizator = u.id WHERE r.id_carte = $1';
@@ -540,7 +539,31 @@ const server = http.createServer(async(req, res) => {
       }
     })();
   }
-    
+  else if (req.method === 'GET' && parsedUrl.pathname === '/getStatsUnu') {
+    (async () => {
+      try {
+        const query = 'SELECT * from get_user_reading_stats($1)';
+        const values = [userId];
+        const result = await pool.query(query, values);
+      const statistics = result.rows;
+      console.log("statistics", statistics);
+        if (statistics) {
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.write(JSON.stringify(statistics));
+          res.end();
+        } else {
+          res.writeHead(404, { 'Content-Type': 'application/json' });
+          res.write(JSON.stringify({ error: 'Statistics not found' }));
+          res.end();
+        }
+      } catch (error) {
+        console.error('Error getting statistics:', error);
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.write(JSON.stringify({ error: 'Internal server error' }));
+        res.end();
+      }
+    })();
+  }
   else // ADAUGA IN TO READ LIST
   if (req.method === 'POST' && req.url === '/add-to-reading-list') {
     let body = '';
@@ -554,10 +577,21 @@ const server = http.createServer(async(req, res) => {
       console.log(userId);
       const query = 'INSERT INTO biblioteca (id_utilizator, id_carte, categorie) VALUES ($1, $2, $3)';
       const values = [userId, bookId, 1]; 
-
+      const query2 = 'INSERT INTO progres (id_utilizator, id_carte, pagina_curenta, data_start, status_carte) VALUES ($1, $2, $3, $4, $5)';
+      const values2 = [userId, bookId, 0, new Date(),false]
       pool.query(query, values, (err) => {
         if (err) {
           console.error('Error adding book to reading list:', err);
+          res.statusCode = 500;
+          res.end();
+        } else {
+          res.statusCode = 200;
+          res.end();
+        }
+      });
+      pool.query(query2, values2, (err) => {
+        if (err) {
+          console.error('Error adding book to progress list:', err);
           res.statusCode = 500;
           res.end();
         } else {

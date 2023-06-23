@@ -1,12 +1,4 @@
 //////////////////////////// CHOOSE AVATAR
-//window.addEventListener('load',checkImage);
-
-// var loadFile = function (event) {
-//   var file = event.target.files[0];
-//   var image = document.getElementById("output");
-//   image.src = URL.createObjectURL(file);
-//   //changeImage(file);
-// };
 
 window.addEventListener('load',fetchProfilePic);
 

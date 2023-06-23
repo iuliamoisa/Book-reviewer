@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.0.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/main.css"> 
+    <title>Statistics</title>
+</head>
+<body>
+    <header class="home-header">
+        <div class="home-header__left">
+			<a href="homeConnected.html">
+                <img class="home-header__left--logo" src="pictures/logoBoo-better.png" alt="Logo">
+            </a>
+			<h1 class="home-header__left--title">Boo</h1>
+		</div>
+        <div class="home-header__search">
+            <form class="home-header__search--form" action="#" method="get">
+                <input class="home-header__search--input" type="text" placeholder="Search books...">
+                <button class="home-header__search--button" type="submit"><i class="ri-search-line ri-lg"></i></button>
+            </form>
+        </div>
+        <div class="home-nav">
+            <div class="home-nav__item" onclick="openMulti();">
+                <a class="home-nav__link"  href="#" >
+                    <i class="ri-map-pin-user-fill icon avatar"></i>
+                </a>
+                <div class="selectWrapper">
+                    <div class="multiSelect" id="menu-0">
+                        <div onclick="window.location.href = '/myProfile.html';">My Profile</div>
+                        <div onclick="window.location.href = '/myBookshelf.html';">My bookshelf</div>
+                        <div  onclick="window.location.href = '/settings.html';">Settings</div>
+                        <div class="topBorder" onclick="logout()">Log out</div>
+                    </div>
+                </div>
+            </div>
+            <div class="home-nav__item">
+                <a class="home-nav__link" href="#">
+                    <i class="ri-notification-fill icon"></i>
+                </a>
+            </div>
+        </div>
+      </header>
+      <div class="statistics-main">
+       
+        <h1 class="statistics-main__title">My life in <i>books</i></h1>
+        <img src="pictures/statistics.jpg" class="statistics-main__img" alt="Your Image" height="300" width="500">
+        <div class="statistics-main__prima">
+            <div class="stat1-left">
+              <p class="stat-text">Total number of read books: 
+                <p class="stat-text__value">10</p>
+              </p>
+            </div>
+            <div class="stat1-right">
+              <p class="stat-text">Total number of read pages:
+                <p class="stat-text__value">2000</p>
+              </p>
+            </div>
+        </div>
+
+        <div class="statistics-main__prima">
+            <div class="stat1-left">
+              <p class="stat-text">The shortest book: 
+                <p class="stat-text__value">blabla</p>
+              </p>
+            </div>
+            <div class="stat1-right">
+              <p class="stat-text">The longest book:
+                <p class="stat-text__value">blabla</p>
+              </p>
+            </div>
+        </div>
+
+        <div class="statistics-main__doi">
+            <div class="stat2-left">
+              <p class="stat2-left__text">Average book length
+              </p>
+            </div>
+            <div class="stat2-right">
+              <p class="stat2-right__text">Pages:
+                <p class="stat-text__value">256</p>
+              </p>
+            </div>
+        </div>
+
+        <div class="statistics-main__prima">
+            <div class="stat1-left">
+              <p class="stat-text">The most read author:
+                <p class="stat-text__value">eu </p>
+              </p>
+            </div>
+            <div class="stat1-right">
+              <p class="stat-text">The least read author:
+                <p class="stat-text__value">tu</p>
+              </p>
+            </div>
+        </div>
+
+        <div class="statistics-main__prima">
+            <div class="stat1-left">
+              <p class="stat-text">The most read book:
+                <p class="stat-text__value">eu </p>
+              </p>
+            </div>
+            <div class="stat1-right">
+              <p class="stat-text">The least read book:
+                <p class="stat-text__value">tu</p>
+              </p>
+            </div>
+        </div>
+        <footer class="help-footer">
+            <div class="help-footer__links">
+                    <a href="about.html" class="help-footer__item">About us</a>
+                    <!-- <a href="#" class="help-footer__item">Contact us</a> -->
+                    <a href="terms&conditions.html" class="help-footer__item">Terms&Conditions</a>
+            </div>
+            <p class="help-footer__copyright"><i class="ri-copyright-line"></i>Copyrights | All rights reserved 2023-2025</p>
+        </footer>
+      </div>
+
+      
+      <script src="js/myProfile.js"></script>
+      <script src="js/settings.js"></script>
+      <script src="js/statistics.js"></script>
+</body>
+</html>
