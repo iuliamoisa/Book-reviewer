@@ -1904,7 +1904,7 @@ html {
 
 .bookclub-main {
   height: 77.5vh;
-  width: 60rem;
+  width: 100%;
   background: linear-gradient(165deg, #f5eddc, #D7A86E);
 }
 .bookclub-main__profilePic {
@@ -1966,7 +1966,6 @@ html {
   top: 6.25rem;
   left: 60rem;
   margin-bottom: 7rem;
-  width: 28rem;
   padding: 4rem;
   background: linear-gradient(135deg, #A64B2A, #000000);
   overflow: scroll;
@@ -2010,6 +2009,22 @@ html {
   gap: 20px;
   justify-content: center;
   padding-top: 1.5rem;
+}
+
+.myProfile_bookself {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #8E3200;
+  text-decoration: none;
+  padding: 5px 10px;
+  background-color: #D7A86E;
+  color: #FFF;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.myProfile_bookself:hover {
+  background-color: #a55f34;
+  color: #fff;
 }
 
 #profilePic {
@@ -2085,6 +2100,7 @@ html {
   display: flex;
   justify-content: center;
   margin-top: 4px;
+  margin-bottom: 6px;
 }
 
 #yearContent {
@@ -2100,6 +2116,18 @@ html {
 
 #link2022 {
   text-decoration: none;
+  background-color: #A64B2A;
+  padding: 0.2rem;
+  color: #FFF;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  margin-bottom: 0.2rem;
+}
+#link2022:hover {
+  background-color: #a55f34;
+  color: #fff;
 }
 
 #bottomSide {
@@ -2135,10 +2163,6 @@ html {
   display: flex;
   flex-direction: column;
   gap: 10px;
-}
-
-#friendsTitle {
-  font-weight: bold;
 }
 
 .friendsLine {
