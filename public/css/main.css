@@ -1062,6 +1062,24 @@ html {
   align-items: center;
   justify-content: space-between;
 }
+.book-main__genre-response {
+  width: 30rem;
+  max-height: 10rem;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: #a55f34;
+  border-radius: 4px;
+  box-shadow: 10px 0 20px rgba(0, 0, 0, 0.5);
+}
+.book-main__genre-response .book-genre-element {
+  padding: 0.5rem;
+  border-bottom: solid 1px #fff;
+}
+.book-main__genre-response .book-genre-element:hover {
+  background-color: #fff;
+  color: #a55f34;
+  cursor: pointer;
+}
 .book-main__image {
   flex-basis: 15%;
   max-width: 500px;
@@ -1098,7 +1116,22 @@ html {
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }
+.book-main__details .book-genre-button {
+  min-width: 9.5rem;
+  margin-top: 1rem;
+  padding: 10px 20px;
+  background-color: #72583A;
+  color: #FFF;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
 .book-main__details .add-to-list-button:hover {
+  background-color: #a55f34;
+  color: #fff;
+}
+.book-main__details .book-genre-button:hover {
   background-color: #a55f34;
   color: #fff;
 }

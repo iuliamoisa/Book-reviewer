@@ -435,9 +435,8 @@ const server = http.createServer(async(req, res) => {
       try {
         if(idFriend=="null" || idFriend==undefined)
           idFriend=userId;
-        console.log("!!!!",idFriend);
         const query1 = 'SELECT * FROM utilizatori WHERE id = $1';
-        const values = [idFriend];const getBooksValues = [idFriend];const getReadingBooksValues = [userId];
+        const values = [idFriend];const getBooksValues = [idFriend];const getReadingBooksValues = [idFriend];
         const result = await pool.query(query1, values);
         const user = result.rows[0];
 

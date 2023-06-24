@@ -33,7 +33,6 @@ function fetchProfilePic(friendId) {
   }
 
 function fetchProfileData(friendId) {
-  console.log("???",friendId);
   fetch(`http://localhost:3000/getProfileData?idFriend=${friendId}`)
     .then(response => response.json())
     .then(data => {
@@ -77,8 +76,6 @@ function fetchProfileFriends(friendId){
                         <p id="nameFriends"><span class="nameForFriend" onclick="redirectPage(${data[i].friend_id})">${data[i].friend_name} </span><br> ${data[i].book_count} books | ${data[i].friend_count} friends</p>
                       </div>`;
       }
-      
-     
     })
     .catch(error => {
       console.error('Error fetching request:', error);
