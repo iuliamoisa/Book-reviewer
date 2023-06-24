@@ -19,12 +19,10 @@ const server = http.createServer(async(req, res) => {
   const parsedUrl = url.parse(req.url, true);
   if (req.method === 'GET' && parsedUrl.pathname === '/getProfilePic') {
     let idFriend = parsedUrl.query.idFriend;
-    console.log("llll",idFriend);
     (async () => {
       try {
         if(idFriend=="null" || idFriend==undefined)
           idFriend=userId;
-        console.log("ppW",idFriend);
         const query = 'SELECT imagine FROM utilizatori where id=$1';
         const values = [idFriend];
         const result = await pool.query(query, values);
@@ -49,7 +47,6 @@ const server = http.createServer(async(req, res) => {
   }else
   if (req.url === '/getImage' && req.method === 'GET') {
     try {
-      // Retrieve the image data from the database
       const result = await pool.query('SELECT image_data FROM images WHERE id_utilizator = $1', [userId]);
       const imageData = result.rows[0];
   
@@ -63,7 +60,6 @@ const server = http.createServer(async(req, res) => {
       res.end('Error retrieving image.');
     }
   }
-  
   else
   if (req.url === '/upload' && req.method === 'POST') {
     let body = '';
@@ -81,11 +77,7 @@ const server = http.createServer(async(req, res) => {
       res.write(JSON.stringify(status));
       console.log(JSON.stringify({'status':'ok'}));
       res.end();
-      
-      // Process the received image source as needed
       console.log('Received image source:', src);
-
-     
       res.writeHead(302, { 'Location': '/settings.html' });
       res.end();
     });
@@ -120,8 +112,6 @@ const server = http.createServer(async(req, res) => {
       data += chunk;
     });
     req.on('end', async( ) => {
-     
-      
       data=JSON.parse(data);
       let idP=data.idFriend;
       console.log(idP);
@@ -146,24 +136,20 @@ const server = http.createServer(async(req, res) => {
           data += chunk;
         });
         req.on('end', async( ) => {
-         
-          
           data=JSON.parse(data);
           let idP=data.idFriend;
           console.log(idP);
           const query = 'call accept_request ($1,$2);';
-        const values = [idP,userId];
+          const values = [idP,userId];
 
-        pool.query(query, values);
-          let status='ok';
-          res.writeHead(200, { 'Content-Type': 'application/json' });
-          res.write(JSON.stringify(status));
-          console.log(JSON.stringify({'status':'ok'}));
-          res.end();
-        
-        });
-      
-        
+          pool.query(query, values);
+            let status='ok';
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.write(JSON.stringify(status));
+            console.log(JSON.stringify({'status':'ok'}));
+            res.end();
+          
+          });
       } catch (error) {
         console.error('Error getting friends count:', error);
         res.writeHead(500, { 'Content-Type': 'application/json' });
@@ -182,7 +168,6 @@ const server = http.createServer(async(req, res) => {
         const values = [idFriend];
         const result = await pool.query(query, values);
         const friendsCount = result.rows[0].friends_count;
-        console.log(friendsCount);
         if (friendsCount) {
           res.writeHead(200, { 'Content-Type': 'application/json' });
           res.write(JSON.stringify(friendsCount));
@@ -200,9 +185,7 @@ const server = http.createServer(async(req, res) => {
       }
     })();
   }
-  
   else if (req.method === 'GET' && parsedUrl.pathname === '/getProfileFriends') {
-    
     (async () => {
       try {
         let idFriend = parsedUrl.query.idFriend;
@@ -255,7 +238,6 @@ const server = http.createServer(async(req, res) => {
       }
     })();
   }
-
   else if (req.method === 'GET' && parsedUrl.pathname === '/getRequests') {
     (async () => {
       try {
@@ -330,7 +312,6 @@ const server = http.createServer(async(req, res) => {
       }
     })();
   }
-
   else if (req.method === 'GET' && parsedUrl.pathname === '/recommendation') {
     (async () => {
       try {
@@ -357,14 +338,11 @@ const server = http.createServer(async(req, res) => {
     })();
   }else if (req.method === 'POST' && parsedUrl.pathname === '/add') {
     let requestBody = '';
-
     req.on('data', (chunk) => {
       requestBody += chunk;
     });
-
     req.on('end', async () => {
       const { fname, lname, username, email, password } = querystring.parse(requestBody);
-
       try {
         const verifyMail = 'SELECT * FROM utilizatori WHERE email = $1';
         const mailValue = [email];
@@ -389,19 +367,15 @@ const server = http.createServer(async(req, res) => {
       }
     });
   }
-
   else  if (req.method === 'POST' && parsedUrl.pathname === '/signin') {
     let body = '';
     req.on('data', (chunk) => {
       body += chunk.toString();
     });
-
     req.on('end', async () => {
       const formData = querystring.parse(body);
       const email = formData.email;
       const password = formData.password;
-
-
       try {
         const query = 'SELECT * FROM utilizatori WHERE email = $1 AND parola = $2';
         const values = [email, password];
@@ -430,14 +404,12 @@ const server = http.createServer(async(req, res) => {
   }
   else if (req.method === 'GET' && parsedUrl.pathname === '/getProfileData') {
     let idFriend = parsedUrl.query.idFriend;
-    console.log("idFriend ",idFriend);
     (async () => {
       try {
         if(idFriend=="null" || idFriend==undefined)
           idFriend=userId;
-        console.log("!!!!",idFriend);
         const query1 = 'SELECT * FROM utilizatori WHERE id = $1';
-        const values = [idFriend];const getBooksValues = [idFriend];const getReadingBooksValues = [userId];
+        const values = [idFriend];const getBooksValues = [idFriend];const getReadingBooksValues = [idFriend];
         const result = await pool.query(query1, values);
         const user = result.rows[0];
 
@@ -458,7 +430,7 @@ const server = http.createServer(async(req, res) => {
             booksCount: booksCount,
             readingBooksCount: readingBooksCount,
             toReadBooksCount: toReadBooksCount,
-            descriere: user.descriere, // Replace with the actual column name for the profile picture URL
+            descriere: user.descriere, 
           };
           res.writeHead(200, { 'Content-Type': 'application/json' });
           res.write(JSON.stringify(profileData));
@@ -477,10 +449,7 @@ const server = http.createServer(async(req, res) => {
     })();
   }
   else if (req.method === 'GET' && parsedUrl.pathname === '/logout') {
-    // Clear the userId or perform any other necessary logout actions
     userId = null;
-  
-    // Redirect the user to the login page or any other desired destination
     res.writeHead(302, { 'Location': '/signIn.html' });
     res.end();
   }else if(parsedUrl.pathname ==='/book'){
@@ -525,8 +494,7 @@ const server = http.createServer(async(req, res) => {
     })();
 
   } else  if (parsedUrl.pathname === '/reviews' && req.method === 'GET') { // TOATE RECENZIILE
-    const query = 'SELECT u.nume, u.prenume, r.timestamp AS review_timestamp, r.rating, r.recenzie_text, c.titlu, c.autor FROM recenzii r JOIN carti c ON r.id_carte = c.id JOIN utilizatori u ON r.id_utilizator = u.id';
-
+    const query = 'select * from get_reviews()';
     pool.query(query, (err, result) => {
       if (err) {
         console.error('Error fetching reviews:', err);
@@ -546,7 +514,6 @@ const server = http.createServer(async(req, res) => {
         const result = await pool.query(query, [bookId]);
   
         const reviews = result.rows;
-  console.log(reviews);
         res.setHeader('Content-Type', 'application/json');
         res.statusCode = 200;
         res.end(JSON.stringify(reviews));
@@ -564,7 +531,6 @@ const server = http.createServer(async(req, res) => {
         const values = [userId];
         const result = await pool.query(query, values);
       const statistics = result.rows;
-      console.log("statistics", statistics);
         if (statistics) {
           res.writeHead(200, { 'Content-Type': 'application/json' });
           res.write(JSON.stringify(statistics));
@@ -588,8 +554,7 @@ const server = http.createServer(async(req, res) => {
         const query = 'SELECT * FROM get_user_book_stats($1)';
         const values = [userId];
         const result = await pool.query(query, values);
-      const statistics2 = result.rows;
-      console.log("statistics2", statistics2);
+        const statistics2 = result.rows;
         if (statistics2) {
           res.writeHead(200, { 'Content-Type': 'application/json' });
           res.write(JSON.stringify(statistics2));
@@ -606,9 +571,8 @@ const server = http.createServer(async(req, res) => {
         res.end();
       }
     })();
-  }
-  else // ADAUGA IN TO READ LIST
-  if (req.method === 'POST' && req.url === '/add-to-reading-list') {
+  }// ADAUGA IN TO READ LIST
+  else if (req.method === 'POST' && req.url === '/add-to-reading-list') {
     let body = '';
     req.on('data', (chunk) => {
       body += chunk;
@@ -616,8 +580,6 @@ const server = http.createServer(async(req, res) => {
     req.on('end', () => {
       body = JSON.parse(body);
       let bookId = body.bookId;
-      console.log("AICI: " + bookId);
-      console.log(userId);
       const query = 'INSERT INTO biblioteca (id_utilizator, id_carte, categorie) VALUES ($1, $2, $3)';
       const values = [userId, bookId, 1]; 
       const query2 = 'INSERT INTO progres (id_utilizator, id_carte, pagina_curenta, data_start, status_carte) VALUES ($1, $2, $3, $4, $5)';
@@ -643,7 +605,8 @@ const server = http.createServer(async(req, res) => {
         }
       });
     });
-  }else if (req.method === 'POST' && req.url === '/submit-review') {
+  }
+  else if (req.method === 'POST' && req.url === '/submit-review') {
     let body = '';
     req.on('data', chunk => {
       body += chunk.toString();
@@ -684,11 +647,15 @@ const server = http.createServer(async(req, res) => {
         res.end('Invalid request body');
       }
     });
-  }else if (req.method === 'GET' && parsedUrl.pathname === '/getBookDetails') {
+  }
+  else if (req.method === 'GET' && parsedUrl.pathname === '/getBookDetails') {
+    let idFriend = parsedUrl.query.idFriend;
     (async () => {
       try {
+        if(idFriend=="null" || idFriend==undefined)
+          idFriend=userId;
         const query = 'SELECT * FROM get_user_book_progress($1);';
-        const values = [userId];
+        const values = [idFriend];
         const result = await pool.query(query, values);
         const book_details = result.rows;
         if (book_details) {
@@ -708,19 +675,20 @@ const server = http.createServer(async(req, res) => {
       }
     })();
   }
-  else if (req.method === 'GET' && (parsedUrl.pathname === '/getCurrentlyReadingDetails' ||
-  parsedUrl.pathname === '/getToReadDetails' || 
-  parsedUrl.pathname === '/getReadDetails')) {
+  else if (req.method === 'GET' && (parsedUrl.pathname === '/getCurrentlyReadingDetails' || parsedUrl.pathname === '/getToReadDetails' ||  parsedUrl.pathname === '/getReadDetails')) {
+    let idFriend = parsedUrl.query.idFriend;
     (async () => {
       try {
+        if(idFriend=="null" || idFriend==undefined)
+          idFriend=userId;
         const query = 'SELECT * FROM get_all_books($1,$2);';
         let values ;
         if(parsedUrl.pathname === '/getCurrentlyReadingDetails')
-          values = [userId, 2];
+          values = [idFriend, 2];
         else if(parsedUrl.pathname === '/getToReadDetails')
-          values = [userId, 1];
+          values = [idFriend, 1];
         else if(parsedUrl.pathname === '/getReadDetails')
-          values = [userId, 3];
+          values = [idFriend, 3];
         const result = await pool.query(query, values);
         const book_details = result.rows;
         if (book_details) {
@@ -739,7 +707,8 @@ const server = http.createServer(async(req, res) => {
         res.end();
       }
     })();
-  }else if(req.method === 'GET' && parsedUrl.pathname === '/getByKeyword') {
+  }
+  else if(req.method === 'GET' && parsedUrl.pathname === '/getByKeyword') {
     const keyword = parsedUrl.query.keyword;
     const query = 'SELECT id, titlu FROM carti WHERE titlu LIKE $1';
     const values = [`%${keyword}%`];
@@ -780,15 +749,67 @@ const server = http.createServer(async(req, res) => {
     }
     )();
   }
+  
+
+
+  else if (req.method === 'POST' && req.url === '/updateProgress') {
+    let body = '';
+    req.on('data', (chunk) => {
+      body += chunk;
+    });
+    req.on('end', () => {
+      body = JSON.parse(body);
+      let bookId = body.bookId;
+      let pagesRead=body.pagesRead;
+      let totalNumberOfPages = body.totalPages;
+      const query = `
+      UPDATE progres
+      SET pagina_curenta = $1, data_start = NOW(), status_carte = $2
+      WHERE id_carte = $3 AND id_utilizator = $4;`;
+      const values = [pagesRead,pagesRead >= totalNumberOfPages, bookId, userId]; 
+      
+      const query2 = `UPDATE biblioteca
+      SET categorie = 3
+      WHERE id_carte = $1 AND id_utilizator = $2;`;
+      const values2 = [bookId, userId];
+      
+      if(pagesRead == totalNumberOfPages){
+        pool.query(query2, values2, (err) => {
+          if (err) {
+            console.error('Error updating progress:', err);
+            res.statusCode = 500;
+            res.end();
+          } else {
+            res.statusCode = 200;
+            res.end();
+          }
+        });
+      }
+        pool.query(query, values, (err) => {
+          if (err) {
+            console.error('Error updating progress:', err);
+            res.statusCode = 500;
+            res.end();
+          } else {
+            res.statusCode = 200;
+            res.end();
+          }
+        });
+
+    });
+  }
+
+
+
+
+  // Serve static files
   else  {
-    // Serve static files
     let filePath = path.join(__dirname, 'public', parsedUrl.pathname);
     if (parsedUrl.pathname === '/') {
       filePath = path.join(__dirname, 'public', 'home.html');
     } else if (parsedUrl.pathname === '/styles/main.css') {
       filePath = path.join(__dirname, 'public', 'styles', 'main.css');
     }
-
     fs.readFile(filePath, (err, data) => {
       if (err) {
         res.statusCode = 404;

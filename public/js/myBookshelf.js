@@ -1,20 +1,30 @@
-window.addEventListener("load", fetchBookDetails);
-let allBooks = document.getElementById("allBooks");
-allBooks.addEventListener("click", fetchBookDetails);
 
-let currentlyReading = document.getElementById("currentlyReading");
-currentlyReading.addEventListener("click", fetchCurrentlyReadingDetails);
+window.addEventListener('DOMContentLoaded', function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const friendId = urlParams.get('idFriend');
 
-let toRead = document.getElementById("toRead");
-toRead.addEventListener("click", fetchToReadDetails);
+  window.addEventListener("load",()=> { fetchBookDetails(friendId)});
+  let allBooks = document.getElementById("allBooks");
+  allBooks.addEventListener("click",()=> {fetchBookDetails(friendId)});
 
-let alreadyRead = document.getElementById("alreadyRead");
-alreadyRead.addEventListener("click", fetchReadDetails);
+  let currentlyReading = document.getElementById("currentlyReading");
+  currentlyReading.addEventListener("click",()=> {fetchCurrentlyReadingDetails(friendId)});
+
+  let toRead = document.getElementById("toRead");
+  toRead.addEventListener("click",()=> { fetchToReadDetails(friendId)});
+
+  let alreadyRead = document.getElementById("alreadyRead");
+  alreadyRead.addEventListener("click",()=> { fetchReadDetails(friendId)});
+});
+
+
 let html;
+
 function parseHTML(data){
     html = '';
     for (let i = 0; i < data.length ; i++) {
-    html += `<div class="bookMember">
+      console.log("incercare: ",data[i]);
+    html += `<div class="bookMember" onclick="redirectToBook(${data[i].book_id})">
                 <p class="booksTitle">${data[i].book_name}</p>
                 <p class="booksAuthor">${data[i].author}</p>
                 <div>`;
@@ -28,13 +38,43 @@ function parseHTML(data){
     html += `</div>
                 <div class="borderProgress">
                     <div class="borderGrey">${data[i].progress}%</div>
-                </div>
+                
+                    </div>
                 </div>`;
     }   
 }
 
-function fetchBookDetails() {
-    fetch('http://localhost:3000/getBookDetails')
+function parseHTML2(data){
+  html = '';
+  for (let i = 0; i < data.length ; i++) {
+    console.log("incercare: ",data[i]);
+  html += `<div class="bookMember">
+              <p class="booksTitle" onclick="redirectToBook(${data[i].book_id})">${data[i].book_name}</p>
+              <p class="booksAuthor" onclick="redirectToBook(${data[i].book_id})">${data[i].author}</p>
+              <div>`;
+  for (let j = 1; j < 6; j++) {
+      if (j <= data[i].rating) {
+      html += `<span class="fa fa-star checked"></span>`;
+      } else {
+      html += `<span class="fa fa-star"></span>`;
+      }
+  }
+  html += `</div>
+              <div class="borderProgress">
+                  <div class="borderGrey">${data[i].progress}%</div>
+              
+                  </div>
+                  <button class="updateProgressBtn" onclick="updateProgress(${data[i].book_id}, ${data[i].total_pages},${data[i].current_page})">Update Progress</button>
+              </div>`;
+  }   
+}
+
+function redirectToBook(bookId){
+  window.location.href = `/book?bookId=${bookId}`;
+}
+function fetchBookDetails(friendId) {
+  console.log("winx puterea femeii", friendId);
+    fetch(`http://localhost:3000/getBookDetails?idFriend=${friendId}`)
     .then(response => {
       if (!response.ok) {
         throw new Error('Request failed');
@@ -51,8 +91,46 @@ function fetchBookDetails() {
       });
   }
 
-  function fetchCurrentlyReadingDetails() {
-    fetch('http://localhost:3000/getCurrentlyReadingDetails')
+function fetchCurrentlyReadingDetails(friendId) {
+  console.log("blaaaa", friendId);
+    fetch(`http://localhost:3000/getCurrentlyReadingDetails?idFriend=${friendId}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Request failed');
+      }
+      return response.json();
+    })
+      .then(data => {
+        parseHTML2(data);
+        const rightSide = document.getElementById("rightSide");
+        rightSide.innerHTML = html;
+      })
+      .catch(error => {
+        console.error('Error fetching recommendation:', error);
+      });
+  }
+
+  function fetchToReadDetails(friendId) {
+    console.log("ahahahah", friendId);
+    fetch(`http://localhost:3000/getToReadDetails?idFriend=${friendId}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Request failed');
+      }
+      return response.json();
+    })
+      .then(data => {
+        parseHTML(data);
+        const rightSide = document.getElementById("rightSide");
+        rightSide.innerHTML = html;
+      })
+      .catch(error => {
+        console.error('Error fetching recommendation:', error);
+      });
+  }
+  function fetchReadDetails(friendId) {
+    console.log("blacewcdqdxnskqaaa", friendId);
+    fetch(`http://localhost:3000/getReadDetails?idFriend=${friendId}`)
     .then(response => {
       if (!response.ok) {
         throw new Error('Request failed');
@@ -69,37 +147,32 @@ function fetchBookDetails() {
       });
   }
 
-  function fetchToReadDetails() {
-    fetch('http://localhost:3000/getToReadDetails')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Request failed');
-      }
-      return response.json();
+
+
+
+  function updateProgress(bookId, totalPages, currentPage) {
+    const pagesRead = prompt(`You currently read ${currentPage} pages out of ${totalPages} pages. Enter the page you're currently at. `);
+    if (pagesRead === null || pagesRead === '' || pagesRead <= 0 || pagesRead>totalPages) {
+      return; 
+    }
+  
+    const progress = Math.floor((pagesRead / totalPages) * 100);
+  
+    fetch('http://localhost:3000/updateProgress', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ bookId, pagesRead, totalPages })
     })
-      .then(data => {
-        parseHTML(data);
-        const rightSide = document.getElementById("rightSide");
-        rightSide.innerHTML = html;
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Request failed');
+        }
+        location.reload();
       })
       .catch(error => {
-        console.error('Error fetching recommendation:', error);
+        console.error('Error updating progress:', error);
       });
   }
-  function fetchReadDetails() {
-    fetch('http://localhost:3000/getReadDetails')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Request failed');
-      }
-      return response.json();
-    })
-      .then(data => {
-        parseHTML(data);
-        const rightSide = document.getElementById("rightSide");
-        rightSide.innerHTML = html;
-      })
-      .catch(error => {
-        console.error('Error fetching recommendation:', error);
-      });
-  }
+  
