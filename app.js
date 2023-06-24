@@ -684,10 +684,14 @@ const server = http.createServer(async(req, res) => {
       }
     });
   }else if (req.method === 'GET' && parsedUrl.pathname === '/getBookDetails') {
+    let idFriend = parsedUrl.query.idFriend;
+    console.log("idFriend ",idFriend);
     (async () => {
       try {
+        if(idFriend=="null" || idFriend==undefined)
+          idFriend=userId;
         const query = 'SELECT * FROM get_user_book_progress($1);';
-        const values = [userId];
+        const values = [idFriend];
         const result = await pool.query(query, values);
         const book_details = result.rows;
         if (book_details) {
@@ -710,16 +714,20 @@ const server = http.createServer(async(req, res) => {
   else if (req.method === 'GET' && (parsedUrl.pathname === '/getCurrentlyReadingDetails' ||
   parsedUrl.pathname === '/getToReadDetails' || 
   parsedUrl.pathname === '/getReadDetails')) {
+
+    let idFriend = parsedUrl.query.idFriend;
     (async () => {
       try {
+        if(idFriend=="null" || idFriend==undefined)
+          idFriend=userId;
         const query = 'SELECT * FROM get_all_books($1,$2);';
         let values ;
         if(parsedUrl.pathname === '/getCurrentlyReadingDetails')
-          values = [userId, 2];
+          values = [idFriend, 2];
         else if(parsedUrl.pathname === '/getToReadDetails')
-          values = [userId, 1];
+          values = [idFriend, 1];
         else if(parsedUrl.pathname === '/getReadDetails')
-          values = [userId, 3];
+          values = [idFriend, 3];
         const result = await pool.query(query, values);
         const book_details = result.rows;
         if (book_details) {

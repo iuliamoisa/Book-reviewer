@@ -1,16 +1,25 @@
-window.addEventListener("load", fetchBookDetails);
-let allBooks = document.getElementById("allBooks");
-allBooks.addEventListener("click", fetchBookDetails);
 
-let currentlyReading = document.getElementById("currentlyReading");
-currentlyReading.addEventListener("click", fetchCurrentlyReadingDetails);
+window.addEventListener('DOMContentLoaded', function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const friendId = urlParams.get('idFriend');
 
-let toRead = document.getElementById("toRead");
-toRead.addEventListener("click", fetchToReadDetails);
+  window.addEventListener("load",()=> { fetchBookDetails(friendId)});
+  let allBooks = document.getElementById("allBooks");
+  allBooks.addEventListener("click",()=> {fetchBookDetails(friendId)});
 
-let alreadyRead = document.getElementById("alreadyRead");
-alreadyRead.addEventListener("click", fetchReadDetails);
+  let currentlyReading = document.getElementById("currentlyReading");
+  currentlyReading.addEventListener("click",()=> {fetchCurrentlyReadingDetails(friendId)});
+
+  let toRead = document.getElementById("toRead");
+  toRead.addEventListener("click",()=> { fetchToReadDetails(friendId)});
+
+  let alreadyRead = document.getElementById("alreadyRead");
+  alreadyRead.addEventListener("click",()=> { fetchReadDetails(friendId)});
+});
+
+
 let html;
+
 function parseHTML(data){
     html = '';
     for (let i = 0; i < data.length ; i++) {
@@ -33,8 +42,9 @@ function parseHTML(data){
     }   
 }
 
-function fetchBookDetails() {
-    fetch('http://localhost:3000/getBookDetails')
+function fetchBookDetails(friendId) {
+  console.log("winx puterea femeii", friendId);
+    fetch(`http://localhost:3000/getBookDetails?idFriend=${friendId}`)
     .then(response => {
       if (!response.ok) {
         throw new Error('Request failed');
@@ -51,8 +61,9 @@ function fetchBookDetails() {
       });
   }
 
-  function fetchCurrentlyReadingDetails() {
-    fetch('http://localhost:3000/getCurrentlyReadingDetails')
+function fetchCurrentlyReadingDetails(friendId) {
+  console.log("blaaaa", friendId);
+    fetch(`http://localhost:3000/getCurrentlyReadingDetails?idFriend=${friendId}`)
     .then(response => {
       if (!response.ok) {
         throw new Error('Request failed');
@@ -69,8 +80,9 @@ function fetchBookDetails() {
       });
   }
 
-  function fetchToReadDetails() {
-    fetch('http://localhost:3000/getToReadDetails')
+  function fetchToReadDetails(friendId) {
+    console.log("ahahahah", friendId);
+    fetch(`http://localhost:3000/getToReadDetails?idFriend=${friendId}`)
     .then(response => {
       if (!response.ok) {
         throw new Error('Request failed');
@@ -86,8 +98,9 @@ function fetchBookDetails() {
         console.error('Error fetching recommendation:', error);
       });
   }
-  function fetchReadDetails() {
-    fetch('http://localhost:3000/getReadDetails')
+  function fetchReadDetails(friendId) {
+    console.log("blacewcdqdxnskqaaa", friendId);
+    fetch(`http://localhost:3000/getReadDetails?idFriend=${friendId}`)
     .then(response => {
       if (!response.ok) {
         throw new Error('Request failed');

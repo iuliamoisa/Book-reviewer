@@ -1,14 +1,12 @@
-//window.addEventListener('load',fetchProfileFriends);
-//window.addEventListener('load',fetchFriendsCount);
-//window.addEventListener('load', fetchProfileData);
-//window.addEventListener('load',fetchProfilePic);
-
-window.addEventListener('DOMContentLoaded', function () {
-  // Get the friend ID from the URL query parameter
+function redirect2(){
   const urlParams = new URLSearchParams(window.location.search);
   const friendId = urlParams.get('idFriend');
-  console.log("blaaaaa",friendId);
-  // Fetch the friend's profile data using the friendId
+  redirectToBookshelf(friendId);
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const friendId = urlParams.get('idFriend');
   fetchProfileFriends(friendId);
   fetchProfileData(friendId);
  
@@ -17,7 +15,6 @@ window.addEventListener('DOMContentLoaded', function () {
 });
 
 function fetchProfilePic(friendId) {
-  
     fetch(`http://localhost:3000/getProfilePic?idFriend=${friendId}`)
       .then(response => response.json())
       .then(data => {
@@ -101,6 +98,11 @@ function fetchFriendsCount(friendId){
 function redirectPage(idFriend){
   window.location.href = `/myProfile.html?idFriend=${idFriend}`;
 }
+
+function redirectToBookshelf(idFriend){
+  window.location.href = `/myBookshelf.html?idFriend=${idFriend}`;
+}
+
 
 /////////////////////// LOGOUT
 
