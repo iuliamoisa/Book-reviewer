@@ -6,6 +6,11 @@ requestsButton.addEventListener('click',fetchRequests);
 friendsButton.addEventListener('click',fetchFriends);
 suggestionButton.addEventListener('click',fetchSuggestion);
 
+function redirectPage(idFriend){
+  window.location.href = `/myProfile.html?idFriend=${idFriend}`;
+}
+
+
 function changeMenu(menu,data) {
     const menus = document.getElementsByClassName('navbar-sect');
     const content = document.getElementById('profiles-content');
@@ -30,8 +35,8 @@ function changeMenu(menu,data) {
             console.log(data[i].username);
             content.innerHTML += `
             <div class="profile-card">
-                <img src="pictures/doctor.jpeg" alt="Profile Picture">
-                <h4>${data[i].username}</h4>
+                <img src="${data[i].friend_image}" alt="Profile Picture">
+                <h4 onclick="redirectPage(${data[i].friendid})">${data[i].username} </h4>
             </div>`
             
             ;
@@ -42,7 +47,7 @@ function changeMenu(menu,data) {
         for(let i=0;i<data.length;i++){
             content.innerHTML += `
           <div class="profile-card">
-            <img src="pictures/friend1.jpeg" alt="Profile Picture">
+            <img src="${data[i].friend_image}" alt="Profile Picture">
             <h4>You have a friend request from ${data[i].username}</h4>
             <button class="accept-button" onclick=addRemove(1,${data[i].id})>Accept</button>
             <button class="decline-button" onclick=addRemove(-1,${data[i].id})>Decline</button>
@@ -62,7 +67,7 @@ function changeMenu(menu,data) {
         for(let i=0;i<data.length;i++){
             content.innerHTML += `
             <div class="profile-card">
-                <img src="pictures/friend3.jpeg" alt="Profile Picture">
+                <img src="${data[i].friend_image}" alt="Profile Picture">
                 <h4>${data[i].username} has ${data[i].common_books_count} books in common with you, and also seems to be a member of ${data[i].group_name}</h4>
                 <button class="add-button" onclick=addFriendFromSugg(${data[i].idp})>Add Friend</button>
             </div>`;

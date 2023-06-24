@@ -18,11 +18,15 @@ const pool = new Pool({
 const server = http.createServer(async(req, res) => {
   const parsedUrl = url.parse(req.url, true);
   if (req.method === 'GET' && parsedUrl.pathname === '/getProfilePic') {
-    
+    let idFriend = parsedUrl.query.idFriend;
+    console.log("llll",idFriend);
     (async () => {
       try {
+        if(idFriend=="null" || idFriend==undefined)
+          idFriend=userId;
+        console.log("ppW",idFriend);
         const query = 'SELECT imagine FROM utilizatori where id=$1';
-        const values = [userId];
+        const values = [idFriend];
         const result = await pool.query(query, values);
         const imagine = result.rows[0];
 
@@ -171,8 +175,11 @@ const server = http.createServer(async(req, res) => {
  else if (req.method === 'GET' && parsedUrl.pathname === '/getFriendsCount') {
     (async () => {
       try {
+        let idFriend = parsedUrl.query.idFriend;
+        if(idFriend=="null" || idFriend==undefined)
+          idFriend=userId;
         const query = 'SELECT COUNT(*) AS friends_count FROM prieteni WHERE id_utilizator = $1';
-        const values = [userId];
+        const values = [idFriend];
         const result = await pool.query(query, values);
         const friendsCount = result.rows[0].friends_count;
         console.log(friendsCount);
@@ -193,11 +200,16 @@ const server = http.createServer(async(req, res) => {
       }
     })();
   }
+  
   else if (req.method === 'GET' && parsedUrl.pathname === '/getProfileFriends') {
+    
     (async () => {
       try {
+        let idFriend = parsedUrl.query.idFriend;
+        if(idFriend=="null" || idFriend==undefined)
+          idFriend=userId;
         const query = 'SELECT * FROM getFriendDetails($1)';
-        const values = [userId];
+        const values = [idFriend];
         const result = await pool.query(query, values);
         const friendDetails = result.rows;
 
@@ -417,10 +429,15 @@ const server = http.createServer(async(req, res) => {
     });
   }
   else if (req.method === 'GET' && parsedUrl.pathname === '/getProfileData') {
+    let idFriend = parsedUrl.query.idFriend;
+    console.log("idFriend ",idFriend);
     (async () => {
       try {
+        if(idFriend=="null" || idFriend==undefined)
+          idFriend=userId;
+        console.log("!!!!",idFriend);
         const query1 = 'SELECT * FROM utilizatori WHERE id = $1';
-        const values = [userId];const getBooksValues = [userId];const getReadingBooksValues = [userId];
+        const values = [idFriend];const getBooksValues = [idFriend];const getReadingBooksValues = [userId];
         const result = await pool.query(query1, values);
         const user = result.rows[0];
 
@@ -440,8 +457,8 @@ const server = http.createServer(async(req, res) => {
             name: `${user.nume} ${user.prenume}`,
             booksCount: booksCount,
             readingBooksCount: readingBooksCount,
-            toReadBooksCount: toReadBooksCount
-            // profilePicUrl: user.profilePicUrl, // Replace with the actual column name for the profile picture URL
+            toReadBooksCount: toReadBooksCount,
+            descriere: user.descriere, // Replace with the actual column name for the profile picture URL
           };
           res.writeHead(200, { 'Content-Type': 'application/json' });
           res.write(JSON.stringify(profileData));

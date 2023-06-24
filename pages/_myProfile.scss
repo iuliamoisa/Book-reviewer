@@ -4,7 +4,21 @@
     justify-content: center;
     padding-top: 1.5rem;
   }
-  
+  .myProfile_bookself{
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: $red-brown;
+    text-decoration: none;
+    padding: 5px 10px;
+    background-color: $crem;
+    color: #FFF;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover {
+      background-color: #a55f34;
+      color: #fff;
+  }
+  }
   #profilePic {
     width: 150px;
     height: 150px;
@@ -77,6 +91,7 @@
     display: flex;
     justify-content: center;
     margin-top: 4px;
+    margin-bottom: 6px;
   }
   
   #yearContent {
@@ -92,6 +107,18 @@
   
   #link2022 {
     text-decoration: none;
+    background-color: $brown;
+    padding: 0.2rem;
+    color: #FFF;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    margin-bottom: 0.2rem;
+    &:hover {
+      background-color: #a55f34;
+      color: #fff;
+  }
   }
   
   #bottomSide {
@@ -129,9 +156,7 @@
     gap: 10px;
   }
   
-  #friendsTitle {
-    font-weight: bold;
-  }
+
   
   .friendsLine {
     margin-top: 2vh;

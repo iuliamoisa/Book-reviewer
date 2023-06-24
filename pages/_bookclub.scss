@@ -6,7 +6,7 @@
 
 .bookclub-main{
     height: 77.5vh;
-    width: 60rem;
+    width: 100%;
     background:linear-gradient(165deg, $smokey-white, $crem);
     &__profilePic{
         left:4rem;
@@ -67,7 +67,6 @@
     top:6.25rem;
     left:60rem;
     margin-bottom:7rem;
-    width: 28rem;
     padding: 4rem;
     background:linear-gradient(135deg, $brown, $negru);
     overflow: scroll;
