@@ -748,7 +748,61 @@ const server = http.createServer(async(req, res) => {
       }
     }
     )();
-  }// Serve static files
+  }
+  
+
+
+  else if (req.method === 'POST' && req.url === '/updateProgress') {
+    let body = '';
+    req.on('data', (chunk) => {
+      body += chunk;
+    });
+    req.on('end', () => {
+      body = JSON.parse(body);
+      let bookId = body.bookId;
+      let pagesRead=body.pagesRead;
+      let totalNumberOfPages = body.totalPages;
+      const query = `
+      UPDATE progres
+      SET pagina_curenta = $1, data_start = NOW(), status_carte = $2
+      WHERE id_carte = $3 AND id_utilizator = $4;`;
+      const values = [pagesRead,pagesRead >= totalNumberOfPages, bookId, userId]; 
+      
+      const query2 = `UPDATE biblioteca
+      SET categorie = 3
+      WHERE id_carte = $1 AND id_utilizator = $2;`;
+      const values2 = [bookId, userId];
+      
+      if(pagesRead == totalNumberOfPages){
+        pool.query(query2, values2, (err) => {
+          if (err) {
+            console.error('Error updating progress:', err);
+            res.statusCode = 500;
+            res.end();
+          } else {
+            res.statusCode = 200;
+            res.end();
+          }
+        });
+      }
+        pool.query(query, values, (err) => {
+          if (err) {
+            console.error('Error updating progress:', err);
+            res.statusCode = 500;
+            res.end();
+          } else {
+            res.statusCode = 200;
+            res.end();
+          }
+        });
+
+    });
+  }
+
+
+
+
+  // Serve static files
   else  {
     let filePath = path.join(__dirname, 'public', parsedUrl.pathname);
     if (parsedUrl.pathname === '/') {
