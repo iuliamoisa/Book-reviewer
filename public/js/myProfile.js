@@ -73,7 +73,7 @@ function fetchProfileFriends(friendId){
       liOfFriends.innerHTML='';
       for(let i=0;i<data.length;i++){
         liOfFriends.innerHTML+=`<div class="personFriend">
-                        <p id="f1" class="friendPicture"></p>
+                        <img src="${data[i].friend_image}" id="f1" class="friendPicture"></img>
                         <p id="nameFriends"><span class="nameForFriend" onclick="redirectPage(${data[i].friend_id})">${data[i].friend_name} </span><br> ${data[i].book_count} books | ${data[i].friend_count} friends</p>
                       </div>`;
       }
