@@ -193,3 +193,36 @@ function logout() {
       console.error('Logout failed:', error);
     });
   }
+
+  function getGenreList() {
+    // Send a GET request to the server to get the list of all book titles with the given genre and display it inside book-genre-response div
+    bookGenre = document.getElementById('book-genre-button').textContent;
+    console.log(bookGenre);
+    fetch(`http://localhost:3000/get-genre-list?bookGenre=${bookGenre}`, {
+      method: 'GET',
+      credentials: 'same-origin' // Include cookies in the request
+    })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        // Handle the error
+        console.error('Get genre list failed:', response.statusText);
+      }
+    }
+    )
+    .then((data) => {
+      // Display the list of books inside book-genre-response div
+      const bookGenreResponse = document.getElementById('book-genre-response');
+      bookGenreResponse.innerHTML = '';
+      for(let i=0;i<data.length;i++){
+        bookGenreResponse.innerHTML+="<p class='book-genre-element' onclick='redirectBook("+data[i].id+")'>"+data[i].titlu+"</p>";
+      }
+    })
+  }
+
+  function redirectBook(bookID) {
+    window.location.href = `/book?bookId=${bookID}`;
+  }
+  
+

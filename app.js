@@ -485,6 +485,7 @@ const server = http.createServer(async(req, res) => {
                 .replace('{{book-image}}',`https://via.placeholder.com/150x200?text=${encodeURIComponent(book.titlu)}`)
                 .replace('{{book-title}}', book.titlu)
                 .replace('{{book-author}}', book.autor)
+                .replace('{{book-genre}}', book.gen)
                 .replace('{{book-description}}', book.descriere);
   
               res.writeHead(200, { 'Content-Type': 'text/html' });
@@ -741,6 +742,26 @@ const server = http.createServer(async(req, res) => {
     }
     )();
 
+  }
+  else if(req.method === 'GET' && parsedUrl.pathname === '/get-genre-list') {
+    const genre = parsedUrl.query.bookGenre;
+    const query = 'SELECT id, titlu FROM carti WHERE gen = $1';
+    const values = [genre];
+    (async () => {
+      try {
+        const result = await pool.query(query, values);
+        const books = result.rows;
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.write(JSON.stringify(books));
+        res.end();
+      } catch (error) {
+        console.error('Error getting books:', error);
+        res.writeHead(500, { 'Content-Type': 'application/json' });
+        res.write(JSON.stringify({ error: 'Internal server error' }));
+        res.end();
+      }
+    }
+    )();
   }
   else  {
     // Serve static files
