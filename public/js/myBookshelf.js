@@ -23,7 +23,8 @@ let html;
 function parseHTML(data){
     html = '';
     for (let i = 0; i < data.length ; i++) {
-    html += `<div class="bookMember">
+      console.log("incercare: ",data[i].book_id);
+    html += `<div class="bookMember" onclick="redirectToBook(${data[i].book_id})">
                 <p class="booksTitle">${data[i].book_name}</p>
                 <p class="booksAuthor">${data[i].author}</p>
                 <div>`;
@@ -42,6 +43,9 @@ function parseHTML(data){
     }   
 }
 
+function redirectToBook(bookId){
+  window.location.href = `/book?bookId=${bookId}`;
+}
 function fetchBookDetails(friendId) {
   console.log("winx puterea femeii", friendId);
     fetch(`http://localhost:3000/getBookDetails?idFriend=${friendId}`)
