@@ -13,7 +13,12 @@ const bestBook = document.getElementById("bestBook");
 const worstBook = document.getElementById("worstBook");
 const avgRating = document.getElementById("avgRating");
 function fetchStats1() {
-    fetch('http://localhost:3000/getStatsUnu')
+  const token = localStorage.getItem('token');
+    fetch('http://localhost:3000/getStatsUnu', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
     .then(response => {
       if (!response.ok) {
         throw new Error('Request failed');
@@ -35,7 +40,12 @@ function fetchStats1() {
       });
   }
   function fetchStats2() {
-    fetch('http://localhost:3000/getStatsDoi')
+    const token = localStorage.getItem('token');
+    fetch('http://localhost:3000/getStatsDoi', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
     .then(response => {
       if (!response.ok) {
         throw new Error('Request failed');
@@ -62,20 +72,14 @@ function fetchStats1() {
 exportButton.addEventListener("click", exportStatistics);
 
 function exportStatistics() {
-  // Create the CSV content
   const csvContent = generateCSVContent();
-
-  // Create a temporary download link
   const downloadLink = document.createElement("a");
   downloadLink.href = "data:text/csv;charset=utf-8," + encodeURIComponent(csvContent);
   downloadLink.download = "statistics.csv";
-
-  // Trigger the download
   downloadLink.click();
 }
 
 function generateCSVContent() {
-  // Retrieve the data from the HTML elements
   const data = {
     totalCarti: totalCarti.innerHTML,
     totalPagini: totalPagini.innerHTML,
@@ -90,21 +94,16 @@ function generateCSVContent() {
     worstBook: worstBook.innerHTML,
     avgRating: avgRating.innerHTML
   };
-
-  // Prepare the CSV content
   let csvContent = "";
   for (const key in data) {
-    const value = data[key].replace(/"/g, '""'); // Handle special characters
-    csvContent += `"${key}","${value}"\n`; // Enclose values in double quotes
+    const value = data[key].replace(/"/g, '""'); 
+    csvContent += `"${key}","${value}"\n`; 
   }
-
   return csvContent;
 }
 
 
 //////////////////////////////// EXPORT DOCBOOK
-
-
 const exportDocBookButton = document.getElementById("exportDocBookButton");
 exportDocBookButton.addEventListener("click", exportStatisticsAsDocBook);
 
@@ -128,8 +127,6 @@ function generateDocBookData() {
     worstBook: worstBook.innerHTML,
     avgRating: avgRating.innerHTML
   };
-
-  // Generate the DocBook XML
   const docBookXml = `
     <book>
       <statistics>

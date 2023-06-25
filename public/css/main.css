@@ -1474,9 +1474,10 @@ body {
 
 .help-footer {
   height: 5rem;
-  bottom: 0%;
-  width: 100%;
   background-color: #d49d5b;
+  position: relative;
+  bottom: 0;
+  width: 100%;
 }
 .help-footer__links {
   margin-top: 0.4rem;
@@ -2316,7 +2317,7 @@ html {
 #rightSide {
   margin-top: 7vh;
   display: grid;
-  row-gap: 10px;
+  row-gap: 20px;
   column-gap: 10px;
   width: 70vw;
   height: calc(100vh - 8rem);
@@ -2326,13 +2327,14 @@ html {
 
 .bookMember {
   border-radius: 20px;
-  height: 23vh;
-  width: 20vw;
+  height: 100%;
+  width: 90%;
   background-color: #f8dcba;
   display: flex;
   flex-direction: column;
   gap: 2vh;
   text-align: center;
+  padding: 0.2rem;
 }
 
 .checked {
@@ -2347,7 +2349,7 @@ html {
 
 .borderProgress {
   margin: auto auto;
-  height: 2vh;
+  height: 3vh;
   width: 10vw;
   border: 1px solid black;
   border-radius: 10px;
@@ -2355,11 +2357,26 @@ html {
 
 .borderGrey {
   border-radius: 10px;
-  height: 2vh;
+  height: 3vh;
   width: 80%;
   background-color: grey;
   text-align: center;
   font-size: smaller;
+}
+
+.updateProgressBtn {
+  padding: 10px 10px;
+  background-color: #D7A86E;
+  color: #FFF;
+  border: none;
+  cursor: pointer;
+  border-radius: 2rem;
+  width: 50%;
+  margin: 0 auto;
+}
+.updateProgressBtn:hover {
+  background-color: #a55f34;
+  color: #fff;
 }
 
 .statistics-main {
@@ -2478,6 +2495,10 @@ html {
   cursor: pointer;
   margin: 2rem;
   font-size: 1.5rem;
+}
+.exportBtn:hover {
+  background-color: #a55f34;
+  color: #fff;
 }
 
 /*# sourceMappingURL=main.css.map */

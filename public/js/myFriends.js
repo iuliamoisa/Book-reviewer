@@ -1,5 +1,5 @@
 const friendsButton=document.getElementById('getMyFriends');
-  console.log(friendsButton);
+console.log(friendsButton);
 const requestsButton=document.getElementById('getMyReq');
 const suggestionButton =document.getElementById('getMySugg');
 requestsButton.addEventListener('click',fetchRequests);
@@ -9,15 +9,10 @@ suggestionButton.addEventListener('click',fetchSuggestion);
 function redirectPage(idFriend){
   window.location.href = `/myProfile.html?idFriend=${idFriend}`;
 }
-
-
 function changeMenu(menu,data) {
     const menus = document.getElementsByClassName('navbar-sect');
     const content = document.getElementById('profiles-content');
-  console.log("123");
     content.innerHTML='';
-  
-    console.log(menu);
     if(data.string=='notOk'){
       content.innerHTML += `
             <div class="profile-card">
@@ -60,8 +55,6 @@ function changeMenu(menu,data) {
           <h4>There are no friend requests yet!</h4>
          
         </div>`;
-        
-          
         break;
       case 'friend-suggestions':
         for(let i=0;i<data.length;i++){
@@ -79,20 +72,23 @@ function changeMenu(menu,data) {
   }
 
   function addFriendFromSugg(idp){
+    const token = localStorage.getItem('token');
     fetch(`http://localhost:3000/addFriendFromSugg`, {
-  method: 'PUT',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ idFriend: idp }),
-})
-  .then(response =>response.json())
-  .then(updatedData => {
-    console.log("!!!"+updatedData);
-    console.log('Update successful');
-    
-    if(updatedData=='ok'){
-      window.alert('Friend request sent with succes!');
-      location.reload();
-    }
+      method: 'PUT',
+      headers: { 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}` },
+      body: JSON.stringify({ idFriend: idp }),
+    })
+    .then(response =>response.json())
+    .then(updatedData => {
+      console.log("!!!"+updatedData);
+      console.log('Update successful');
+      
+      if(updatedData=='ok'){
+        window.alert('Friend request sent with succes!');
+        location.reload();
+      }
   })
   .catch(error => {
     console.error('Error updating row:', error);
@@ -117,9 +113,10 @@ function addRemove(decision, idP){
 
 
 function toRemoveFriend(idP){
+  const token = localStorage.getItem('token');
   fetch(`http://localhost:3000/refuseFriend`, {
   method: 'DELETE',
-  headers: { 'Content-Type': 'application/json' },
+  headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
   body: JSON.stringify({ idFriend: idP }),
 })
   .then(response =>response.json())
@@ -139,9 +136,10 @@ function toRemoveFriend(idP){
 
 
 function toAddFriend(idP){
+  const token = localStorage.getItem('token');
   fetch(`http://localhost:3000/acceptFriend`, {
   method: 'PUT',
-  headers: { 'Content-Type': 'application/json' },
+  headers: { 'Content-Type': 'application/json','Authorization': `Bearer ${token}` },
   body: JSON.stringify({ idFriend: idP }),
 })
   .then(response =>response.json())
@@ -158,41 +156,35 @@ function toAddFriend(idP){
     console.error('Error updating row:', error);
   });
 }
-
-
-
 function fetchRequests() {
-  
-  fetch('http://localhost:3000/getRequests')
+  const token = localStorage.getItem('token');
+  fetch('http://localhost:3000/getRequests', {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      //console.log(data.length);
-      //console.log(data[0].username);
       changeMenu('friend-requests',data);
-      
-     // document.getElementById('friend-name').textContent = data.friend_name;
-      //document.getElementById('book-title').textContent = data.book_title;
-      //document.getElementById('book-description').textContent = data.book_description;
     })
     .catch(error => {
       console.error('Error fetching request:', error);
     });
 }
 function fetchFriends() {
-  
-    fetch('http://localhost:3000/getFriends')
+  const token = localStorage.getItem('token');
+    fetch('http://localhost:3000/getFriends', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
       .then(response => response.json())
       .then(data => {
         console.log(data);
         console.log(data.length);
-        //console.log(data[0].username);
         console.log(data.string);
         changeMenu('my-friends',data);
-        
-       // document.getElementById('friend-name').textContent = data.friend_name;
-        //document.getElementById('book-title').textContent = data.book_title;
-        //document.getElementById('book-description').textContent = data.book_description;
       })
       .catch(error => {
         console.error('Error fetching friends:', error);
@@ -200,44 +192,36 @@ function fetchFriends() {
   }
 
   function fetchSuggestion() {
-  
-    fetch('http://localhost:3000/getFriendSuggestions')
+    const token = localStorage.getItem('token');
+    fetch('http://localhost:3000/getFriendSuggestions', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
       .then(response => response.json())
       .then(data => {
         console.log(data);
-        //console.log(data.length);
-        //console.log(data[0].username);
         changeMenu('friend-suggestions',data);
-        
-       // document.getElementById('friend-name').textContent = data.friend_name;
-        //document.getElementById('book-title').textContent = data.book_title;
-        //document.getElementById('book-description').textContent = data.book_description;
       })
       .catch(error => {
         console.error('Error fetching request:', error);
       });
   }
-
-
-  
   /////////////////////// LOGOUT
 
 function logout() {
-  console.log("MERGE LOGOUT");
-  fetch('http://localhost:3000/getFriendsCount', {
+  fetch('http://localhost:3000/logout', {
     method: 'GET',
-    credentials: 'same-origin' // Include cookies in the request
+    credentials: 'same-origin' 
   })
   .then((response) => {
     if (response.ok) {
       window.location.href = '/signIn.html';
     } else {
-      // Handle the error
       console.error('Logout failed:', response.statusText);
     }
   })
   .catch((error) => {
-    // Handle the error
     console.error('Logout failed:', error);
   });
 }

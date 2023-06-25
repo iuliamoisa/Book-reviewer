@@ -14,9 +14,6 @@ const quotes = [
 const quoteElement = document.getElementById("quote");
 const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
 quoteElement.textContent = randomQuote;
-
-
-
 ////////////////////// DROPDOWN MENU
 
 function openMulti() {
@@ -50,8 +47,13 @@ function resetAllMenus() {
 
 let bookTitle,friendName,bookDesc,bookIdGlobal;
 
-  function fetchRecommendation() {
-    fetch('http://localhost:3000/recommendation')
+  function fetchRecommendation() { 
+    const token = localStorage.getItem('token');
+  fetch('http://localhost:3000/recommendation', {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
     .then(response => {
       if (!response.ok) {
         throw new Error('Request failed');
@@ -79,35 +81,30 @@ let bookTitle,friendName,bookDesc,bookIdGlobal;
   function afiseazaCarte(){
     window.location.href = `/book?bookId=${bookIdGlobal}`;
   }
-  //window.addEventListener('load', fetchRecommendation);
 
   const button = document.getElementById('book-button');
   const button2 = document.getElementById('see-book-button');
   button.addEventListener('click', fetchRecommendation);
   button2.addEventListener('click', afiseazaCarte);
-
-  
-
-
 ////////////////////// LIMIT THE FEED POSTS
 
 const feedPostsContainer = document.getElementById('feed-posts-container');
 const viewMoreBtn = document.getElementById('view-more-btn');
 
 const maxPostsToShow = 6;
-
 viewMoreBtn.style.display = 'none';
 
 function showFeedPosts() {
   const feedPosts = feedPostsContainer.getElementsByClassName('post');
   for (let i = 0; i < feedPosts.length; i++) {
+    console.log("??????",maxPostsToShow);
     if (i < maxPostsToShow) {
       feedPosts[i].style.display = 'block';
+      
     } else {
       feedPosts[i].style.display = 'none';
     }
   }
-  
   if (feedPosts.length > maxPostsToShow) {
     viewMoreBtn.style.display = 'block';
   } else {
@@ -123,10 +120,6 @@ viewMoreBtn.addEventListener('click', function() {
   
   viewMoreBtn.style.display = 'none';
 });
-
-showFeedPosts();
-
-
 
 ////////////////////// LIMIT THE FRIENDS SHOWN 
 
@@ -167,106 +160,45 @@ viewMoreBtn2.addEventListener('click', function() {
   viewMoreBtn2.style.display = 'none';
 });
 
-
-
-/////////////////// FRIENDS PAGE 
-// function showAllFriends() {
-//   const profilesContent = document.getElementById('profiles-content');
-//   profilesContent.innerHTML = `
-//   <div class="profile-card">
-//   <img src="pictures/doctor.jpeg" alt="Profile Picture">
-//   <h4>John</h4>
-// </div>
-// <div class="profile-card">
-//   <img src="pictures/plumber.jpeg" alt="Profile Picture">
-//   <h4>Johnny</h4>
-// </div>
-//   `;
-// }
-
-
-// function showFriendRequests() {
-//   const profilesContent = document.getElementById('profiles-content');
-//   profilesContent.innerHTML = `
-//       <div class="profile-card">
-//           <img src="friend-request-pic1.jpg" alt="Profile Picture">
-//           <h4>Friend Request 1</h4>
-//           <button class="accept-button">Accept</button>
-//           <button class="decline-button">Decline</button>
-//       </div>
-//       <div class="profile-card">
-//           <img src="friend-request-pic2.jpg" alt="Profile Picture">
-//           <h4>Friend Request 2</h4>
-//           <button class="accept-button">Accept</button>
-//           <button class="decline-button">Decline</button>
-//       </div>
-//   `;
-// }
-
-// function showFriendSuggestions() {
-//   const profilesContent = document.getElementById('profiles-content');
-//   profilesContent.innerHTML = `
-//       <div class="profile-card">
-//           <img src="friend-suggestion-pic1.jpg" alt="Profile Picture">
-//           <h4>Friend Suggestion 1</h4>
-//           <button class="add-button">Add Friend</button>
-//       </div>
-//       <div class="profile-card">
-//           <img src="friend-suggestion-pic2.jpg" alt="Profile Picture">
-//           <h4>Friend Suggestion 2</h4>
-//           <button class="add-button">Add Friend</button>
-//       </div>
-//   `;
-// }
-// Function to change the active menu and update the content
-
-
-// window.addEventListener('DOMContentLoaded', function() {
-//   const myFriendsOption = document.querySelector('.navbar-sect');
-//   changeMenu('my-friends'); // Call the changeMenu function to display the content for "My Friends" option
-  
-//   // Remove the 'active' class from all menus
-//   const menus = document.getElementsByClassName('navbar-sect');
-//   for (let i = 0; i < menus.length; i++) {
-//     menus[i].classList.remove('active');
-//   }
-  
-//   // Add the 'active' class to the "My Friends" option
-//   myFriendsOption.classList.add('active');
-// });
-
 window.addEventListener('load', fetchFriendsList);
 window.addEventListener('load',fetchGroupsList);
 
 
-  function fetchFriendsList() {
-    fetch('http://localhost:3000/getFriends')
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        console.log(data.length);
-        console.log(data[0].username);
-        const friendsList=document.getElementById('friendsList');
-        friendsList.innerHTML='';
-        for(let i=0;i<data.length;i++){
-          friendsList.innerHTML+=`<p class="a-friend">${data[i].username}</p>`
-        }
-        showFriends();
-      })
-      .catch(error => {
-        console.error('Error fetching friends:', error);
-      });
-  }
+function fetchFriendsList() {
+  const token = localStorage.getItem('token');
 
-
+  fetch('http://localhost:3000/getFriends', {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      console.log(data.length);
+      console.log(data[0].username);
+      const friendsList = document.getElementById('friendsList');
+      friendsList.innerHTML = '';
+      for (let i = 0; i < data.length; i++) {
+        friendsList.innerHTML += `<p class="a-friend">${data[i].username}</p>`;
+      }
+      showFriends();
+    })
+    .catch(error => {
+      console.error('Error fetching friends:', error);
+    });
+}
   function fetchGroupsList() {
-  
-    fetch('http://localhost:3000/getGroups')
+    const token = localStorage.getItem('token');
+    fetch('http://localhost:3000/getGroups', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
       .then(response => response.json())
       .then(data => {
         console.log(data);
         console.log(data.length);
-        //console.log(data[0].username);
         const groupsList=document.getElementById('groupsList');
         groupsList.innerHTML='';
         for(let i=0;i<data.length;i++){
@@ -291,7 +223,6 @@ window.addEventListener('load',fetchGroupsList);
       })
       .catch(error => {
         console.error('Error fetching reviews:', error);
-        // Handle the error gracefully
       });
   }
 
@@ -338,32 +269,31 @@ window.addEventListener('load',fetchGroupsList);
   function displayReviews(reviews) {
     const feedPostsContainer = document.getElementById('feed-posts-container');
     feedPostsContainer.innerHTML = '';
-    
-    // Generate HTML for each review and append it to the container
     reviews.forEach((review) => {
       const reviewHTML = createReviewHTML(review);
       feedPostsContainer.innerHTML += reviewHTML;
+      
     });
+    showFeedPosts();
   }
 
   /////////////////////// LOGOUT
 
 function logout() {
   console.log("MERGE LOGOUT");
-  fetch('http://localhost:3000/getFriendsCount', {
+  fetch('http://localhost:3000/logout', {
     method: 'GET',
-    credentials: 'same-origin' // Include cookies in the request
+    credentials: 'same-origin' 
   })
   .then((response) => {
     if (response.ok) {
       window.location.href = '/signIn.html';
     } else {
-      // Handle the error
+
       console.error('Logout failed:', response.statusText);
     }
   })
   .catch((error) => {
-    // Handle the error
     console.error('Logout failed:', error);
   });
 }

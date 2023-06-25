@@ -15,12 +15,14 @@ window.addEventListener('DOMContentLoaded', function () {
 });
 
 function fetchProfilePic(friendId) {
-    fetch(`http://localhost:3000/getProfilePic?idFriend=${friendId}`)
-      .then(response => response.json())
+  const token = localStorage.getItem('token');
+  fetch(`http://localhost:3000/getProfilePic?idFriend=${friendId}`, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  }).then(response => response.json())
       .then(data => {
         console.log(data);
-        console.log(data.length);
-       
         const imagine=document.getElementById('profilePic');
         imagine.src=data.imagine;
       })
@@ -30,8 +32,12 @@ function fetchProfilePic(friendId) {
   }
 
 function fetchProfileData(friendId) {
-  fetch(`http://localhost:3000/getProfileData?idFriend=${friendId}`)
-    .then(response => response.json())
+  const token = localStorage.getItem('token');
+  fetch(`http://localhost:3000/getProfileData?idFriend=${friendId}`, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  }).then(response => response.json())
     .then(data => {
       console.log(data);
       const userNameElement = document.getElementById("userName");
@@ -48,10 +54,6 @@ function fetchProfileData(friendId) {
         descriptionElement.textContent ="No description added.";
       else descriptionElement.textContent = data.descriere;
       console.log("CEVAaaaa " + data.descriere);
-       //const profilePicElement = document.getElementById("profilePic");
-      //const readBooksElement = document.getElementById("readBooks");
-      // profilePicElement.innerHTML = `<img src="${data.profilePicUrl}" alt="Profile Picture">`;
-      // readBooksElement.textContent = `Read Books: ${data.readBooksCount}`;
     })
     .catch(error => {
       console.error('Error fetching profile data:', error);
@@ -60,8 +62,12 @@ function fetchProfileData(friendId) {
 
 
 function fetchProfileFriends(friendId){
-  console.log("######",friendId);
-    fetch(`http://localhost:3000/getProfileFriends?idFriend=${friendId}`)
+  const token = localStorage.getItem('token');
+    fetch(`http://localhost:3000/getProfileFriends?idFriend=${friendId}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
     .then(response => response.json())
     .then(data => {
       console.log(data);
@@ -78,12 +84,13 @@ function fetchProfileFriends(friendId){
       console.error('Error fetching request:', error);
     });
 }
-
-
-
-
 function fetchFriendsCount(friendId){
-    fetch(`http://localhost:3000/getFriendsCount?idFriend=${friendId}`)
+  const token = localStorage.getItem('token');
+    fetch(`http://localhost:3000/getFriendsCount?idFriend=${friendId}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
     .then(response => response.json())
     .then(data => {
       console.log(data);
@@ -102,26 +109,23 @@ function redirectPage(idFriend){
 function redirectToBookshelf(idFriend){
   window.location.href = `/myBookshelf.html?idFriend=${idFriend}`;
 }
-
-
 /////////////////////// LOGOUT
 
 function logout() {
-  console.log("MERGE LOGOUT");
-  fetch('http://localhost:3000/getFriendsCount', {
+  fetch('http://localhost:3000/logout', {
     method: 'GET',
-    credentials: 'same-origin' // Include cookies in the request
+    credentials: 'same-origin'
   })
   .then((response) => {
     if (response.ok) {
+      
       window.location.href = '/signIn.html';
     } else {
-      // Handle the error
+
       console.error('Logout failed:', response.statusText);
     }
   })
   .catch((error) => {
-    // Handle the error
     console.error('Logout failed:', error);
   });
 }
@@ -138,7 +142,6 @@ function openMulti() {
     document.querySelector(".selectWrapper").style.pointerEvents = "all";
   }
 }
-
 
 function resetAllMenus() {
   setTimeout(function () {

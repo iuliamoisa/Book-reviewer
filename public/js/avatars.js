@@ -1,7 +1,5 @@
 const images = document.getElementsByClassName('choose-avatar-picture');
 
-
-// Attach click event listeners to each image
 for (let i = 0; i < images.length; i++) {
   images[i].addEventListener('click', function() {
     const src = this.src;
@@ -9,10 +7,12 @@ for (let i = 0; i < images.length; i++) {
   });
 }
 function sendImageToServer(src) {
+  const token = localStorage.getItem('token');
     fetch('/upload', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({ src: src })
     })

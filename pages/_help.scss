@@ -111,9 +111,11 @@ body{
 }
 .help-footer{
     height: 5rem;
-    bottom: 0%;
-    width: 100%;
     background-color: $light-brown;
+
+    position: relative;
+    bottom: 0;
+    width: 100%;
     &__links{
         margin-top: 0.4rem;
         display: flex;

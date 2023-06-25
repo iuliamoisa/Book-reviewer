@@ -9,7 +9,6 @@ function fetchCertainBookReviews() {
     })
     .catch(error => {
       console.error('Error fetching reviews for this book:', error);
-      // Handle the error gracefully
     });
 }
 
@@ -59,12 +58,9 @@ function displayCertainBookReviews(reviews) {
 ////////////////////// ADAUGA RATING
 const stars = document.querySelectorAll('.stars span');
 const starsNone = document.querySelector('.rating-box');
-
-// selectare stele ....
 stars.forEach((star, index1) => {
   star.addEventListener('click', () => {
     stars.forEach((star, index2) => {
-      // ---- ---- Active Star ---- ---- //
       index1 >= index2
         ? star.classList.add('active')
         : star.classList.remove('active');
@@ -88,10 +84,12 @@ form.addEventListener('submit', function(event) {
     rating: rating,
     reviewText: reviewText
   };
+  const token = localStorage.getItem('token');
   fetch('/submit-review', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
     },
     body: JSON.stringify(data)
   })
@@ -113,19 +111,19 @@ form.addEventListener('submit', function(event) {
 function addToReadingList2(){
 
   const button = document.getElementById('add-to-list-button');
-  button.disabled = true; // Disable the button
-  button.textContent = 'Added!'; // Change the button text
-    console.log("BLA");
+  button.disabled = true; 
+  button.textContent = 'Added!'; 
     const urlParams = new URLSearchParams(window.location.search);
     const bookId = urlParams.get('bookId');
     addToReadingList(bookId);
   }
   function addToReadingList(bookId) {
-    // Send a POST request to the server to add the book to the "to read" list
+    const token = localStorage.getItem('token');
     fetch('http://localhost:3000/add-to-reading-list', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({ bookId : bookId }),
     })
@@ -140,8 +138,6 @@ function addToReadingList2(){
         console.error('Error:', error);
       });
   }
-  
-  ////////////////////////////////////////////
 
   ////////////////////// DROPDOWN MENU
 
@@ -175,44 +171,38 @@ function openMulti() {
   /////////////////////// LOGOUT
 
 function logout() {
-    console.log("MERGE LOGOUT");
-    fetch('http://localhost:3000/getFriendsCount', {
+    fetch('http://localhost:3000/logout', {
       method: 'GET',
-      credentials: 'same-origin' // Include cookies in the request
+      credentials: 'same-origin' 
     })
     .then((response) => {
       if (response.ok) {
         window.location.href = '/signIn.html';
       } else {
-        // Handle the error
         console.error('Logout failed:', response.statusText);
       }
     })
     .catch((error) => {
-      // Handle the error
       console.error('Logout failed:', error);
     });
   }
 
   function getGenreList() {
-    // Send a GET request to the server to get the list of all book titles with the given genre and display it inside book-genre-response div
     bookGenre = document.getElementById('book-genre-button').textContent;
     console.log(bookGenre);
     fetch(`http://localhost:3000/get-genre-list?bookGenre=${bookGenre}`, {
       method: 'GET',
-      credentials: 'same-origin' // Include cookies in the request
+      credentials: 'same-origin' 
     })
     .then((response) => {
       if (response.ok) {
         return response.json();
       } else {
-        // Handle the error
         console.error('Get genre list failed:', response.statusText);
       }
     }
     )
     .then((data) => {
-      // Display the list of books inside book-genre-response div
       const bookGenreResponse = document.getElementById('book-genre-response');
       bookGenreResponse.innerHTML = '';
       for(let i=0;i<data.length;i++){

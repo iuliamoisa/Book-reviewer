@@ -73,9 +73,12 @@ function redirectToBook(bookId){
   window.location.href = `/book?bookId=${bookId}`;
 }
 function fetchBookDetails(friendId) {
-  console.log("winx puterea femeii", friendId);
-    fetch(`http://localhost:3000/getBookDetails?idFriend=${friendId}`)
-    .then(response => {
+  const token = localStorage.getItem('token');
+    fetch(`http://localhost:3000/getBookDetails?idFriend=${friendId}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }).then(response => {
       if (!response.ok) {
         throw new Error('Request failed');
       }
@@ -92,9 +95,12 @@ function fetchBookDetails(friendId) {
   }
 
 function fetchCurrentlyReadingDetails(friendId) {
-  console.log("blaaaa", friendId);
-    fetch(`http://localhost:3000/getCurrentlyReadingDetails?idFriend=${friendId}`)
-    .then(response => {
+  const token = localStorage.getItem('token');
+    fetch(`http://localhost:3000/getCurrentlyReadingDetails?idFriend=${friendId}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }).then(response => {
       if (!response.ok) {
         throw new Error('Request failed');
       }
@@ -111,9 +117,12 @@ function fetchCurrentlyReadingDetails(friendId) {
   }
 
   function fetchToReadDetails(friendId) {
-    console.log("ahahahah", friendId);
-    fetch(`http://localhost:3000/getToReadDetails?idFriend=${friendId}`)
-    .then(response => {
+    const token = localStorage.getItem('token');
+    fetch(`http://localhost:3000/getToReadDetails?idFriend=${friendId}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }).then(response => {
       if (!response.ok) {
         throw new Error('Request failed');
       }
@@ -129,8 +138,12 @@ function fetchCurrentlyReadingDetails(friendId) {
       });
   }
   function fetchReadDetails(friendId) {
-    console.log("blacewcdqdxnskqaaa", friendId);
-    fetch(`http://localhost:3000/getReadDetails?idFriend=${friendId}`)
+    const token = localStorage.getItem('token');
+    fetch(`http://localhost:3000/getReadDetails?idFriend=${friendId}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
     .then(response => {
       if (!response.ok) {
         throw new Error('Request failed');
@@ -146,10 +159,6 @@ function fetchCurrentlyReadingDetails(friendId) {
         console.error('Error fetching recommendation:', error);
       });
   }
-
-
-
-
   function updateProgress(bookId, totalPages, currentPage) {
     const pagesRead = prompt(`You currently read ${currentPage} pages out of ${totalPages} pages. Enter the page you're currently at. `);
     if (pagesRead === null || pagesRead === '' || pagesRead <= 0 || pagesRead>totalPages) {
@@ -157,11 +166,12 @@ function fetchCurrentlyReadingDetails(friendId) {
     }
   
     const progress = Math.floor((pagesRead / totalPages) * 100);
-  
+    const token = localStorage.getItem('token');
     fetch('http://localhost:3000/updateProgress', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({ bookId, pagesRead, totalPages })
     })

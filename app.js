@@ -5,7 +5,8 @@ const http = require('http');
 const url = require('url');
 const fs = require('fs'); // acces la sistemul de fisiere
 let userId, bookId;
-
+const jwt = require('jsonwebtoken');
+let id_user;
 const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
@@ -14,13 +15,32 @@ const pool = new Pool({
   port: 5432,
 });
 
+function generateJWT(userId) {
+  const secretKey = 'secretKey'; 
+  const token = jwt.sign({ userId }, secretKey, { expiresIn: '30d' }); 
+  return token;
+}
+
+function decryptJWT(token) {
+  try {
+    const secretKey = 'secretKey'; 
+    const decoded = jwt.verify(token, secretKey);
+    return decoded.userId;
+  } catch (error) {
+    throw new Error('Invalid JWT');
+  }
+}
+
 
 const server = http.createServer(async(req, res) => {
   const parsedUrl = url.parse(req.url, true);
   if (req.method === 'GET' && parsedUrl.pathname === '/getProfilePic') {
     let idFriend = parsedUrl.query.idFriend;
     (async () => {
+      const token = req.headers.authorization?.split(' ')[1]; 
       try {
+        const decodedToken = jwt.verify(token, 'secretKey');
+        const userId = decryptJWT(id_user); 
         if(idFriend=="null" || idFriend==undefined)
           idFriend=userId;
         const query = 'SELECT imagine FROM utilizatori where id=$1';
@@ -44,33 +64,16 @@ const server = http.createServer(async(req, res) => {
         res.end();
       }
     })();
-  }else
-  if (req.url === '/getImage' && req.method === 'GET') {
-    try {
-      const result = await pool.query('SELECT image_data FROM images WHERE id_utilizator = $1', [userId]);
-      const imageData = result.rows[0];
-  
-      res.statusCode = 200;
-      res.setHeader('Content-Type', 'application/json');
-      res.end(JSON.stringify({ imageData }));
-    } catch (error) {
-      console.error(error);
-      res.statusCode = 500;
-      res.setHeader('Content-Type', 'text/plain');
-      res.end('Error retrieving image.');
-    }
   }
-  else
-  if (req.url === '/upload' && req.method === 'POST') {
+  else if (req.url === '/upload' && req.method === 'POST') {
     let body = '';
     req.on('data', chunk => {
       body += chunk;
     });
     req.on('end', () => {
+      const userId = decryptJWT(id_user); 
       const data = JSON.parse(body);
       const src = data.src;
-      
-        
       pool.query('update utilizatori set imagine=$1 where id=$2', [src,userId]);
       let status='ok';
       res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -81,15 +84,16 @@ const server = http.createServer(async(req, res) => {
       res.writeHead(302, { 'Location': '/settings.html' });
       res.end();
     });
-  }
-  else
+  }else
   if (req.method === 'PUT' && parsedUrl.pathname === '/addFriendFromSugg') {
     let data='';
     req.on('data', chunk => {
       data += chunk;
     });
     req.on('end', async( ) => {
-      
+      const token = req.headers.authorization?.split(' ')[1]; 
+      const decodedToken = jwt.verify(token, 'secretKey');
+      const userId = decryptJWT(id_user);  
       data=JSON.parse(data);
       let idP=data.idFriend;
       console.log(idP);
@@ -112,6 +116,9 @@ const server = http.createServer(async(req, res) => {
       data += chunk;
     });
     req.on('end', async( ) => {
+      const token = req.headers.authorization?.split(' ')[1]; 
+      const decodedToken = jwt.verify(token, 'secretKey');
+      const userId = decryptJWT(id_user);  
       data=JSON.parse(data);
       let idP=data.idFriend;
       console.log(idP);
@@ -136,6 +143,9 @@ const server = http.createServer(async(req, res) => {
           data += chunk;
         });
         req.on('end', async( ) => {
+          const token = req.headers.authorization?.split(' ')[1]; 
+          const decodedToken = jwt.verify(token, 'secretKey');
+          const userId = decryptJWT(id_user); 
           data=JSON.parse(data);
           let idP=data.idFriend;
           console.log(idP);
@@ -160,7 +170,10 @@ const server = http.createServer(async(req, res) => {
   }
  else if (req.method === 'GET' && parsedUrl.pathname === '/getFriendsCount') {
     (async () => {
+      const token = req.headers.authorization?.split(' ')[1]; 
       try {
+        const decodedToken = jwt.verify(token, 'secretKey');
+        const userId = decryptJWT(id_user);  
         let idFriend = parsedUrl.query.idFriend;
         if(idFriend=="null" || idFriend==undefined)
           idFriend=userId;
@@ -187,7 +200,10 @@ const server = http.createServer(async(req, res) => {
   }
   else if (req.method === 'GET' && parsedUrl.pathname === '/getProfileFriends') {
     (async () => {
+      const token = req.headers.authorization?.split(' ')[1]; 
       try {
+        const decodedToken = jwt.verify(token, 'secretKey');
+        const userId = decryptJWT(id_user);  
         let idFriend = parsedUrl.query.idFriend;
         if(idFriend=="null" || idFriend==undefined)
           idFriend=userId;
@@ -215,7 +231,10 @@ const server = http.createServer(async(req, res) => {
   }
   else if (req.method === 'GET' && parsedUrl.pathname === '/getFriendSuggestions') {
     (async () => {
+      const token = req.headers.authorization?.split(' ')[1]; 
       try {
+        const decodedToken = jwt.verify(token, 'secretKey');
+        const userId = decryptJWT(id_user);  
         const query = 'SELECT * FROM get_friends_with_common_group($1)';
         const values = [userId];
         const result = await pool.query(query, values);
@@ -240,7 +259,10 @@ const server = http.createServer(async(req, res) => {
   }
   else if (req.method === 'GET' && parsedUrl.pathname === '/getRequests') {
     (async () => {
+      const token = req.headers.authorization?.split(' ')[1]; 
       try {
+        const decodedToken = jwt.verify(token, 'secretKey');
+        const userId = decryptJWT(id_user);  
         const query = 'SELECT * FROM get_requests_by_id_utilizator($1)';
         const values = [userId];
         const result = await pool.query(query, values);
@@ -265,7 +287,10 @@ const server = http.createServer(async(req, res) => {
   } 
   else if (req.method === 'GET' && parsedUrl.pathname === '/getGroups') {
     (async () => {
+      const token = req.headers.authorization?.split(' ')[1]; 
       try {
+        const decodedToken = jwt.verify(token, 'secretKey');
+        const userId = decryptJWT(id_user);  
         const query = 'SELECT * FROM get_user_groups($1)';
         const values = [userId];
         const result = await pool.query(query, values);
@@ -289,32 +314,46 @@ const server = http.createServer(async(req, res) => {
     })();
   }
   else if (req.method === 'GET' && parsedUrl.pathname === '/getFriends') {
-    (async () => {
-      try {
-        const query = 'SELECT * FROM get_usernames_by_id_utilizator($1)';
-        const values = [userId];
-        const result = await pool.query(query, values);
-        const friends = result.rows;
-        if (friends.length > 0) {
-          res.writeHead(200, { 'Content-Type': 'application/json' });
-          res.write(JSON.stringify(friends));
-          res.end();
-        } else {
-          res.writeHead(404, { 'Content-Type': 'application/json' });
-          res.write(JSON.stringify({ string: 'notOk' }));
+    const token = req.headers.authorization?.split(' ')[1]; 
+    try {
+      const decodedToken = jwt.verify(token, 'secretKey');
+      const userId = decryptJWT(id_user);  
+      console.log("Decrypted id= ", userId);
+      (async () => {
+        try {
+          const query = 'SELECT * FROM get_usernames_by_id_utilizator($1)';
+          const values = [userId];
+          const result = await pool.query(query, values);
+          const friends = result.rows;
+          if (friends.length > 0) {
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.write(JSON.stringify(friends));
+            res.end();
+          } else {
+            res.writeHead(404, { 'Content-Type': 'application/json' });
+            res.write(JSON.stringify({ string: 'notOk' }));
+            res.end();
+          }
+        } catch (error) {
+          console.error('Error getting friends:', error);
+          res.writeHead(500, { 'Content-Type': 'application/json' });
+          res.write(JSON.stringify({ error: 'Internal server error' }));
           res.end();
         }
-      } catch (error) {
-        console.error('Error getting friends:', error);
-        res.writeHead(500, { 'Content-Type': 'application/json' });
-        res.write(JSON.stringify({ error: 'Internal server error' }));
-        res.end();
-      }
-    })();
+      })();
+    } catch (error) {
+      console.error('Error verifying token:', error);
+      res.writeHead(401, { 'Content-Type': 'application/json' });
+      res.write(JSON.stringify({ error: 'Unauthorized' }));
+      res.end();
+    }
   }
   else if (req.method === 'GET' && parsedUrl.pathname === '/recommendation') {
     (async () => {
+      const token = req.headers.authorization?.split(' ')[1]; 
       try {
+        const decodedToken = jwt.verify(token, 'secretKey');
+        const userId = decryptJWT(id_user);  
         const query = 'SELECT book_id, friend_name, book_title, book_description FROM get_random_friend_book($1)';
         const values = [userId];
         const result = await pool.query(query, values);
@@ -354,6 +393,7 @@ const server = http.createServer(async(req, res) => {
         } else {
           const query = 'INSERT INTO utilizatori (nume, prenume, username, email, parola) VALUES ($1, $2, $3, $4, $5)';
           const values = [fname, lname, username, email, password];
+          
           await pool.query(query, values);
           await pool.query('COMMIT');
           console.log('Values added to the database successfully!');
@@ -373,25 +413,34 @@ const server = http.createServer(async(req, res) => {
       body += chunk.toString();
     });
     req.on('end', async () => {
-      const formData = querystring.parse(body);
+      const formData = JSON.parse(body);
+      console.log("formdata = ", formData);
       const email = formData.email;
       const password = formData.password;
+      console.log("email si parola = ", email, password);
       try {
         const query = 'SELECT * FROM utilizatori WHERE email = $1 AND parola = $2';
         const values = [email, password];
         const result = await pool.query(query, values);
         const user = result.rows[0];
-
+        console.log("user:" , user);
         if (user) {
           const idQuery = 'SELECT id FROM utilizatori WHERE email = $1';
           const idRes = await pool.query(idQuery, [user.email]);
           const qValue = idRes.rows[0].id;
-          console.log(qValue);
           userId = qValue;
-          
-          res.writeHead(302, { 'Location': '/homeConnected.html' });
-          res.end();
+
+          id_user = generateJWT(userId);
+          console.log("Decrypted id la login: ", decryptJWT(id_user));
+
+          res.statusCode = 200;
+          res.setHeader('Set-Cookie', `token=${id_user}; Max-Age=2592000; HttpOnly`);
+          res.setHeader('Content-Type', 'application/json');
+          res.setHeader('Authorization', `Bearer ${id_user}`); 
+
+          res.end(JSON.stringify({ id_user }));
         } else {
+          console.log("WRONG CREDENTIALS!");
           res.statusCode = 401;
           res.end('Wrong credentials. Please try again.');
         }
@@ -405,7 +454,10 @@ const server = http.createServer(async(req, res) => {
   else if (req.method === 'GET' && parsedUrl.pathname === '/getProfileData') {
     let idFriend = parsedUrl.query.idFriend;
     (async () => {
+      const token = req.headers.authorization?.split(' ')[1]; 
       try {
+        const decodedToken = jwt.verify(token, 'secretKey');
+        const userId = decryptJWT(id_user);  
         if(idFriend=="null" || idFriend==undefined)
           idFriend=userId;
         const query1 = 'SELECT * FROM utilizatori WHERE id = $1';
@@ -449,7 +501,15 @@ const server = http.createServer(async(req, res) => {
     })();
   }
   else if (req.method === 'GET' && parsedUrl.pathname === '/logout') {
-    userId = null;
+    //userId = null;
+    const token = generateJWT(-1);
+    userId = decryptJWT(token);
+    console.log("Decrypted id la logout: ", decryptJWT(token));
+    res.statusCode = 200;
+    res.setHeader('Set-Cookie', `token=${token}; Max-Age=2592000; HttpOnly`);
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Authorization', `Bearer ${token}`); 
+
     res.writeHead(302, { 'Location': '/signIn.html' });
     res.end();
   }else if(parsedUrl.pathname ==='/book'){
@@ -526,7 +586,10 @@ const server = http.createServer(async(req, res) => {
   }
   else if (req.method === 'GET' && parsedUrl.pathname === '/getStatsUnu') {
     (async () => {
+      const token = req.headers.authorization?.split(' ')[1]; 
       try {
+        const decodedToken = jwt.verify(token, 'secretKey');
+        const userId = decryptJWT(id_user);  
         const query = 'SELECT * from get_user_reading_stats($1)';
         const values = [userId];
         const result = await pool.query(query, values);
@@ -550,7 +613,10 @@ const server = http.createServer(async(req, res) => {
   }
   else if (req.method === 'GET' && parsedUrl.pathname === '/getStatsDoi') {
     (async () => {
+      const token = req.headers.authorization?.split(' ')[1]; 
       try {
+        const decodedToken = jwt.verify(token, 'secretKey');
+        const userId = decryptJWT(id_user);  
         const query = 'SELECT * FROM get_user_book_stats($1)';
         const values = [userId];
         const result = await pool.query(query, values);
@@ -578,6 +644,10 @@ const server = http.createServer(async(req, res) => {
       body += chunk;
     });
     req.on('end', () => {
+      const token = req.headers.authorization?.split(' ')[1]; 
+      const decodedToken = jwt.verify(token, 'secretKey');
+      const userId = decryptJWT(id_user);  
+
       body = JSON.parse(body);
       let bookId = body.bookId;
       const query = 'INSERT INTO biblioteca (id_utilizator, id_carte, categorie) VALUES ($1, $2, $3)';
@@ -613,7 +683,10 @@ const server = http.createServer(async(req, res) => {
     });
     const bookId = parsedUrl.query.bookId;
     req.on('end', () => {
+      const token = req.headers.authorization?.split(' ')[1]; 
       try {
+        const decodedToken = jwt.verify(token, 'secretKey');
+        const userId = decryptJWT(id_user);  
         const data = JSON.parse(body);
         if (!data.rating) {
           res.statusCode = 400;
@@ -651,7 +724,10 @@ const server = http.createServer(async(req, res) => {
   else if (req.method === 'GET' && parsedUrl.pathname === '/getBookDetails') {
     let idFriend = parsedUrl.query.idFriend;
     (async () => {
+      const token = req.headers.authorization?.split(' ')[1]; 
       try {
+        const decodedToken = jwt.verify(token, 'secretKey');
+        const userId = decryptJWT(id_user);  
         if(idFriend=="null" || idFriend==undefined)
           idFriend=userId;
         const query = 'SELECT * FROM get_user_book_progress($1);';
@@ -678,7 +754,10 @@ const server = http.createServer(async(req, res) => {
   else if (req.method === 'GET' && (parsedUrl.pathname === '/getCurrentlyReadingDetails' || parsedUrl.pathname === '/getToReadDetails' ||  parsedUrl.pathname === '/getReadDetails')) {
     let idFriend = parsedUrl.query.idFriend;
     (async () => {
+      const token = req.headers.authorization?.split(' ')[1]; 
       try {
+        const decodedToken = jwt.verify(token, 'secretKey');
+        const userId = decryptJWT(id_user);  
         if(idFriend=="null" || idFriend==undefined)
           idFriend=userId;
         const query = 'SELECT * FROM get_all_books($1,$2);';
@@ -749,15 +828,15 @@ const server = http.createServer(async(req, res) => {
     }
     )();
   }
-  
-
-
   else if (req.method === 'POST' && req.url === '/updateProgress') {
     let body = '';
     req.on('data', (chunk) => {
       body += chunk;
     });
     req.on('end', () => {
+      const token = req.headers.authorization?.split(' ')[1]; 
+      const decodedToken = jwt.verify(token, 'secretKey');
+      const userId = decryptJWT(id_user);  
       body = JSON.parse(body);
       let bookId = body.bookId;
       let pagesRead=body.pagesRead;
@@ -798,10 +877,46 @@ const server = http.createServer(async(req, res) => {
 
     });
   }
-
-
-
-
+  else if (req.method === 'POST' && req.url === '/updateDescription') {
+    let body = '';
+    req.on('data', chunk => {
+      body += chunk.toString();
+    });
+    req.on('end', () => {
+      const token = req.headers.authorization?.split(' ')[1]; 
+      try {
+        const decodedToken = jwt.verify(token, 'secretKey');
+        const userId = decryptJWT(id_user);  
+        const data = JSON.parse(body);
+        if (!data.descriere) {
+          res.statusCode = 400;
+          res.end('Description is required');
+          return;
+        }
+        const query= ` UPDATE utilizatori
+        SET descriere = $1
+        WHERE id = $2`;
+        const parameters = [
+          data.descriere,
+          userId
+        ];
+        pool.query(query, parameters, (err) => {
+          if (err) {
+            console.error('Error updating description', err);
+            res.statusCode = 500;
+            res.end('Error inserting review');
+          } else {
+            res.statusCode = 200;
+            res.end('Description updated successfully');
+          }
+        });
+      } catch (error) {
+        console.error('Error parsing request body:', error);
+        res.statusCode = 400;
+        res.end('Invalid request body');
+      }
+    });
+  }
   // Serve static files
   else  {
     let filePath = path.join(__dirname, 'public', parsedUrl.pathname);
