@@ -33,6 +33,12 @@ function decryptJWT(token) {
 
 
 const server = http.createServer(async(req, res) => {
+    if (path.normalize(decodeURI(req.url)) !== decodeURI(req.url)) {
+        res.statusCode = 403;
+        res.end();
+        return;
+    }
+
   const parsedUrl = url.parse(req.url, true);
   if (req.method === 'GET' && parsedUrl.pathname === '/getProfilePic') {
     let idFriend = parsedUrl.query.idFriend;
